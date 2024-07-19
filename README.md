@@ -1,7 +1,7 @@
 <h1 align="center">Hello 👋, I'm Reetabrata Bhandari</h1>
 <h3 align="center">A self-taught passionate programmer</h3>
 <br><br>
-- 👨‍💻 All of my projects are available at [jimfleax.onrender.com](jimfleax.onrender.com)
+- 👨‍💻 All of my projects are available at <a href="https://jimfleax.onrender.com/">jimfleax.onrender.com</a>
 <br><br>
 <h3 align="left">Connect with me:</h3>
 <p align="left">
