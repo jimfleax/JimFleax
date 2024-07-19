@@ -1,9 +1,6 @@
 <h1 align="center">Hello 👋, I'm Reetabrata Bhandari</h1>
 <h3 align="center">A self-taught passionate programmer</h3>
 <br><br>
-
-<p align="center"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=jimfleax&no-frame=true&no-bg=true&margin-w=45&margin-h=25&column=3" alt="jimfleax" /></a> </p>
-<br><br>
 - 👨‍💻 All of my projects are available at [jimfleax.onrender.com](jimfleax.onrender.com)
 <br><br>
 <h3 align="left">Connect with me:</h3>
