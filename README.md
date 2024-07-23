@@ -1,8 +1,17 @@
-# Hello 👋, I'm Reetabrata Bhandari  
+![reetTypingEff](https://github.com/user-attachments/assets/b1029df8-9cc6-4e7f-bf42-7417691acf52)
+<hr>
 
-#### _I'm a passionate, self-taught programmer_  
+### _I'm a passionate, self-taught programmer._  
 <br>
- Visit my personal website - https://jimfleax.onrender.com
+
+#### Check out my other projects in my personal website 👨‍💻 --> https://jimfleax.onrender.com
+<br>
+
+### Check out my latest project 🔥 - [CosmicMath](https://cosmicmath.onrender.com/)
+##### - CosmicMath algorithmically generates unlimited number of variety of sums!
+##### - Tech stack used: Javascript, HTML, and CSS.
+##### - Newer types of sums are added frequently!
+
 <br>
 <h3 align="left">Connect with me:</h3>
 <p align="left">
