@@ -34,45 +34,19 @@
     </head>
     <body>
         <script type="text/javascript">
-            window.onload = () => {
-    // Cache frequently used elements
-    const leftContent = document.querySelector("#leftContent");
-    const upperContent = document.querySelector("#upperContent");
-
-    // Scroll to top smoothly using smooth behavior in CSS or JavaScript
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    // Set #leftContent top position to vertically center it
-    const setPosition = () => {
-        const contentHeight = leftContent.getBoundingClientRect().height;
-        const viewportHeight = window.innerHeight;
-        leftContent.style.top = `${(viewportHeight / 2) - (contentHeight / 2) + 40}px`;
-    };
-    
-    // Adjust content position initially and on window resize
-    setPosition();
-    window.addEventListener('resize', setPosition);
-
-    // Smooth transition after 1.5 seconds
-    setTimeout(() => {
-        leftContent.style.top = '0px';  // Slide up to the top
-    }, 1500);
-
-    // Dynamically set height and animations using CSS
-    const style = document.createElement('style');
-    style.innerHTML = `
-        #upperContent {
-            height: ${window.innerHeight}px;
-            transition: height 1s ease-in-out;
-        }
-        @keyframes load {
-            from { height: ${window.innerHeight}px; }
-            to { height: ${leftContent.getBoundingClientRect().height}px; }
-        }
-    `;
-    document.head.appendChild(style);
-};
-
+            scrollTo(0, 0);
+            document.body.onload = ()=>{
+                scrollTo(0, 0);
+                document.querySelector("#leftContent").style.cssText = `top:${((screen.availHeight / 2) - document.querySelector("#leftContent").getBoundingClientRect().height) + 40}px`;
+                setTimeout(()=>{
+                    scrollTo(0, 0);
+                    document.querySelector("#leftContent").style.cssText = `top:0px;`
+                }
+                , 1500);
+                var css = document.createElement('style');
+                css.innerHTML = `#upperContent {height: ${screen.availHeight}px;} @keyframes load {from {height: ${screen.availHeight}px;} to {height: ${document.querySelector("#leftContent").getBoundingClientRect().height}px;}}`;
+                document.querySelector('body').append(css);
+            }
         </script>
         <style>
             ::-webkit-scrollbar {
