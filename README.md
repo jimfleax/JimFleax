@@ -4,7 +4,7 @@
 ### _I'm a passionate, self-taught programmer._  
 <br>
 
-#### Check out my other projects in my personal website 👨‍💻 --> https://jimfleax.onrender.com
+#### Check out my other projects in my personal website 👨‍💻 --> https://jimfleax.vercel.app
 <br>
 
 ### Check out my latest project 🔥 - [CosmicMath](https://cosmicmath.vercel.app/)
