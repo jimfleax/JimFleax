@@ -7,7 +7,7 @@
 #### Check out my other projects in my personal website 👨‍💻 --> https://jimfleax.onrender.com
 <br>
 
-### Check out my latest project 🔥 - [CosmicMath](https://cosmicmath.onrender.com/)
+### Check out my latest project 🔥 - [CosmicMath](https://cosmicmath.vercel.app/)
 ##### - CosmicMath algorithmically generates unlimited number of variety of sums!
 ##### - Tech stack used: Javascript, HTML, and CSS.
 ##### - Newer types of sums are added frequently!
