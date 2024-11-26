@@ -291,6 +291,7 @@ btn.addEventListener('click', () => {
       margin: auto;
       margin-block: 15px;
       display: flex;
+      flex-direction:column;
       min-width: 15em;
       max-width: 20em;
       opacity: 0;
@@ -321,7 +322,7 @@ btn.addEventListener('click', () => {
       font-family: 'JetBrains mono', monospace;
     }
 
-    #appIcon>img {
+    #appIcon> div>img {
       /* background: #f2f2f2; */
       border-right: solid 2px #00000014;
       padding-right: 20px;
@@ -341,7 +342,7 @@ btn.addEventListener('click', () => {
       transition: 500ms;
     }
 
-    #appIcon>span {
+    #appIcon>div>span {
       display: block;
       width: fit-content;
       height: fit-content;
