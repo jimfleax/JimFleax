@@ -43,10 +43,45 @@
     rel="stylesheet">
 </head>
 
-<body data-new-gr-c-s-check-loaded="14.1209.0" data-gr-ext-installed="">
+<body>
   <script type="text/javascript">
+    
     scrollTo(0, 0);
     document.body.onload = () => {
+      const btn = document.querySelector("#lowerContent > span:nth-child(13) > #Layer_1"), style = document.createElement('style'); 
+style.textContent = `
+@keyframes floatUp {
+    0% {transform: translateY(100vh) rotate(45deg); opacity: 1;}
+    50% {opacity: 0.8;}
+    100% {transform: translateY(-10vh) rotate(45deg); opacity: 0;}
+}
+.heart {
+    position: fixed;
+    background: red;
+    transform: rotate(45deg);
+    animation: floatUp 5s ease-in infinite;
+    box-shadow: 0 0 10px rgba(255,0,0,0.7), 0 0 20px rgba(255,0,0,0.5);
+}
+`; 
+document.head.appendChild(style); 
+btn.addEventListener('click', () => { 
+    for (let i = 0; i < 10; i++) { 
+        const h = document.createElement('div'), s = Math.random() * 20 + 20; 
+        Object.assign(h.style, {
+            width: `${s}px`, 
+            height: `${s}px`, 
+            left: `${Math.random() * 100}%`, 
+            animationDuration: `${Math.random() * 3 + 3}s`,
+        }); 
+        const b = document.createElement('div'), a = document.createElement('div'); 
+        [b, a].forEach(e => Object.assign(e.style, {position: 'absolute', width: `${s}px`, height: `${s}px`, background: 'red', borderRadius: '50%'})); 
+        b.style.top = '-50%'; b.style.left = '0'; a.style.left = '-50%'; a.style.top = '0'; 
+        h.appendChild(b); h.appendChild(a); h.className = 'heart'; 
+        document.body.appendChild(h); 
+        h.addEventListener('animationend', () => document.body.removeChild(h)); 
+    } 
+});
+
       scrollTo(0, 0);
       document.querySelector("#leftContent").style.cssText = `top:${((screen.availHeight / 2) - document.querySelector("#leftContent").getBoundingClientRect().height) + 40}px`;
       setTimeout(() => {
