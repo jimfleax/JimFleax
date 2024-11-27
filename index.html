@@ -185,6 +185,13 @@ scrollTo(0, 0);
       padding: 8px 14px;
       box-shadow: 1px 1px 5px -1px #282c4d1c, 0px 0px 5px -3px #00000029;
       cursor: pointer;
+      transition: 400ms;
+    }
+    #mail:hover {
+      box-shadow:1px 1px 7px -1px #282c4d30, 0px 0px 14px -3px #0000004f;
+    }
+    #mail:hover > span > b {
+      text-decoration: underline;
     }
 
     #mail>span {
@@ -208,12 +215,13 @@ scrollTo(0, 0);
       width: fit-content;
       height: fit-content;
       margin: 10px auto 10px auto;
-      /* background: linear-gradient(45deg, black, #2d2d2d); */
       border-radius: 10px;
       color: #fff;
       padding: 8px 10px;
-      /* box-shadow: 1px 1px 5px -1px #282c4d1c, 0px 0px 5px -3px #00000029; */
-      cursor: pointer;
+      transition: 500ms;
+    }
+    #hashtag:hover {
+      transform: scale(1.1);
     }
 
     #hashtag>span {
