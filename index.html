@@ -143,27 +143,7 @@ btn.addEventListener('click', () => {
     }
 
     html {}
-    
-    #app {
-      background: linear-gradient(241deg, #FF9800, #F44336, #9C27B0);
-      
-      position:absolute;
-      z-index:3;
-    }
-
-    #upperContent {
-      width: -webkit-fill-available;
-      height: inherit;
-      font-family: 'Montserrat', segoe ui;
-      color: #fff;
-      display: flex;
-      margin: 1em;
-      animation: 600ms ease-in-out load;
-      animation-delay: 1500ms;
-      animation-fill-mode: forwards;
-      transition: 500ms;
-    }
-#locate > svg {
+    #locate > svg {
     width: 30px;
     height: 30px;
     fill: transparent;
@@ -245,6 +225,26 @@ div#locate {
     margin: auto;
     display: flex;
 }
+    #app {
+      background: linear-gradient(241deg, #FF9800, #F44336, #9C27B0);
+      
+      position:absolute;
+      z-index:3;
+    }
+
+    #upperContent {
+      width: -webkit-fill-available;
+      height: inherit;
+      font-family: 'Montserrat', segoe ui;
+      color: #fff;
+      display: flex;
+      margin: 1em;
+      animation: 600ms ease-in-out load;
+      animation-delay: 1500ms;
+      animation-fill-mode: forwards;
+      transition: 500ms;
+    }
+
     #leftContent {
       display: flex;
       flex-direction: column;
@@ -723,7 +723,4 @@ div#locate {
       <br>
     </div>
   </div>
-
-
-
-<style>#upperContent {height: 796px;} @keyframes load {from {height: 796px;} to {height: 161.2207794189453px;}}</style></body></html>
+</body></html>
