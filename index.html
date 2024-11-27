@@ -714,10 +714,10 @@ btn.addEventListener('click', () => {
 });
 (async () => {
 	scrollTo(0, 0);
+  var left = await document.querySelector("#leftContent");
       document.querySelector("#leftContent").style.cssText = `top:${((screen.availHeight / 2) - document.querySelector("#leftContent").getBoundingClientRect().height) + 40}px`;
       setTimeout(() => {
         scrollTo(0, 0);
-        var left = await document.querySelector("#leftContent");
         left.style.cssText = `top:0px;`;
       }, 1500);
       var css = document.createElement('style');
