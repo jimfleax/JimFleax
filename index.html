@@ -163,7 +163,88 @@ btn.addEventListener('click', () => {
       animation-fill-mode: forwards;
       transition: 500ms;
     }
+#locate > svg {
+    width: 30px;
+    height: 30px;
+    fill: transparent;
+    margin: auto 10px auto 0px;
+    display: block;
+}
 
+#mail > svg {
+    width: 30px;
+    height: 30px;
+    fill: transparent;
+    margin: auto 10px auto 0px;
+    display: block;
+}
+
+div#mail {
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    background: linear-gradient(45deg, black, #2d2d2d);
+    background: linear-gradient(45deg, #E91E63, #FF5722);
+    border-radius: 10px;
+    color: #fff;
+    padding: 8px 14px;
+    box-shadow: 1px 1px 5px -1px #282c4d1c, 0px 0px 5px -3px #00000029;
+    cursor: pointer;
+}
+
+#mail > span {
+    font-size: 15px;
+    font-family: lato;
+    display: block;
+    margin: auto;
+    font-weight: 700;
+}
+
+#hashtag > svg {
+    width: 20px;
+    height: 20px;
+    fill: transparent;
+    margin: auto 4px auto 0px;
+    display: block;
+}
+
+div#hashtag {
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    margin: 10px auto 10px auto;
+    /* background: linear-gradient(45deg, black, #2d2d2d); */
+    border-radius: 10px;
+    color: #fff;
+    padding: 8px 10px;
+    /* box-shadow: 1px 1px 5px -1px #282c4d1c, 0px 0px 5px -3px #00000029; */
+    cursor: pointer;
+}
+
+#hashtag > span {
+    font-size: 16px;
+    font-family: lato;
+    display: block;
+    margin: auto;
+    margin-top: -4px;
+    font-weight: 500;
+    font-family: segoe ui;
+}
+
+
+div#hashtag:nth-child(1) {
+    grid-row: 1;
+}
+
+div#hashtag:nth-child(2) {grid-column: 2;}
+
+div#locate {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    display: flex;
+}
     #leftContent {
       display: flex;
       flex-direction: column;
@@ -642,4 +723,7 @@ btn.addEventListener('click', () => {
       <br>
     </div>
   </div>
-</body></html>
+
+
+
+<style>#upperContent {height: 796px;} @keyframes load {from {height: 796px;} to {height: 161.2207794189453px;}}</style></body></html>
