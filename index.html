@@ -101,7 +101,20 @@
 </head>
 
 <body>
-  
+  <script type="text/javascript">
+    scrollTo(0, 0);
+    document.body.onload = () => {
+      scrollTo(0, 0);
+      document.querySelector("#leftContent").style.cssText = `top:${((screen.availHeight / 2) - document.querySelector("#leftContent").getBoundingClientRect().height) + 40}px`;
+      setTimeout(() => {
+        scrollTo(0, 0);
+        document.querySelector("#leftContent").style.cssText = `top:0px;`
+      }, 1500);
+      var css = document.createElement('style');
+      css.innerHTML = `#upperContent {height: ${screen.availHeight}px;} @keyframes load {from {height: ${screen.availHeight}px;} to {height: ${document.querySelector("#leftContent").getBoundingClientRect().height}px;}}`;
+      document.querySelector('body').append(css);
+    }
+  </script>
   
   <style>
     ::-webkit-scrollbar {
@@ -747,20 +760,6 @@
       </span>
       <br>
     </div>
-    <script type="text/javascript">
-      scrollTo(0, 0);
-      document.body.onload = () => {
-        scrollTo(0, 0);
-        document.querySelector("#leftContent").style.cssText = `top:${((screen.availHeight / 2) - document.querySelector("#leftContent").getBoundingClientRect().height) + 40}px`;
-        setTimeout(() => {
-          scrollTo(0, 0);
-          document.querySelector("#leftContent").style.cssText = `top:0px;`
-        }, 1500);
-        var css = document.createElement('style');
-        css.innerHTML = `#upperContent {height: ${screen.availHeight}px;} @keyframes load {from {height: ${screen.availHeight}px;} to {height: ${document.querySelector("#leftContent").getBoundingClientRect().height}px;}}`;
-        document.querySelector('body').append(css);
-      }
-    </script>
   </div>
   <script type="text/javascript">
     document.body.onload = () => {
