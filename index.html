@@ -103,27 +103,27 @@
 <body>
   <script type="text/javascript">
     function waitForElement(selector) {
-    return new Promise((resolve) => {
+      return new Promise((resolve) => {
         const element = document.querySelector(selector);
         if (element) {
-            resolve(element);
+          resolve(element);
         } else {
-            const observer = new MutationObserver(() => {
-                const element = document.querySelector(selector);
-                if (element) {
-                    observer.disconnect();
-                    resolve(element);
-                }
-            });
+          const observer = new MutationObserver(() => {
+            const element = document.querySelector(selector);
+            if (element) {
+              observer.disconnect();
+              resolve(element);
+            }
+          });
 
-            observer.observe(document.body, { childList: true, subtree: true });
+          observer.observe(document.body, { childList: true, subtree: true });
         }
-    });
-}
-scrollTo(0, 0);
-(async () => {
-    const left = await waitForElement('#leftContent');
+      });
+    }
     scrollTo(0, 0);
+    (async () => {
+      const left = await waitForElement('#leftContent');
+      scrollTo(0, 0);
       left.style.cssText = `top:${((screen.availHeight / 2) - left.getBoundingClientRect().height) + 40}px`;
       setTimeout(() => {
         scrollTo(0, 0);
@@ -132,9 +132,9 @@ scrollTo(0, 0);
       var css = document.createElement('style');
       css.innerHTML = `#upperContent {height: ${screen.availHeight}px;} @keyframes load {from {height: ${screen.availHeight}px;} to {height: ${document.querySelector("#leftContent").getBoundingClientRect().height}px;}}`;
       document.querySelector('body').append(css);
-})();
+    })();
   </script>
-  
+
   <style>
     ::-webkit-scrollbar {
       width: 5px;
@@ -187,10 +187,12 @@ scrollTo(0, 0);
       cursor: pointer;
       transition: 400ms;
     }
+
     #mail:hover {
-      box-shadow:1px 1px 7px -1px #282c4d30, 0px 0px 14px -3px #0000004f;
+      box-shadow: 1px 1px 7px -1px #282c4d30, 0px 0px 14px -3px #0000004f;
     }
-    #mail:hover > span > b {
+
+    #mail:hover>span>b {
       text-decoration: underline;
     }
 
@@ -220,6 +222,7 @@ scrollTo(0, 0);
       padding: 8px 10px;
       transition: 500ms;
     }
+
     #hashtag:hover {
       transform: scale(1.1);
     }
@@ -593,7 +596,10 @@ scrollTo(0, 0);
             xml:space="preserve">
             <style type="text/css">
               .feather_een {
-                fill: #0B1719;
+                fill: #d63125;
+                stroke: #f54537;
+                stroke-width: 2px;
+                stroke-linejoin: round;
               }
             </style>
             <path class="feather_een" d="M16,1C9.925,1,5,5.925,5,12c0,6.494,5.727,12.988,8.916,16.101c1.159,1.131,3.009,1.131,4.167,0
