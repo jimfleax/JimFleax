@@ -228,8 +228,6 @@ html {
       margin: 20px auto;
       max-width: 600px;
     }
-
-    /* Base style for progress bars */
     .progress {
       position: relative;
       height: 14px;
@@ -386,7 +384,7 @@ span#contact {
 
 span {
     opacity: 0;
-    animation: fadeIn 400ms ease-in-out 200ms forwards;
+    animation: fadeIn 300ms ease-in-out 200ms forwards;
 }
 @media (max-width: 780px) {
     #container {
@@ -399,7 +397,7 @@ span {
     #left,#right {
         width: -webkit-fill-available;
         border: none;
-        margin-block: 40px;
+        margin-block: 50px 70px;
     }
     #profilepic {
         max-width: 15em;
@@ -428,9 +426,6 @@ span {
         margin: 40px auto;
         max-width: 100%;
     }
-    #homebuttons > div > span {
-        /* font-size: 13px; */
-    }
     #homebuttons > div {
         min-width: fit-content;
         max-width: 100%;
@@ -443,19 +438,12 @@ span {
     #appIcon {
         width: 80%;
         margin-inline: 20px;
-        /* transform: scale(0.8); */
     }
     div#appIcon:nth-child(1) {
         grid-column: 1;
     }
     div#appIcon:nth-child(2) {
         grid-column: 1;
-    }
-    #mail > svg {
-        /* width: 20px; */
-        /* height: 20px; */
-    }
-    #mail > span {
     }
     #mail {
     width: 70% !important;!i;!;
@@ -476,8 +464,7 @@ span {
         transform: scale(0.9);
     }
     body > #nav {
-        display: flex !important;!i;!;
-        !i;!;!;!i;!;
+        display: flex !important;
     }
 }
 
