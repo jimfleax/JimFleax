@@ -8,13 +8,13 @@
             } else {
                 document.querySelector("body").style.background = `linear-gradient(${count1 -= 2}deg, #1087aa2e, #b4a10f36, white, white, white, #85d0e629, white, white, #e4939314, white, white, #81e44b4a, white, white, #ff8b8b45, #6da7ff40) no-repeat no-repeat`;
             }
-            if (count1 === 21) {
+            if (count1 === 20) {
                 crease = true;
-            } else if (count1 === 78) {
+            } else if (count1 === 80) {
                 crease = false;
             }
         }
-        , 300);
+        , 250);
 
         page(1);
         document.querySelectorAll("#pages > span").forEach( (a, b) => {
