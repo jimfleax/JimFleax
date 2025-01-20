@@ -397,7 +397,7 @@ span {
     #left,#right {
         width: -webkit-fill-available;
         border: none;
-        margin-block: 50px 70px;
+        margin-block: 50px 100px;
     }
     #profilepic {
         max-width: 15em;
