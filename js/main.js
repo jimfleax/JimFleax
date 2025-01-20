@@ -1,5 +1,5 @@
 ( (page) => {
-    document.body.onload = () => {
+    document.addEventListener("DOMContentLoaded", (e) => {
         var crease = true;
         var count1 = 20;
         setInterval( () => {
@@ -29,7 +29,7 @@
             })
         }
         );
-    }
+    })
 }
 )( (no=1) => {
     document.querySelectorAll("#pages > span").forEach( (a) => {
