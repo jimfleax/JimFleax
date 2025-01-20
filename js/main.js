@@ -14,7 +14,7 @@
                 crease = false;
             }
         }
-        , 150);
+        , 100);
 
         page(1);
         document.querySelectorAll("#pages > span").forEach( (a, b) => {
