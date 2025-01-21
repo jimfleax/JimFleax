@@ -29,7 +29,7 @@
             })
         }
         );
-        document.html.classList.remove("loading");
+        document.querySelector("html").classList.remove("loading");
     })
 }
 )( (no=1) => {
