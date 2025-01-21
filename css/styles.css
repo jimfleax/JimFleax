@@ -107,12 +107,10 @@ html {
 
 #left {
   width: 50%;
-  border-block: dashed 2px #3f51b51a;
 }
 
 #right {
   width: 50%;
-  border: dashed 2px #3f51b51a;
   display: grid;
   justify-items: center;
   align-content: space-evenly;
@@ -187,13 +185,11 @@ html {
 .feather_een {fill: #000a3f;stroke: #000a43;stroke-width: 2px;stroke-linejoin: round;}
 
 #right > h1 {
-  border-bottom: dashed 2px #3f51b51a;
   width: 95%;
   text-align: center;
 }
 
 #right > span {
-  border-bottom: dashed 2px #3f51b51a;
   line-height: 30px;
   word-spacing: 1px;
   color: #464646;
