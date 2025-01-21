@@ -1,5 +1,5 @@
 ( (page) => {
-    document.addEventListener("DOMContentLoaded", (e) => {
+    document.addEventListener("load", (e) => {
         var crease = true;
         var count1 = 10;
         setInterval( () => {
@@ -29,6 +29,7 @@
             })
         }
         );
+        document.html.classList.remove("loading");
     })
 }
 )( (no=1) => {
