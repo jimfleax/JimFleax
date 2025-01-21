@@ -145,6 +145,10 @@ html {
   user-select: none;
 }
 
+#homebuttons > div:hover {
+  filter: brightness(0.8);
+}
+
 #homebuttons > div:nth-child(1) {
   background: linear-gradient(166deg, #494949, black, black, #392300, #1d2932);
   color: #fff;
