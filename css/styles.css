@@ -20,6 +20,9 @@
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(45deg, #424242, #3F51B5, #F44336);
 }
+.loading {
+  opacity:0;
+}
 html, body, #app {
   margin: 0;
   padding: 0;
