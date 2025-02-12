@@ -472,6 +472,9 @@ span {
   body > #nav {
     display: flex !important;
   }
+  #notice {
+    display:none !important;
+  }
 }
 
 * {
