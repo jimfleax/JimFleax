@@ -1,5 +1,6 @@
 ( (page) => {
     document.addEventListener("DOMContentLoaded", (e) => {
+        setTimeout(document.querySelector("#notice").remove, 5000);
         var crease = true;
         var count1 = 10;
         setInterval( () => {
