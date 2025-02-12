@@ -1,7 +1,10 @@
 ( (page) => {
     document.addEventListener("DOMContentLoaded", (e) => {
         setTimeout(() => {
+            document.querySelector("#notice > div").styles.opacity = 0;
+            setTimeout(() => {
   document.querySelector("#notice > div").click();
+}, 500);
 }, 5000);
         var crease = true;
         var count1 = 10;
