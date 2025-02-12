@@ -1,9 +1,9 @@
 ( (page) => {
     document.addEventListener("DOMContentLoaded", (e) => {
         setTimeout(() => {
-            document.querySelector("#notice > div").style.opacity = 0;
+            document.querySelector("#notice > div")?.style.opacity = 0;
             setTimeout(() => {
-  document.querySelector("#notice > div").click();
+  document.querySelector("#notice > div")?.click();
 }, 500);
 }, 5000);
         var crease = true;
