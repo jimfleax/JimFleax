@@ -1,7 +1,7 @@
 ( (page) => {
     document.addEventListener("DOMContentLoaded", (e) => {
         setTimeout(() => {
-            document.querySelector("#notice > div").styles.opacity = 0;
+            document.querySelector("#notice > div").style.opacity = 0;
             setTimeout(() => {
   document.querySelector("#notice > div").click();
 }, 500);
