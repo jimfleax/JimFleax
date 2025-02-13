@@ -416,6 +416,7 @@ span {
     justify-self: center;
     aspect-ratio: 1 / 1;
     margin-inline: 10px;
+    margin: auto;
   }
   #profilepic > div {
     background-position: 100% 54%;
