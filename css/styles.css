@@ -403,14 +403,14 @@ span {
   }
   #left, #right {
     width: -webkit-fill-available;
-    width: -mox-available;
+    width: -moz-available;
     border: none;
     margin-block: 50px 100px;
   }
   #profilepic {
     max-width: 15em;
     width: -webkit-fill-available;
-    width: -mox-available;
+    width: -moz-available;
     min-width: 8em;
     height: auto;
     justify-self: center;
