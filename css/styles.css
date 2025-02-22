@@ -83,7 +83,7 @@ html {
   display: flex;
   background: #ffffff78;
   backdrop-filter: blur(50px);
-  border: solid 1px #b78f8f40;
+  border: solid 1px #d9b2b26b;
   border-radius: 15px;
   box-shadow: 20px 20px 50px -10px #d9d9d996, -20px -20px 60px 0px #ffffff;
 }
