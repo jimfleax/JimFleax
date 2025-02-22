@@ -176,7 +176,7 @@ html {
   box-shadow: 0px 0px 24px -6px #b1b1b136, 0px 15px 15px 0px #407fe321, 0px -2px 24px -6px #e667412b;
   transition: 1s;
   opacity: 1;
-  animation: beatingHeart 4s infinite;
+  animation: beatingHeart 6s infinite;
 }
 #profilepic:hover {
   scale: 1.03;
