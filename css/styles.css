@@ -89,7 +89,7 @@ html {
   transition: 500ms;
 }
 div#pages:hover {
-    transform: scale(1.02);
+    transform: scale(1.01);
     box-shadow: 20px 20px 40px -6px #d9d9d9cc, -20px -20px 60px 0px #ececece0;
 }
 #pages > span {
