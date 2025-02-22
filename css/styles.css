@@ -1,4 +1,3 @@
-// change shadown on hover nav
 @font-face {
   font-family: 'settikef';
   src: url('Settikef.otf') format('opentype');
@@ -87,8 +86,12 @@ html {
   border: solid 1px #d9b2b26b;
   border-radius: 15px;
   box-shadow: 20px 20px 50px -10px #d9d9d996, -20px -20px 60px 0px #ffffff;
+  transition: 500ms;
 }
-
+div#pages:hover {
+    transform: scale(1.02);
+    box-shadow: 20px 20px 40px -6px #d9d9d9cc, -20px -20px 60px 0px #ececece0;
+}
 #pages > span {
   display: block;
   font-size: 14px;
