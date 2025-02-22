@@ -154,7 +154,7 @@ div#pages:hover {
 }
 
 #homebuttons > div:hover {
-  filter: brightness(0.8);
+  filter: brightness(0.88);
 }
 
 #homebuttons > div:nth-child(1) {
