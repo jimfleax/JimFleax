@@ -298,6 +298,7 @@ div#pages:hover {
   height: 40px !important;
   margin: auto;
   padding: 10px 14px;
+  -webkit-user-drag: none;
 }
 
 #appIcon > span {
