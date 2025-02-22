@@ -1,54 +1,41 @@
 ( (page) => {
     document.addEventListener("DOMContentLoaded", (e) => {
-        const el = document.querySelector("#notice > div");
-        setTimeout(()=>{
+        setTimeout(() => {
+  const el = document.querySelector("#notice > div");
   if (el) el.style.opacity = 0, setTimeout(() => el.click(), 500);
 }, 5000);
-        let crease = true;
-let count1 = 10;
-let lastUpdateTime = 0;
+        var crease = true;
+        var count1 = 10;
+        setInterval( () => {
+            if (crease) {
+                document.querySelector("body").style.background = `linear-gradient(${count1 += 2}deg, #1087aa2e, #b4a10f36, white, white, white, #85d0e629, white, white, #e4939314, white, white, #81e44b4a, white, white, #ff8b8b45, #6da7ff40) no-repeat no-repeat`;
+            } else {
+                document.querySelector("body").style.background = `linear-gradient(${count1 -= 2}deg, #1087aa2e, #b4a10f36, white, white, white, #85d0e629, white, white, #e4939314, white, white, #81e44b4a, white, white, #ff8b8b45, #6da7ff40) no-repeat no-repeat`;
+            }
+            if (count1 === 10) {
+                crease = true;
+            } else if (count1 === 80) {
+                crease = false;
+            }
+        }
+        , 200);
 
-const changeBackground = (timestamp) => {
-  if (timestamp - lastUpdateTime >= 200) {
-    if (crease) {
-      count1 += 2;
-    } else {
-      count1 -= 2;
-    }
-    document.querySelector("body").style.background = `linear-gradient(${count1}deg, #1087aa2e, #b4a10f36, white, white, white, #85d0e629, white, white, #e4939314, white, white, #81e4[...])`;
-    lastUpdateTime = timestamp;
-
-    if (count1 === 10) {
-      crease = true;
-    } else if (count1 === 80) {
-      crease = false;
-    }
-  }
-  requestAnimationFrame(changeBackground);
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-  setTimeout(() => {
-    const el = document.querySelector("#notice > div");
-    if (el) {
-      el.style.opacity = 0;
-      setTimeout(() => el.click(), 500);
-    }
-  }, 5000);
-
-  requestAnimationFrame(changeBackground);
-
-  // Other event listeners
-  document.querySelectorAll("#pages > span").forEach((a, b) => {
-    a.addEventListener("click", () => page(b + 1));
-  });
-  document.querySelectorAll("#nav > svg").forEach((a, b) => {
-    a.addEventListener("click", () => page(b + 1));
-  });
-  window.addEventListener("load", () => {
-    document.querySelector("html").classList.remove("loading");
-  });
-});
+        page(1);
+        document.querySelectorAll("#pages > span").forEach( (a, b) => {
+            a.addEventListener("click", function() {
+                page(b + 1);
+            })
+        }
+        );
+        document.querySelectorAll("#nav > svg").forEach( (a, b) => {
+            a.addEventListener("click", function() {
+                page(b + 1);
+            })
+        }
+        );
+        window.addEventListener("load", ()=>{
+            document.querySelector("html").classList.remove("loading");
+        })
         
     })
 }
