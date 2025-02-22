@@ -541,18 +541,14 @@ body > #nav {
   }
 
   35% {
-    transform: scale(1.02);
-  }
-
-  40% {
     transform: scale(0.98);
   }
 
-  75% {
+  50% {
     transform: scale(1.01);
   }
 
-  80% {
+  75% {
     transform: scale(1);
   }
 }
