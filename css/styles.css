@@ -150,7 +150,7 @@ html {
 #homebuttons > div:hover {
   filter: brightness(0.8);
   opacity: 1;
-  animation: beatingHeart 1.2s;
+  animation: beatingHeart 1s;
 }
 
 #homebuttons > div:nth-child(1) {
@@ -548,11 +548,11 @@ body > #nav {
     transform: scale(0.98);
   }
 
-  45% {
-    transform: scale(1.02);
+  65% {
+    transform: scale(1.01);
   }
 
-  60% {
+  80% {
     transform: scale(1);
   }
 }
