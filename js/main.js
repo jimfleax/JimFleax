@@ -1,5 +1,8 @@
 ( (page) => {
     document.addEventListener("DOMContentLoaded", (e) => {
+        const el = document.querySelector("#notice > div");
+  if (el) el.style.opacity = 0, setTimeout(() => el.click(), 500);
+}, 5000);
         let crease = true;
 let count1 = 10;
 let lastUpdateTime = 0;
