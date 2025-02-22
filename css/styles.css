@@ -149,8 +149,6 @@ html {
 
 #homebuttons > div:hover {
   filter: brightness(0.8);
-  opacity: 1;
-  animation: beatingHeart 1s;
 }
 
 #homebuttons > div:nth-child(1) {
@@ -297,6 +295,8 @@ html {
 #appIcon:hover {
   border: solid 1px #3f51b569;
   box-shadow: 1px 1px 5px -1px #282c4d3b, 0px 0px 5px -3px #00000082;
+  opacity: 1;
+  animation: beatingHeart 1s;
 }
 div#appIcon:nth-child(1) {
   grid-column: 1;
