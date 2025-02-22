@@ -180,6 +180,7 @@ html {
 }
 #profilepic:hover {
   scale: 1.03;
+  box-shadow: 0px 0px 44px -6px #b1b1b173, 0px 15px 45px 0px #407fe329, 0px -2px 45px -6px #e6674152;
 }
 
 #profilepic > div {
