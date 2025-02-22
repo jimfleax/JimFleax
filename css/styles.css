@@ -84,6 +84,7 @@ html {
   background: #ffffff59;
   backdrop-filter: blur(50px);
   border-radius: 15px;
+  box-shadow: 20px 20px 50px -10px #d9d9d996, -20px -20px 60px 0px #ffffff;
 }
 
 #pages > span {
@@ -148,6 +149,8 @@ html {
 
 #homebuttons > div:hover {
   filter: brightness(0.8);
+  opacity: 1;
+  animation: beatingHeart 1.2s infinite;
 }
 
 #homebuttons > div:nth-child(1) {
@@ -531,4 +534,25 @@ body > #nav {
 #left > h2 {
   text-align: center;
   margin: 20px auto 0;
+}
+@keyframes beatingHeart {
+  0% {
+    transform: scale(1);
+  }
+
+  15% {
+    transform: scale(1.15);
+  }
+
+  30% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.15);
+  }
+
+  60% {
+    transform: scale(1);
+  }
 }
