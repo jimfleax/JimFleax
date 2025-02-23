@@ -447,6 +447,8 @@ span {
   }
   #right > span {
     border: none;
+    font-size: 13px;
+    line-height: 20px;
   }
   #homebuttons {
     flex-direction: column;
@@ -458,6 +460,7 @@ span {
     min-width: fit-content;
     max-width: 100%;
     width: 80%;
+    scale:0.8;
     margin-inline: auto;
   }
   #contact > span {
