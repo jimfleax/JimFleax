@@ -1,13 +1,13 @@
 // setInterval is problematic, use requestAnimationFrame...
-( (page) => {
+((page) => {
     document.addEventListener("DOMContentLoaded", (e) => {
         setTimeout(() => {
-  const el = document.querySelector("#notice > div");
-  if (el) el.style.opacity = 0, setTimeout(() => el.click(), 500);
-}, 5000);
+            const el = document.querySelector("#notice > div");
+            if (el) el.style.opacity = 0, setTimeout(() => el.click(), 500);
+        }, 5000);
         var crease = true;
         var count1 = 10;
-        setInterval( () => {
+        setInterval(() => {
             if (crease) {
                 document.querySelector("body").style.background = `linear-gradient(${count1 += 2}deg, #1087aa2e, #b4a10f36, white, white, white, #85d0e629, white, white, #e4939314, white, white, #81e44b4a, white, white, #ff8b8b45, #6da7ff40) no-repeat no-repeat`;
             } else {
@@ -19,33 +19,33 @@
                 crease = false;
             }
         }
-        , 200);
+            , 200);
 
         page(1);
-        document.querySelectorAll("#pages > span").forEach( (a, b) => {
-            a.addEventListener("click", function() {
+        document.querySelectorAll("#pages > span").forEach((a, b) => {
+            a.addEventListener("click", function () {
                 page(b + 1);
             })
         }
         );
-        document.querySelectorAll("#nav > svg").forEach( (a, b) => {
-            a.addEventListener("click", function() {
+        document.querySelectorAll("#nav > svg").forEach((a, b) => {
+            a.addEventListener("click", function () {
                 page(b + 1);
             })
         }
         );
-        window.addEventListener("load", ()=>{
+        window.addEventListener("load", () => {
             document.querySelector("html").classList.remove("loading");
         })
-        
+
     })
 }
-)( (no=1) => {
-    document.querySelectorAll("#pages > span").forEach( (a) => {
+)((no = 1) => {
+    document.querySelectorAll("#pages > span").forEach((a) => {
         a.classList.toggle("active", false)
     }
     );
-    document.querySelectorAll("#nav > svg").forEach( (a) => {
+    document.querySelectorAll("#nav > svg").forEach((a) => {
         a.classList.toggle("active", false)
     }
     );
