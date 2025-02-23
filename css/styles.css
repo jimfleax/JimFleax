@@ -468,6 +468,9 @@ span {
     scale:0.8;
     margin-inline: auto;
   }
+  #left > span {
+    font-size: 14px !important;
+  }
   #contact > span {
     font-size: 10px;
   }
