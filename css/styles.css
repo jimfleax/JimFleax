@@ -529,6 +529,7 @@ body > #nav {
   height: 18px;
   margin: auto;
   pointer-events: auto;
+  transition: 500ms;
 }
 
 #nav > svg.active {
