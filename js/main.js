@@ -50,6 +50,7 @@
     );
     document.querySelector("#pages > span:nth-child(" + no + ")").classList.toggle("active");
     document.querySelector("body > #nav > svg:nth-child(" + no + ")").classList.toggle("active");
+    window.scroll(0,0);
     if (no === 1) {
         document.querySelector("#container").innerHTML = `<div id="left"> <div id="profilepic" title="Yesss this is my facee!! 🥰"><div></div></div> </div> <div id="right"> <h1>Reetabrata Bhandari</h1> <span>Hello! I'm a self-taught computer programmer based in India. I love to cook delicious webpages, blending sleek design with robust backend. I am constantly learning newer recipies to add to my programming toolkit!</span> <div id="homebuttons"> <div onclick="window.open('https://github.com/jimfleax?tab=repositories', 'blank')"><span>View repos</span></div> <div onclick="window.open('mailto:reetabrata.bhandari@gmail.com')"><span>Mail me</span></div> </div> </div>`;
     } else if (no === 2) {
