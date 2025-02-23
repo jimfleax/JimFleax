@@ -1,3 +1,4 @@
+// setInterval is problematic, use requestAnimationFrame...
 ( (page) => {
     document.addEventListener("DOMContentLoaded", (e) => {
         setTimeout(() => {
