@@ -523,16 +523,21 @@ body > #nav {
 }
 
 #nav > svg {
-  width: 25px;
-  height: 25px;
+  border-radius: 10px;
+  padding: 8px;
+  width: 18px;
+  height: 18px;
   margin: auto;
   pointer-events: auto;
 }
 
 #nav > svg.active {
-  stroke: #000;
-  stroke-width: 1.5px;
+  stroke: #ffffffc9;
+  stroke-width: 0.2px;
   stroke-linejoin: round;
+  background: #000000d4;
+  fill: #ffffffc9;
+  box-shadow: rgb(0 0 0 / 7%) 0px 4px 6px -1px, rgb(0 0 0 / 6%) 0px 2px 4px -2px;
 }
 
 #Layer_1:hover {
