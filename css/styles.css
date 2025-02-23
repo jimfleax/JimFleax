@@ -475,6 +475,7 @@ span {
     font-size: 10px;
   }
   #appIcon {
+    scale: 0.8;
     width: 80%;
     margin-inline: 20px;
   }
@@ -519,10 +520,10 @@ body > #nav {
   position: fixed;
   z-index: 1000;
   display: none;
-  justify-content: center; /* Centers the content horizontally */
+  justify-content: center;
   align-items: center;
   bottom: 0;
-  left: 50%; /* Aligns it in the center */
+  left: 50%;
   transform: translateX(-50%);
   height: 25px;
   width: 90%;
@@ -553,7 +554,7 @@ body > #nav {
 }
 
 #Layer_1:hover {
-  filter: brightness(0.7);
+  filter: brightness(0.8);
 }
 
 #Layer_1 {
@@ -574,7 +575,7 @@ body > #nav {
   }
 
   25% {
-    transform: scale(0.98);
+    transform: scale(0.99);
   }
 
   50% {
