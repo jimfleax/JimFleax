@@ -36,25 +36,22 @@
         }
         );
         document.addEventListener("keydown", function(event) {
-            if (event.altKey) {
+            if (JSON.parse(localStorage["keybindings"] || 'false') && event.ctrlKey) {
                 var index = 0;
                 document.querySelectorAll("#nav > svg").forEach( (a, b) => {
                     (!a.classList.contains('active')) || (index = (b + 1))
                 }
                 );
-                console.log(index);
-                if (JSON.parse(localStorage["keybindings"] || 'false')) {
-                    if (event.key === "ArrowRight") {
-                        (index < 4) ? (index++) : (index = 1)
-                        page(index);
-                    } else if (event.key === "ArrowLeft") {
-                        (index > 1) ? (index--) : (index = 4)
-                        page(index);
-                    }
+                if (event.key === "ArrowRight") {
+                    (index < 4) ? (index++) : (index = 1)
+                    page(index);
+                } else if (event.key === "ArrowLeft") {
+                    (index > 1) ? (index--) : (index = 4)
+                    page(index);
                 }
-                if (event.key === "k") {
-                    JSON.parse(localStorage["keybindings"] || 'false') ? (localStorage["keybindings"] = false) : (localStorage["keybindings"] = true);
-                }
+            }
+            if (event.altKey && event.key === "k") {
+                JSON.parse(localStorage["keybindings"] || 'false') ? (localStorage["keybindings"] = false) : (localStorage["keybindings"] = true);
             }
         });
 
