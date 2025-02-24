@@ -1,13 +1,10 @@
 // setInterval is problematic, use requestAnimationFrame...
-((page) => {
+( (page) => {
     document.addEventListener("DOMContentLoaded", (e) => {
-        setTimeout(() => {
-            const el = document.querySelector("#notice > div");
-            if (el) el.style.opacity = 0, setTimeout(() => el.click(), 500);
-        }, 5000);
+        localStorage["keybindings"] || (localStorage["keybindings"] = true);
         var crease = true;
         var count1 = 10;
-        setInterval(() => {
+        setInterval( () => {
             if (crease) {
                 document.querySelector("body").style.background = `linear-gradient(${count1 += 2}deg, #1087aa2e, #b4a10f36, white, white, white, #85d0e629, white, white, #e4939314, white, white, #81e44b4a, white, white, #ff8b8b45, #6da7ff40) no-repeat no-repeat`;
             } else {
@@ -19,33 +16,76 @@
                 crease = false;
             }
         }
-            , 200);
+        , 200);
 
         page(1);
-        document.querySelectorAll("#pages > span").forEach((a, b) => {
-            a.addEventListener("click", function () {
+        document.querySelectorAll("#pages > span").forEach( (a, b) => {
+            a.addEventListener("click", function() {
                 page(b + 1);
             })
         }
         );
-        document.querySelectorAll("#nav > svg").forEach((a, b) => {
-            a.addEventListener("click", function () {
+        document.querySelectorAll("#nav > svg").forEach( (a, b) => {
+            a.addEventListener("click", function() {
                 page(b + 1);
             })
         }
         );
         window.addEventListener("load", () => {
             document.querySelector("html").classList.remove("loading");
-        })
+        }
+        );
+        document.addEventListener("keydown", function(event) {
+            if (event.altKey) {
+                var index = 0;
+                document.querySelectorAll("#nav > svg").forEach( (a, b) => {
+                    (!a.classList.contains('active')) || (index = (b + 1))
+                }
+                );
+                console.log(index);
+                if (JSON.parse(localStorage["keybindings"] || 'false')) {
+                    if (event.key === "ArrowRight") {
+                        (index < 4) ? (index++) : (index = 1)
+                        page(index);
+                    } else if (event.key === "ArrowLeft") {
+                        (index > 1) ? (index--) : (index = 4)
+                        page(index);
+                    }
+                }
+                if (event.key === "k") {
+                    JSON.parse(localStorage["keybindings"] || 'false') ? (localStorage["keybindings"] = false) : (localStorage["keybindings"] = true);
+                }
+            }
+        });
 
-    })
+        document.querySelector("#keybindings").onclick = function() {
+            var a = document.createElement("div");
+            var b = document.createElement("div");
+            b.id = "backdrop";
+            a.id = "keyinfo";
+            a.innerHTML = `<div id="keyinfo-header"><span>Keybindings</span><div id="keybinding-toggle"><label class="switch"> <input type="checkbox" ${JSON.parse(localStorage["keybindings"] || 'false') ? ('checked=""') : ""}> <span class="slider round"></span> </label></div></div> <div id="key-shortcuts"> <div id="key-item"><span id="shortcutName">Navigate forward through pages</span><div id="shortcutContent"><div id="key">alt</div> + <div id="key">&gt;</div></div></div> <div id="key-item"><span id="shortcutName">Navigate backward through pages</span><div id="shortcutContent"><div id="key">alt</div> + <div id="key">&lt;</div></div></div> <div id="key-item"><span id="shortcutName">Turn keybindings on/off</span><div id="shortcutContent"><div id="key">alt</div> + <div id="key">k</div></div></div> </div>`;
+            a.style.top = this.offsetTop + 80 + "px";
+            document.body.append(a);
+            document.body.append(b);
+            a.style.left = this.offsetLeft - (a.getBoundingClientRect().width) / 2 + 25 + "px";
+            document.querySelector("#backdrop").onclick = () => {
+                a.remove();
+                b.remove();
+            }
+            document.querySelector(".switch > input").addEventListener("click", function() {
+                localStorage["keybindings"] = this.checked;
+            });
+        }
+        ;
+    }
+    )
 }
-)((no = 1) => {
-    document.querySelectorAll("#pages > span").forEach((a) => {
+)( (no=1) => {
+    document.querySelectorAll("#pages > span").forEach( (a) => {
         a.classList.toggle("active", false)
     }
     );
-    document.querySelectorAll("#nav > svg").forEach((a) => {
+    document.querySelectorAll("#nav > svg").forEach( (a) => {
         a.classList.toggle("active", false)
     }
     );
