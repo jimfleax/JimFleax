@@ -106,11 +106,10 @@ div#pages:hover {
   display: block;
   font-size: 14px;
   font-weight: 400;
-  width: 95px;
-  min-width: fit-content;
+  width: 75px;
   height: fit-content;
   margin: 10px 10px;
-  padding: 10px 2px;
+  padding: 10px 5px;
   text-align: center;
   border-radius: 10px;
   user-select: none;
@@ -411,7 +410,7 @@ span#contact {
   margin: 16px;
 }
 
-#contact > span {
+#contact>span {
   display: block;
   height: fit-content;
   width: fit-content;
@@ -615,4 +614,22 @@ body>#nav {
 #left>h2 {
   text-align: center;
   margin: 20px auto 0;
+}
+
+@keyframes beatingHeart {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(0.99);
+  }
+
+  50% {
+    transform: scale(1.01);
+  }
+
+  75% {
+    transform: scale(1);
+  }
 }
