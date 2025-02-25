@@ -21,7 +21,6 @@ const FILES_TO_CACHE = [
   "/manifest.json",
 ];
 
-// Install event - pre-cache necessary files
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(async (cache) => {
@@ -44,7 +43,6 @@ self.addEventListener("install", (event) => {
   );
 });
 
-// Fetch event - Try network first, fallback to cache if offline
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     fetch(event.request)
@@ -56,7 +54,10 @@ self.addEventListener("fetch", (event) => {
           const metadata = await getCacheMetadata(cache);
           metadata[event.request.url] = Date.now();
           await cache.put(event.request, response.clone());
-          await cache.put("cache-metadata", new Response(JSON.stringify(metadata)));
+          await cache.put(
+            "cache-metadata",
+            new Response(JSON.stringify(metadata))
+          );
           return response;
         });
       })
@@ -80,14 +81,12 @@ self.addEventListener("fetch", (event) => {
   );
 });
 
-// Helper function to retrieve cache metadata
 async function getCacheMetadata(cache) {
   const metadataResponse = await cache.match("cache-metadata");
   if (!metadataResponse) return {};
   return metadataResponse.json();
 }
 
-// Activate event - Cleanup old caches
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -100,5 +99,5 @@ self.addEventListener("activate", (event) => {
       );
     })
   );
-  self.clients.claim(); // Become available to all clients immediately
+  self.clients.claim();
 });
