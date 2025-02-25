@@ -112,16 +112,6 @@
             </svg>
         </div>
         <script type="text/javascript" src="js/main.js"></script>
-        <script>
-            if ('serviceWorker'in navigator) {
-                navigator.serviceWorker.register('/js/sw.js').then( (registration) => {
-                    console.log('Service Worker registered with scope:', registration.scope);
-                }
-                ).catch( (error) => {
-                    console.log('Service Worker registration failed:', error);
-                }
-                );
-            }
-        </script>
+        <script type="text/javascript" src="/sw-install.js"></script>
     </body>
 </html>
