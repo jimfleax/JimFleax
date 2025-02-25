@@ -4,7 +4,7 @@ const FILES_TO_CACHE = [
   "/",
   "/index.html",
   "/js/main.js",
-  "/css/styles.css",
+  "css/styles.css",
   "css/JetBrains_Mono/JetBrainsMono-Italic-VariableFont_wght.ttf",
   "css/JetBrains_Mono/JetBrainsMono-VariableFont_wght.ttf",
   "css/Montserrat/Montserrat-Italic-VariableFont_wght.ttf",
