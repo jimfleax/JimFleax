@@ -25,16 +25,21 @@ const FILES_TO_CACHE = [
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(async (cache) => {
-      await cache.addAll(FILES_TO_CACHE);
-      const now = Date.now();
-      const metadata = {};
-      FILES_TO_CACHE.forEach((url) => {
-        metadata[url] = now;
-      });
-      return cache.put(
-        "cache-metadata",
-        new Response(JSON.stringify(metadata))
-      );
+      try {
+        await cache.addAll(FILES_TO_CACHE);
+        const now = Date.now();
+        const metadata = {};
+        FILES_TO_CACHE.forEach((url) => {
+          metadata[url] = now;
+        });
+        await cache.put(
+          "cache-metadata",
+          new Response(JSON.stringify(metadata))
+        );
+        self.skipWaiting(); // Activate worker immediately
+      } catch (error) {
+        console.error("Failed to cache files during install:", error);
+      }
     })
   );
 });
@@ -50,8 +55,8 @@ self.addEventListener("fetch", (event) => {
         return caches.open(CACHE_NAME).then(async (cache) => {
           const metadata = await getCacheMetadata(cache);
           metadata[event.request.url] = Date.now();
-          cache.put(event.request, response.clone());
-          cache.put("cache-metadata", new Response(JSON.stringify(metadata)));
+          await cache.put(event.request, response.clone());
+          await cache.put("cache-metadata", new Response(JSON.stringify(metadata)));
           return response;
         });
       })
@@ -64,7 +69,7 @@ self.addEventListener("fetch", (event) => {
           const cachedTime = metadata[event.request.url] || 0;
           if (Date.now() - cachedTime > CACHE_EXPIRATION) {
             console.log("Cache expired:", event.request.url);
-            cache.delete(event.request);
+            await cache.delete(event.request);
             return fetch(event.request);
           }
           return cachedResponse;
@@ -95,4 +100,5 @@ self.addEventListener("activate", (event) => {
       );
     })
   );
+  self.clients.claim(); // Become available to all clients immediately
 });
