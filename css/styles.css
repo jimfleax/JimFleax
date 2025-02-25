@@ -554,7 +554,7 @@ span {
 
 * {
     transition: 300ms;
-    animation: fadeIn 200ms forwards linear 600ms;
+    animation: fadeIn 450ms forwards ease-in-out 400ms;
     opacity: 0;
 }
 
