@@ -679,6 +679,10 @@ body>#nav {
     box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(0 0 0 / 8%) 0px 9px 12px 0px, rgb(0 0 0 / 12%) 0px 2px 8px 0px;
 }
 
+#keyinfo, #keyinfo * {
+    animation-delay: 200ms;
+}
+
 #keyinfo-header {
     border-bottom: solid 1px #c9c9c952;
     padding: 10px 4px;
