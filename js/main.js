@@ -108,7 +108,7 @@
         setTimeout(()=>{
             booter.innerHTML+=a;
         }, 200);
-        (b < text.length-1) || booter.remove();
+        //(b < text.length-1) || booter.remove();
     });
 }
 )
