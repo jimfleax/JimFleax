@@ -597,7 +597,7 @@ body>#nav {
 }
 
 #homebuttons>div:nth-child(1):hover {
-    filter: contrast(0.7) im !important;
+    filter: contrast(0.7) !important;
 }
 
 #Layer_1:hover {
