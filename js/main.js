@@ -107,7 +107,7 @@
     text.split("").forEach((a,b)=>{
         setTimeout(()=>{
             booter.innerHTML+=a;
-        }, 200);
+        }, 2000);
         //(b < text.length-1) || booter.remove();
     });
 }
