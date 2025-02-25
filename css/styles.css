@@ -28,6 +28,8 @@
 }
 
 html, body, #app {
+    animation: none;
+    opacity: 1;
     margin: 0;
     padding: 0;
     height: 100%;
@@ -552,6 +554,8 @@ span {
 
 * {
     transition: 300ms;
+    animation: fadeIn 200ms forwards linear 600ms;
+    opacity: 0;
 }
 
 body>#nav {
@@ -590,6 +594,10 @@ body>#nav {
     background: #000000d4;
     fill: #ffffffc9;
     box-shadow: rgb(0 0 0 / 7%) 0px 4px 6px -1px, rgb(0 0 0 / 6%) 0px 2px 4px -2px;
+}
+
+#homebuttons>div:nth-child(1):hover {
+    filter: contrast(0.7) im !important;
 }
 
 #Layer_1:hover {
@@ -768,7 +776,6 @@ body>#nav {
     transform: translateX(12px);
 }
 
-/* Rounded sliders */
 .slider.round {
     border-radius: 34px;
 }
