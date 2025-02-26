@@ -4,7 +4,8 @@
     localStorage["keybindings"] || (localStorage["keybindings"] = true);
     var crease = true;
     var count1 = 10;
-    setInterval(() => {
+    
+    function animate() {
       if (crease) {
         document.querySelector(
           "body"
@@ -19,7 +20,10 @@
       } else if (count1 === 80) {
         crease = false;
       }
-    }, 200);
+      requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
 
     page(1);
     document.querySelectorAll("#pages > span").forEach((a, b) => {
