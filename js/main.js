@@ -5,8 +5,8 @@
     var crease = true;
     var count1 = 10;
 
-    document.body.style.transition = "background 2s linear";
-    
+    document.body.style.transition = "background 20s linear";
+
     function animate() {
       if (crease) {
         document.querySelector(
