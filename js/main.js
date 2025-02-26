@@ -5,17 +5,17 @@
     var crease = true;
     var count1 = 10;
 
-    document.body.style.transition = "background 20s linear";
+    document.body.style.transition = "background 100s linear";
 
     function animate() {
       if (crease) {
         document.querySelector(
           "body"
-        ).style.background = `linear-gradient(${(count1 += 2)}deg, #1087aa2e, #b4a10f36, white, white, white, #85d0e629, white, white, #e4939314, white, white, #81e44b4a, white, white, #ff8b8b45, #6da7ff40) no-repeat no-repeat`;
+        ).style.background = `linear-gradient(${(count1 += 1)}deg, #1087aa2e, #b4a10f36, white, white, white, #85d0e629, white, white, #e4939314, white, white, #81e44b4a, white, white, #ff8b8b45, #6da7ff40) no-repeat no-repeat`;
       } else {
         document.querySelector(
           "body"
-        ).style.background = `linear-gradient(${(count1 -= 2)}deg, #1087aa2e, #b4a10f36, white, white, white, #85d0e629, white, white, #e4939314, white, white, #81e44b4a, white, white, #ff8b8b45, #6da7ff40) no-repeat no-repeat`;
+        ).style.background = `linear-gradient(${(count1 -= 1)}deg, #1087aa2e, #b4a10f36, white, white, white, #85d0e629, white, white, #e4939314, white, white, #81e44b4a, white, white, #ff8b8b45, #6da7ff40) no-repeat no-repeat`;
       }
       if (count1 === 10) {
         crease = true;
