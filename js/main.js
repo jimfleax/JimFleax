@@ -2,7 +2,7 @@
   document.addEventListener("DOMContentLoaded", (e) => {
     localStorage["keybindings"] || (localStorage["keybindings"] = true);
     var crease = true;
-    var count1 = 30;
+    var count1 = 20;
 
     document.body.style.transition = "background 5000s ease-in-out";
 
@@ -10,15 +10,15 @@
       if (crease) {
         document.querySelector(
           "body"
-        ).style.background = `linear-gradient(${(count1 += 0.5)}deg, #1087aa2e, #b4a10f36, white, white, white, #85d0e629, white, white, #e4939314, white, white, #81e44b4a, white, white, #ff8b8b45, #6da7ff40) no-repeat no-repeat`;
+        ).style.background = `linear-gradient(${(count1 += 0.1)}deg, #1087aa2e, #b4a10f36, white, white, white, #85d0e629, white, white, #e4939314, white, white, #81e44b4a, white, white, #ff8b8b45, #6da7ff40) no-repeat no-repeat`;
       } else {
         document.querySelector(
           "body"
-        ).style.background = `linear-gradient(${(count1 -= 0.5)}deg, #1087aa2e, #b4a10f36, white, white, white, #85d0e629, white, white, #e4939314, white, white, #81e44b4a, white, white, #ff8b8b45, #6da7ff40) no-repeat no-repeat`;
+        ).style.background = `linear-gradient(${(count1 -= 0.1)}deg, #1087aa2e, #b4a10f36, white, white, white, #85d0e629, white, white, #e4939314, white, white, #81e44b4a, white, white, #ff8b8b45, #6da7ff40) no-repeat no-repeat`;
       }
-      if (count1 === 30) {
+      if (count1 === 20) {
         crease = true;
-      } else if (count1 === 70) {
+      } else if (count1 === 80) {
         crease = false;
       }
       requestAnimationFrame(animate);
