@@ -3,7 +3,7 @@
   document.addEventListener("DOMContentLoaded", (e) => {
     localStorage["keybindings"] || (localStorage["keybindings"] = true);
     var crease = true;
-    var count1 = 300;
+    var count1 = 30;
 
     document.body.style.transition = "background 5000s ease-in-out";
 
