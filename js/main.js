@@ -4,6 +4,8 @@
     localStorage["keybindings"] || (localStorage["keybindings"] = true);
     var crease = true;
     var count1 = 10;
+
+    document.body.style.transition = "background 2s linear";
     
     function animate() {
       if (crease) {
