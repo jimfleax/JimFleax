@@ -27,11 +27,12 @@
     requestAnimationFrame(animate);
 
     page(1);
-    document.querySelectorAll("#pages > span").forEach((a, b) => {
-      a.addEventListener("click", function () {
-        page(b + 1);
-      });
+    document.querySelector("#pages").addEventListener("click", (e) => {
+      if (e.target.tagName === "SPAN") {
+        page([...e.target.parentNode.children].indexOf(e.target) + 1);
+      }
     });
+    
     document.querySelectorAll("#nav > svg").forEach((a, b) => {
       a.addEventListener("click", function () {
         page(b + 1);
@@ -61,29 +62,30 @@
       }
     });
 
-    document.querySelector("#keybindings").onclick = function () {
-      var a = document.createElement("div");
-      var b = document.createElement("div");
-      b.id = "backdrop";
-      a.id = "keyinfo";
-      a.innerHTML = `<div id="keyinfo-header"><span>Keybindings</span><div id="keybinding-toggle"><label class="switch"> <input type="checkbox" ${
-        JSON.parse(localStorage["keybindings"] || "false") ? 'checked=""' : ""
-      }> <span class="slider round"></span> </label></div></div> <div id="key-shortcuts"> <div id="key-item"><span id="shortcutName">Navigate forward through pages</span><div id="shortcutContent"><div id="key">ctrl</div> + <div id="key">&gt;</div></div></div> <div id="key-item"><span id="shortcutName">Navigate backward through pages</span><div id="shortcutContent"><div id="key">ctrl</div> + <div id="key">&lt;</div></div></div> <div id="key-item"><span id="shortcutName">Turn keybindings on/off</span><div id="shortcutContent"><div id="key">alt</div> + <div id="key">k</div></div></div> </div>`;
-      a.style.top = this.offsetTop + 80 + "px";
-      document.body.append(a);
-      document.body.append(b);
-      a.style.left =
-        this.offsetLeft - a.getBoundingClientRect().width / 2 + 25 + "px";
-      document.querySelector("#backdrop").onclick = () => {
-        a.remove();
-        b.remove();
-      };
-      document
+    document.body.addEventListener("click", (e) => {
+      if (e.target.id === "keybindings") {
+        let a = document.createElement("div"),
+            b = document.createElement("div");
+            b.id = "backdrop";
+            a.id = "keyinfo";
+            a.innerHTML = `<div id="keyinfo-header"><span>Keybindings</span><div id="keybinding-toggle"><label class="switch"> <input type="checkbox" ${
+              JSON.parse(localStorage["keybindings"] || "false") ? 'checked=""' : ""
+            }> <span class="slider round"></span> </label></div></div> <div id="key-shortcuts"> <div id="key-item"><span id="shortcutName">Navigate forward through pages</span><div id="shortcutContent"><div id="key">ctrl</div> + <div id="key">&gt;</div></div></div> <div id="key-item"><span id="shortcutName">Navigate backward through pages</span><div id="shortcutContent"><div id="key">ctrl</div> + <div id="key">&lt;</div></div></div> <div id="key-item"><span id="shortcutName">Turn keybindings on/off</span><div id="shortcutContent"><div id="key">alt</div> + <div id="key">k</div></div></div> </div>`;
+            a.style.top = this.offsetTop + 80 + "px";
+            document.body.append(a);
+            document.body.append(b);
+            a.style.left =
+              this.offsetLeft - a.getBoundingClientRect().width / 2 + 25 + "px";
+              document
         .querySelector(".switch > input")
         .addEventListener("click", function () {
           localStorage["keybindings"] = this.checked;
         });
-    };
+      } else if (e.target.id === "backdrop") {
+        document.querySelector("#keyinfo")?.remove();
+        e.target.remove();
+      }
+    });
   });
 })((no = 1) => {
   document.querySelectorAll("#pages > span").forEach((a) => {
