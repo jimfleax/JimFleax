@@ -48,11 +48,9 @@
           !a.classList.contains("active") || (index = b + 1);
         });
         if (event.key === "ArrowRight") {
-          index < 4 ? index++ : (index = 1);
-          page(index);
+          page(index < 4 ? index++ : ((index = 1),index));
         } else if (event.key === "ArrowLeft") {
-          index > 1 ? index-- : (index = 4);
-          page(index);
+          page(index > 1 ? index-- : ((index = 4), index));
         }
       }
       if (event.altKey && event.key === "k") {
