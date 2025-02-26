@@ -5,7 +5,7 @@
     var crease = true;
     var count1 = 10;
 
-    document.body.style.transition = "background 500s linear";
+    document.body.style.transition = "background 1000s linear";
 
     function animate() {
       if (crease) {
