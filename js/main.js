@@ -79,11 +79,12 @@
         a.remove();
         b.remove();
       };
-      document
-        .querySelector(".switch > input")
-        .addEventListener("click", function () {
-          localStorage["keybindings"] = this.checked;
-        });
+      document.body.addEventListener("change", (e) => {
+        if (e.target.matches(".switch > input")) {
+          localStorage["keybindings"] = e.target.checked;
+        }
+      });
+      
     };
   });
 })((no = 1) => {
