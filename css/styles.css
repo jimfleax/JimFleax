@@ -306,6 +306,8 @@
       backdrop-filter: blur(50px);
       padding: 10px 6px;
       cursor: pointer;
+      animation: none;
+      opacity: 1;
       user-select: none;
       box-shadow: rgb(255 90 90 / 10%) 0px 10px 15px -3px, rgb(0 45 200 / 5%) -5px -4px 8px -4px;
   }
