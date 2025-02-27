@@ -1,37 +1,18 @@
 ((page) => {
   document.addEventListener("DOMContentLoaded", (e) => {
     localStorage["keybindings"] || (localStorage["keybindings"] = true);
-    var crease = true;
-    var count1 = 20;
-
-    document.body.style.transition = "background 20000s ease-in-out";
-
-    function animate() {
-      if (crease) {
-        document.querySelector(
-          "body"
-        ).style.background = `linear-gradient(${(count1 += 0.5)}deg, #1087aa2e, #b4a10f36, white, white, white, #85d0e629, white, white, #e4939314, white, white, #81e44b4a, white, white, #ff8b8b45, #6da7ff40) no-repeat no-repeat`;
-      } else {
-        document.querySelector(
-          "body"
-        ).style.background = `linear-gradient(${(count1 -= 0.5)}deg, #1087aa2e, #b4a10f36, white, white, white, #85d0e629, white, white, #e4939314, white, white, #81e44b4a, white, white, #ff8b8b45, #6da7ff40) no-repeat no-repeat`;
-      }
-      if (count1 === 20) {
-        crease = true;
-      } else if (count1 === 80) {
-        crease = false;
-      }
-      requestAnimationFrame(animate);
-    }
-
-    requestAnimationFrame(animate);
+let worker = new Worker("workers/worker.main.js");
+worker.postMessage(true);
+worker.onerror = function(error) {
+    console.error("Worker Error:", error);
+};
 
     page(1);
     document.querySelector("#pages").addEventListener("click", (e) => {
-  if (e.target.tagName === "SPAN") {
-    page([...e.target.parentNode.children].indexOf(e.target) + 1);
-  }
-});
+      if (e.target.tagName === "SPAN") {
+        page([...e.target.parentNode.children].indexOf(e.target) + 1);
+      }
+    });
 
     document.querySelectorAll("#nav > svg").forEach((a, b) => {
       a.addEventListener("click", function () {
@@ -84,7 +65,6 @@
           localStorage["keybindings"] = e.target.checked;
         }
       });
-      
     };
   });
 })((no = 1) => {
