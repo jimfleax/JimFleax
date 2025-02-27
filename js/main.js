@@ -1,7 +1,7 @@
 ((page) => {
   document.addEventListener("DOMContentLoaded", (e) => {
     localStorage["keybindings"] || (localStorage["keybindings"] = true);
-let worker = new Worker("workers/worker.main.js");
+let worker = new Worker("worker.main.js");
 worker.postMessage(true);
 worker.onerror = function(error) {
     console.error("Worker Error:", error);
