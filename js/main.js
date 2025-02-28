@@ -1,39 +1,26 @@
 ((page) => {
   document.addEventListener("DOMContentLoaded", (e) => {
-    let keybindingEnabled = JSON.parse(localStorage.getItem("keybindings") || "false");
+    let keybindingEnabled = JSON.parse(localStorage.getItem("keybindings") || (localStorage.setItem("keybindings", false), "false"));
 
-// Listen for changes from other tabs
+// Listen for changes from other tabs/windows
 window.addEventListener("storage", (event) => {
   if (event.key === "keybindings") {
     keybindingEnabled = JSON.parse(event.newValue);
-    console.log("Keybindings changed (from another tab):", keybindingEnabled);
+    console.log("Keybindings updated (from another tab):", keybindingEnabled);
   }
 });
 
-// Proxy localStorage to detect changes in the same tab
-(function () {
-  const storageProxy = new Proxy(localStorage, {
-    set(target, key, value) {
-      target.setItem(key, value); // Update localStorage
-      if (key === "keybindings") {
-        keybindingEnabled = JSON.parse(value);
-        console.log("Keybindings changed (same tab):", keybindingEnabled);
-
-        // Dispatch an event so other parts of the app can listen
-        window.dispatchEvent(new Event("keybindings-updated"));
-      }
-      return true;
-    }
-  });
-
-  // Override localStorage globally
-  window.localStorage = storageProxy;
-})();
-
-// Optional: Listen for the custom event elsewhere in the app
-window.addEventListener("keybindings-updated", () => {
-  console.log("Keybindings updated event received:", keybindingEnabled);
-});
+// Override localStorage.setItem to catch changes in the same tab
+const originalSetItem = localStorage.setItem;
+localStorage.setItem = function (key, value) {
+  originalSetItem.apply(this, arguments); // perform the actual update
+  if (key === "keybindings") {
+    keybindingEnabled = JSON.parse(value);
+    console.log("Keybindings updated (same tab):", keybindingEnabled);
+    // Optionally, dispatch a custom event to notify other parts of your app
+    window.dispatchEvent(new CustomEvent("keybindings-updated", { detail: keybindingEnabled }));
+  }
+};
 
 
     var crease = true;
@@ -92,8 +79,8 @@ window.addEventListener("keybindings-updated", () => {
       }
       if (event.altKey && event.key === "k") {
         keybindingEnabled
-          ? (localStorage["keybindings"] = false)
-          : (localStorage["keybindings"] = true);
+          ? localStorage.setItem("keybindings", false)
+          : localStorage.setItem("keybindings", true);
       }
     });
 
@@ -116,7 +103,7 @@ window.addEventListener("keybindings-updated", () => {
       };
       document.body.addEventListener("change", (e) => {
         if (e.target.matches(".switch > input")) {
-          localStorage["keybindings"] = e.target.checked;
+          localStorage.setItem("keybindings", e.target.checked);
         }
       });
     };
