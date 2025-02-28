@@ -373,7 +373,7 @@
 
   #keyinfo,
   #keyinfo * {
-      animation-delay: 200ms;
+      animation-delay: 0ms;
   }
 
   #keyinfo-header {
