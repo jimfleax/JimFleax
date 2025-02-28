@@ -10,15 +10,23 @@ window.addEventListener("storage", (event) => {
   }
 });
 
-// Override localStorage.setItem to detect changes in the same tab
+// Detect changes in the same tab
 const originalSetItem = localStorage.setItem;
 localStorage.setItem = function (key, value) {
-  originalSetItem.apply(this, arguments);
+  originalSetItem.apply(this, arguments); // Call the original method
   if (key === "keybindings") {
     keybindingEnabled = JSON.parse(value);
     console.log("Keybindings changed (same tab):", keybindingEnabled);
+    
+    // Dispatch an event for other parts of the code to listen
+    window.dispatchEvent(new Event("keybindings-updated"));
   }
 };
+
+// Optional: Listen for the custom event elsewhere
+window.addEventListener("keybindings-updated", () => {
+  console.log("Keybindings updated event received:", keybindingEnabled);
+});
 
 
     var crease = true;
