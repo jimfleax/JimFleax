@@ -10,20 +10,27 @@ window.addEventListener("storage", (event) => {
   }
 });
 
-// Detect changes in the same tab
-const originalSetItem = localStorage.setItem;
-localStorage.setItem = function (key, value) {
-  originalSetItem.apply(this, arguments); // Call the original method
-  if (key === "keybindings") {
-    keybindingEnabled = JSON.parse(value);
-    console.log("Keybindings changed (same tab):", keybindingEnabled);
-    
-    // Dispatch an event for other parts of the code to listen
-    window.dispatchEvent(new Event("keybindings-updated"));
-  }
-};
+// Proxy localStorage to detect changes in the same tab
+(function () {
+  const storageProxy = new Proxy(localStorage, {
+    set(target, key, value) {
+      target.setItem(key, value); // Update localStorage
+      if (key === "keybindings") {
+        keybindingEnabled = JSON.parse(value);
+        console.log("Keybindings changed (same tab):", keybindingEnabled);
 
-// Optional: Listen for the custom event elsewhere
+        // Dispatch an event so other parts of the app can listen
+        window.dispatchEvent(new Event("keybindings-updated"));
+      }
+      return true;
+    }
+  });
+
+  // Override localStorage globally
+  window.localStorage = storageProxy;
+})();
+
+// Optional: Listen for the custom event elsewhere in the app
 window.addEventListener("keybindings-updated", () => {
   console.log("Keybindings updated event received:", keybindingEnabled);
 });
