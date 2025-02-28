@@ -1,6 +1,15 @@
 ((page) => {
   document.addEventListener("DOMContentLoaded", (e) => {
-    localStorage["keybindings"] || (localStorage["keybindings"] = true);
+    let keybindingEnabled = JSON.parse(
+      localStorage.getItem("keybindings") || "false"
+    );
+
+    window.addEventListener("storage", (event) => {
+      if (event.key === "keybindings") {
+        keybindingEnabled = JSON.parse(event.newValue);
+      }
+    });
+
     var crease = true;
     var count1 = 20;
 
@@ -42,7 +51,7 @@
       document.querySelector("html").classList.remove("loading");
     });
     document.addEventListener("keydown", function (event) {
-      if (JSON.parse(localStorage["keybindings"] || "false") && event.ctrlKey) {
+      if (keybindingEnabled && event.ctrlKey) {
         var index = 0;
         document.querySelectorAll("#nav > svg").forEach((a, b) => {
           !a.classList.contains("active") || (index = b + 1);
@@ -56,7 +65,7 @@
         }
       }
       if (event.altKey && event.key === "k") {
-        JSON.parse(localStorage["keybindings"] || "false")
+        keybindingEnabled
           ? (localStorage["keybindings"] = false)
           : (localStorage["keybindings"] = true);
       }
@@ -68,7 +77,7 @@
       b.id = "backdrop";
       a.id = "keyinfo";
       a.innerHTML = `<div id="keyinfo-header"><span>Keybindings</span><div id="keybinding-toggle"><label class="switch"> <input type="checkbox" ${
-        JSON.parse(localStorage["keybindings"] || "false") ? 'checked=""' : ""
+        keybindingEnabled ? 'checked=""' : ""
       }> <span class="slider round"></span> </label></div></div> <div id="key-shortcuts"> <div id="key-item"><span id="shortcutName">Navigate forward through pages</span><div id="shortcutContent"><div id="key">ctrl</div> + <div id="key">&gt;</div></div></div> <div id="key-item"><span id="shortcutName">Navigate backward through pages</span><div id="shortcutContent"><div id="key">ctrl</div> + <div id="key">&lt;</div></div></div> <div id="key-item"><span id="shortcutName">Turn keybindings on/off</span><div id="shortcutContent"><div id="key">alt</div> + <div id="key">k</div></div></div> </div>`;
       a.style.top = this.offsetTop + 80 + "px";
       document.body.append(a);
