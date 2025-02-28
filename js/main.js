@@ -1,14 +1,25 @@
 ((page) => {
   document.addEventListener("DOMContentLoaded", (e) => {
-    let keybindingEnabled = JSON.parse(
-      localStorage.getItem("keybindings") || "false"
-    );
+    let keybindingEnabled = JSON.parse(localStorage.getItem("keybindings") || "false");
 
-    window.addEventListener("storage", (event) => {
-      if (event.key === "keybindings") {
-        keybindingEnabled = JSON.parse(event.newValue);
-      }
-    });
+// Listen for changes from other tabs
+window.addEventListener("storage", (event) => {
+  if (event.key === "keybindings") {
+    keybindingEnabled = JSON.parse(event.newValue);
+    console.log("Keybindings changed (from another tab):", keybindingEnabled);
+  }
+});
+
+// Override localStorage.setItem to detect changes in the same tab
+const originalSetItem = localStorage.setItem;
+localStorage.setItem = function (key, value) {
+  originalSetItem.apply(this, arguments);
+  if (key === "keybindings") {
+    keybindingEnabled = JSON.parse(value);
+    console.log("Keybindings changed (same tab):", keybindingEnabled);
+  }
+};
+
 
     var crease = true;
     var count1 = 20;
