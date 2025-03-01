@@ -10,5 +10,5 @@
   
   body::before {
     /* existing code above */
-    animation: rotateGradient 20s infinite alternate ease-in-out;
+    animation: rotateGradient 10s infinite alternate ease-in-out;
   }
