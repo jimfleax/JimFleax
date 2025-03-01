@@ -1,26 +1,30 @@
 ((page) => {
   document.addEventListener("DOMContentLoaded", (e) => {
-    let keybindingEnabled = JSON.parse(localStorage.getItem("keybindings") || (localStorage.setItem("keybindings", false), "false"));
+    let keybindingEnabled = JSON.parse(
+      localStorage.getItem("keybindings") ||
+        (localStorage.setItem("keybindings", false), "false")
+    );
 
-// Listen for changes from other tabs/windows
-window.addEventListener("storage", (event) => {
-  if (event.key === "keybindings") {
-    keybindingEnabled = JSON.parse(event.newValue);
-    console.log("Keybindings updated (from another tab):", keybindingEnabled);
-  }
-});
-
-// Override localStorage.setItem to catch changes in the same tab
-const originalSetItem = localStorage.setItem;
-localStorage.setItem = function (key, value) {
-  originalSetItem.apply(this, arguments); // perform the actual update
-  if (key === "keybindings") {
-    keybindingEnabled = JSON.parse(value);
-    console.log("Keybindings updated (same tab):", keybindingEnabled);
-    // Optionally, dispatch a custom event to notify other parts of your app
-    window.dispatchEvent(new CustomEvent("keybindings-updated", { detail: keybindingEnabled }));
-  }
-};
+    window.addEventListener("storage", (event) => {
+      if (event.key === "keybindings") {
+        keybindingEnabled = JSON.parse(event.newValue);
+        console.log(
+          "Keybindings updated (from another tab):",
+          keybindingEnabled
+        );
+      }
+    });
+    const originalSetItem = localStorage.setItem;
+    localStorage.setItem = function (key, value) {
+      originalSetItem.apply(this, arguments);
+      if (key === "keybindings") {
+        keybindingEnabled = JSON.parse(value);
+        console.log("Keybindings updated (same tab):", keybindingEnabled);
+        window.dispatchEvent(
+          new CustomEvent("keybindings-updated", { detail: keybindingEnabled })
+        );
+      }
+    };
     page(1);
     document.querySelector("#pages").addEventListener("click", (e) => {
       if (e.target.tagName === "SPAN") {
@@ -106,7 +110,7 @@ localStorage.setItem = function (key, value) {
   } else if (no === 3) {
     document.querySelector(
       "#container"
-    ).innerHTML = `<div id="left"><h2>Projects</h2><span style=" margin-block: 50px; line-height: 26px; font-size: 18px; "><p>Throughout my web development journey, I have believed that hands-on experience and practice are the best ways to learn programming. 💻 I have been building various small websites, learning more from each one and improving on the next! 🚀</p> <p>Here are some of the web apps I have built. These are not my best work; they are just some projects I have worked on to enhance my web development skills. 🌟 Feel free to suggest improvements and provide feedback! ✉️ Check out the Contact page to reach out to me! 😊</p></span> </div> <div id="right"> <div id="appIcon" onclick="window.open('http://cosmicmath.vercel.app', 'blank')"> <img src="/media/cosmicmath.webp" style=" width: 4em; height: 4em; "> <span>CosmicMath</span> </div> <div id="appIcon" onclick="window.open('http://reflecting.onrender.com', 'blank')"> <img src="/media/reflect.webp" style=" width: 4em; height: 4em; "> <span>Reflect</span> </div> <div id="appIcon" onclick="window.open('http://flashers.onrender.com', 'blank')"> <img src="/media/flashers.webp" style=" width: 3.8em; height: 3.3em; "> <span>Flashers</span> </div> <div id="appIcon" onclick="window.open('http://poetica.onrender.com', 'blank')"> <img src="/media/poetica.webp" style=" width: 3.8em; height: 3.3em; "> <span>Poetica</span> </div> </div>`;
+    ).innerHTML = `<div id="left"><h2>Projects</h2><span style=" margin-block: 50px; line-height: 26px; font-size: 18px; "><p>Throughout my web development journey, I have believed that hands-on experience and practice are the best ways to learn programming. 💻 I have been building various small websites, learning more from each one and improving on the next! 🚀</p> <p>Here are some of the web apps I have built. These are not my best work; they are just some projects I have worked on to enhance my web development skills. 🌟 Feel free to suggest improvements and provide feedback! ✉️ Check out the Contact page to reach out to me! 😊</p></span> </div> <div id="right"> <div id="appIcon" onclick="window.open('http://cosmicmath.vercel.app', 'blank')"> <img src="/media/cosmicmath.webp" style=" width: 4em; height: 4em; " loading="lazy"> <span>CosmicMath</span> </div> <div id="appIcon" onclick="window.open('http://reflecting.onrender.com', 'blank')"> <img src="/media/reflect.webp" style=" width: 4em; height: 4em; " loading="lazy"> <span>Reflect</span> </div> <div id="appIcon" onclick="window.open('http://flashers.onrender.com', 'blank')"> <img src="/media/flashers.webp" style=" width: 3.8em; height: 3.3em; " loading="lazy"> <span>Flashers</span> </div> <div id="appIcon" onclick="window.open('http://poetica.onrender.com', 'blank')"> <img src="/media/poetica.webp" style=" width: 3.8em; height: 3.3em; " loading="lazy"> <span>Poetica</span> </div> </div>`;
   } else if (no === 4) {
     document.querySelector(
       "#container"
