@@ -21,7 +21,7 @@ localStorage.setItem = function (key, value) {
     window.dispatchEvent(new CustomEvent("keybindings-updated", { detail: keybindingEnabled }));
   }
 };
-
+/*
 
     var crease = true;
     var count1 = 20;
@@ -47,7 +47,7 @@ localStorage.setItem = function (key, value) {
     }
 
     requestAnimationFrame(animate);
-
+*/
     page(1);
     document.querySelector("#pages").addEventListener("click", (e) => {
       if (e.target.tagName === "SPAN") {
