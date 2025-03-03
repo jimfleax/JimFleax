@@ -9,10 +9,8 @@ setInterval(()=>{
   } else {
     angle -= 0.5;
   }
-  
   if (angle >= 80) increasing = false;
   if (angle <= 20) increasing = true;
-  
   document.body.style.background = `linear-gradient(${angle}deg, 
     #1087aa2e, #b4a10f36, white, white, white, 
     #85d0e629, white, white, #e4939314, white, white, 
