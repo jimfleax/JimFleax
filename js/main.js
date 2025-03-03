@@ -1,3 +1,4 @@
+// Reetabrata Bhandari (c) 2025
 ((page) => {
   document.addEventListener("DOMContentLoaded", (e) => {
     let keybindingEnabled = JSON.parse(
@@ -8,10 +9,6 @@
     window.addEventListener("storage", (event) => {
       if (event.key === "keybindings") {
         keybindingEnabled = JSON.parse(event.newValue);
-        console.log(
-          "Keybindings updated (from another tab):",
-          keybindingEnabled
-        );
       }
     });
     const originalSetItem = localStorage.setItem;
@@ -19,7 +16,6 @@
       originalSetItem.apply(this, arguments);
       if (key === "keybindings") {
         keybindingEnabled = JSON.parse(value);
-        console.log("Keybindings updated (same tab):", keybindingEnabled);
         window.dispatchEvent(
           new CustomEvent("keybindings-updated", { detail: keybindingEnabled })
         );
