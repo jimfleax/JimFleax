@@ -14,13 +14,16 @@ function updateBackground() {
     if (angle >= 80) increasing = false;
     if (angle <= 20) increasing = true;
 
-    // Update the CSS variable
-    document.body.style.setProperty("--angle", angle + "deg");
+    // Apply the updated gradient (forcing a full re-render)
+    document.body.style.background = `linear-gradient(${angle}deg, 
+        #1087aa2e, #b4a10f36, white, white, white, 
+        #85d0e629, white, white, #e4939314, white, white, 
+        #81e44b4a, white, white, #ff8b8b45, #6da7ff40)`;
 
-    setTimeout(updateBackground, 50);
+    setTimeout(updateBackground, 50); // Adjust timing for smoothness
 }
 
-updateBackground();
+updateBackground(); 
 
     let keybindingEnabled = JSON.parse(
       localStorage.getItem("keybindings") ||
