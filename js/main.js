@@ -3,22 +3,21 @@
   document.addEventListener("DOMContentLoaded", (e) => {
     let angle = 20;
 let increasing = true;
-
-if (increasing) {
-  angle += 0.5;
-} else {
-  angle -= 0.5;
-}
-
-if (angle >= 80) increasing = false;
-if (angle <= 20) increasing = true;
-
-document.body.style.background = `linear-gradient(${angle}deg, 
-  #1087aa2e, #b4a10f36, white, white, white, 
-  #85d0e629, white, white, #e4939314, white, white, 
-  #81e44b4a, white, white, #ff8b8b45, #6da7ff40)`;
-
-setTimeout(updateBackground, 40);
+setTimeout(()=>{
+  if (increasing) {
+    angle += 0.5;
+  } else {
+    angle -= 0.5;
+  }
+  
+  if (angle >= 80) increasing = false;
+  if (angle <= 20) increasing = true;
+  
+  document.body.style.background = `linear-gradient(${angle}deg, 
+    #1087aa2e, #b4a10f36, white, white, white, 
+    #85d0e629, white, white, #e4939314, white, white, 
+    #81e44b4a, white, white, #ff8b8b45, #6da7ff40)`;
+}, 40);
 
     let keybindingEnabled = JSON.parse(
       localStorage.getItem("keybindings") ||
