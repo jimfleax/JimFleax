@@ -3,7 +3,7 @@
   document.addEventListener("DOMContentLoaded", (e) => {
     let angle = 20;
 let increasing = true;
-setTimeout(()=>{
+setInterval(()=>{
   if (increasing) {
     angle += 0.5;
   } else {
