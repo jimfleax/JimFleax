@@ -1,6 +1,27 @@
 // Reetabrata Bhandari (c) 2025
 ((page) => {
   document.addEventListener("DOMContentLoaded", (e) => {
+    let angle = 20;
+let increasing = true;
+
+function updateBackground() {
+    if (increasing) {
+        angle += 0.5;
+    } else {
+        angle -= 0.5;
+    }
+
+    if (angle >= 80) increasing = false;
+    if (angle <= 20) increasing = true;
+
+    // Update the CSS variable
+    document.body.style.setProperty("--angle", angle + "deg");
+
+    setTimeout(updateBackground, 50); // Adjust timing for smoothness
+}
+
+updateBackground();
+
     let keybindingEnabled = JSON.parse(
       localStorage.getItem("keybindings") ||
         (localStorage.setItem("keybindings", false), "false")
