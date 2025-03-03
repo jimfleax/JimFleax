@@ -17,7 +17,7 @@ function updateBackground() {
     // Update the CSS variable
     document.body.style.setProperty("--angle", angle + "deg");
 
-    setTimeout(updateBackground, 50); // Adjust timing for smoothness
+    setTimeout(updateBackground, 50);
 }
 
 updateBackground();
