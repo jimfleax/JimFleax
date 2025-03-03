@@ -20,7 +20,7 @@ function updateBackground() {
         #85d0e629, white, white, #e4939314, white, white, 
         #81e44b4a, white, white, #ff8b8b45, #6da7ff40)`;
 
-    setTimeout(updateBackground, 80); // Adjust timing for smoothness
+    setTimeout(updateBackground, 60); // Adjust timing for smoothness
 }
 
 updateBackground(); 
