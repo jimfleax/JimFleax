@@ -53,7 +53,7 @@ setInterval(()=>{
       document.querySelector("html").classList.remove("loading");
     });
     document.addEventListener("keydown", function (event) {
-      if (keybindingEnabled && event.ctrlKey) {
+      if (keybindingEnabled && event) {
         var index = 0;
         document.querySelectorAll("#nav > svg").forEach((a, b) => {
           !a.classList.contains("active") || (index = b + 1);
