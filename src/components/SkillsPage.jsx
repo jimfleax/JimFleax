@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "motion/react"; // Updated import to mat
 import { TextGenerateEffect } from "./ui/text-generate-effect";
 import { TiArrowRightThick } from "react-icons/ti";
 
-const SkillsWrapper = styled(motion.div)`
+const SkillsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -26,6 +26,13 @@ const SkillsWrapper = styled(motion.div)`
   @media (min-width: 768px) {
     padding: 2rem;
   }
+`;
+
+const BackgroundLayer = styled(motion.div)`
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: ${props => props.$bg};
 `;
 
 const ContentContainer = styled(motion.div)`
@@ -130,86 +137,89 @@ const LearningBoast = styled(TextGenerateEffect)`
 `;
 
 export function SkillsPage() {
-    const [showSkills, setShowSkills] = useState(false);
+  const [showSkills, setShowSkills] = useState(false);
 
-    const skills = [
-        { name: "React.js", level: 80 },
-        { name: "JavaScript", level: 85 },
-        { name: "Node.js / Express", level: 80 },
-        { name: "Python", level: 60 },
-        { name: "C Programming", level: 70 },
-        { name: "Blockchain", level: 40 },
-    ];
+  const skills = [
+    { name: "React.js", level: 80 },
+    { name: "JavaScript", level: 85 },
+    { name: "Node.js / Express", level: 80 },
+    { name: "Python", level: 60 },
+    { name: "C Programming", level: 70 },
+    { name: "Blockchain", level: 40 },
+  ];
 
-    return (
-        <SkillsWrapper
-            animate={{
-                background: showSkills
-                    ? "linear-gradient(135deg, #3b82f6, #06b6d4)"
-                    : "linear-gradient(135deg, #f97316, #ef4444)"
-            }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-        >
-            <ContentContainer>
-                <AnimatePresence mode="wait">
-                    {!showSkills ? (
-                        <motion.div
-                            key="title"
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -20 }}
-                            transition={{ duration: 0.5 }}
-                        >
-                            <TitleText>
-                                <TextGenerateEffect words="do you want to know what i can do?" />
-                            </TitleText>
-                            <ActionButton
-                                onClick={() => setShowSkills(true)}
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                            >
-                                <TiArrowRightThick />
-                            </ActionButton>
-                        </motion.div>
-                    ) : (
-                        <><SkillsList
-                            key="skills"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 20 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                        >
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', color: 'white' }}>
-                                <h3 style={{ fontSize: '2rem', fontWeight: 'bold' }}>My Skills</h3>
-                                <ActionButton
-                                    $active={true}
-                                    onClick={() => setShowSkills(false)} // Toggle back
-                                    style={{ margin: 0, width: '3rem', height: '3rem', fontSize: '1.5rem', transform: 'rotate(180deg)' }}
-                                >
-                                    <TiArrowRightThick />
-                                </ActionButton>
-                            </div>
+  return (
+    <SkillsWrapper>
+      <BackgroundLayer
+        $bg="linear-gradient(135deg, #f97316, #ef4444)"
+        animate={{ opacity: showSkills ? 0 : 1 }}
+        transition={{ duration: 1.5, ease: "easeInOut" }}
+      />
+      <BackgroundLayer
+        $bg="linear-gradient(135deg, #3b82f6, #06b6d4)"
+        animate={{ opacity: showSkills ? 1 : 0 }}
+        transition={{ duration: 1.5, ease: "easeInOut" }}
+      />
+      <ContentContainer>
+        <AnimatePresence mode="wait">
+          {!showSkills ? (
+            <motion.div
+              key="title"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.5 }}
+            >
+              <TitleText>
+                <TextGenerateEffect words="do you want to know what i can do?" />
+              </TitleText>
+              <ActionButton
+                onClick={() => setShowSkills(true)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <TiArrowRightThick />
+              </ActionButton>
+            </motion.div>
+          ) : (
+            <><SkillsList
+              key="skills"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', color: 'white' }}>
+                <h3 style={{ fontSize: '2rem', fontWeight: 'bold' }}>My Skills</h3>
+                <ActionButton
+                  $active={true}
+                  onClick={() => setShowSkills(false)} // Toggle back
+                  style={{ margin: 0, width: '3rem', height: '3rem', fontSize: '1.5rem', transform: 'rotate(180deg)' }}
+                >
+                  <TiArrowRightThick />
+                </ActionButton>
+              </div>
 
-                            {skills.map((skill, idx) => (
-                                <SkillItem key={idx}>
-                                    <SkillHeader>
-                                        <span>{skill.name}</span>
-                                        <span>{skill.level}%</span>
-                                    </SkillHeader>
-                                    <ProgressBarBackground>
-                                        <ProgressBarFill
-                                            initial={{ width: 0 }}
-                                            animate={{ width: `${skill.level}%` }}
-                                            transition={{ duration: 1, delay: 0.5 + (idx * 0.1), ease: "easeOut" }} />
-                                    </ProgressBarBackground>
-                                </SkillItem>
-                            ))}
-                        </SkillsList><LearningBoast words="i'm always learning something or the other, so you will see these changing" /></>
-                    )}
-                </AnimatePresence>
-            </ContentContainer>
-        </SkillsWrapper>
-    );
+              {skills.map((skill, idx) => (
+                <SkillItem key={idx}>
+                  <SkillHeader>
+                    <span>{skill.name}</span>
+                    <span>{skill.level}%</span>
+                  </SkillHeader>
+                  <ProgressBarBackground>
+                    <ProgressBarFill
+                      initial={{ width: 0 }}
+                      animate={{ width: `${skill.level}%` }}
+                      transition={{ duration: 1, delay: 0.5 + (idx * 0.1), ease: "easeOut" }} />
+                  </ProgressBarBackground>
+                </SkillItem>
+              ))}
+            </SkillsList><LearningBoast words="i'm always learning something or the other, so you will see these changing" /></>
+          )}
+        </AnimatePresence>
+      </ContentContainer>
+    </SkillsWrapper>
+  );
 }
 
 export default SkillsPage;

@@ -142,105 +142,104 @@ const ProjectUrl = styled.a`
 `;
 
 const container = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1
-        }
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
     }
+  }
 };
 
 const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50 } }
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50 } }
 };
 
 export function Projects() {
-    const projects = [
-        {
-            title: "Cosmic Math",
-            url: "cosmicmath.vercel.app",
-            icon: "/media/cosmicmath.png",
-            gradient: "linear-gradient(to bottom right, #8b5cf6, #a855f7)"
-        },
-        {
-            title: "Flashers",
-            url: "flashers.vercel.app",
-            icon: "/media/flashers.png",
-            gradient: "linear-gradient(to bottom right, #3b82f6, #06b6d4)"
-        },
-        {
-            title: "Reflect",
-            url: "reflecting.vercel.app",
-            icon: "/media/reflect.png",
-            gradient: "linear-gradient(to bottom right, #10b981, #14b8a6)"
-        },
-        {
-            title: "Poetica",
-            url: "poeticaa.vercel.app",
-            icon: "/media/poetica.png",
-            gradient: "linear-gradient(to bottom right, #f43f5e, #ec4899)"
-        },
-        {
-            title: "MetaSkills",
-            url: "metaskills.site",
-            icon: "/media/metaskills.png",
-            gradient: "linear-gradient(to bottom right, #f59e0b, #f97316)"
-        }
-    ];
+  const projects = [
+    {
+      title: "CosmicMath",
+      url: "cosmicmath.vercel.app",
+      icon: "/media/cosmicmath.png",
+      gradient: "linear-gradient(to bottom right, #8b5cf6, #a855f7)"
+    },
+    {
+      title: "Flashers",
+      url: "flashers.vercel.app",
+      icon: "/media/flashers.png",
+      gradient: "linear-gradient(to bottom right, #3b82f6, #06b6d4)"
+    },
+    {
+      title: "Reflect",
+      url: "reflecting.vercel.app",
+      icon: "/media/reflect.png",
+      gradient: "linear-gradient(to bottom right, #10b981, #14b8a6)"
+    },
+    {
+      title: "Poetica",
+      url: "poeticaa.vercel.app",
+      icon: "/media/poetica.png",
+      gradient: "linear-gradient(to bottom right, #f43f5e, #ec4899)"
+    },
+    {
+      title: "MetaSkills",
+      url: "metaskills.site",
+      icon: "/media/metaskills.png",
+      gradient: "linear-gradient(to bottom right, #f59e0b, #f97316)"
+    }
+  ];
 
-    return (
-        <ProjectsWrapper>
-            {/* Top Section - Bio Text */}
-            <BioSection
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-            >
-                <BioText>
-                    okay but what did i make?
-                </BioText>
-            </BioSection>
-
-            {/* Bottom Section - Cards Grid */}
-            <ProjectsGrid
-                variants={container}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: "-100px" }}
-            >
-                {projects.map((project, idx) => (
-                    <ProjectCard
-                        key={idx}
-                        $gradient={project.gradient}
-                        variants={item}
-                        whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-                    >
-                        <IconContainer>
-                            <ProjectIcon
-                                src={project.icon}
-                                alt={project.title}
-                            />
-                        </IconContainer>
-                        <CardFooter>
-                            <ProjectTitle>
-                                {project.title}
-                            </ProjectTitle>
-                            <ProjectUrl
-                                href={`https://${project.url}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                {project.url}
-                            </ProjectUrl>
-                        </CardFooter>
-                    </ProjectCard>
-                ))}
-            </ProjectsGrid>
-        </ProjectsWrapper>
-    );
+  return (
+    <ProjectsWrapper>
+      <BioSection
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <BioText>
+          okay but what did i make?
+        </BioText>
+      </BioSection>
+      <ProjectsGrid
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        {projects.map((project, idx) => (
+          <ProjectCard
+            key={idx}
+            $gradient={project.gradient}
+            variants={item}
+            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+          >
+            <IconContainer>
+              <ProjectIcon
+                src={project.icon}
+                alt={project.title}
+                loading="lazy"
+                decoding="async"
+              />
+            </IconContainer>
+            <CardFooter>
+              <ProjectTitle>
+                {project.title}
+              </ProjectTitle>
+              <ProjectUrl
+                href={`https://${project.url}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {project.url}
+              </ProjectUrl>
+            </CardFooter>
+          </ProjectCard>
+        ))}
+      </ProjectsGrid>
+    </ProjectsWrapper>
+  );
 }
 
 export default Projects;

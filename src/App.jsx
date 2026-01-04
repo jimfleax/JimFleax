@@ -1,8 +1,11 @@
 import MainPage from "./components/MainPage";
+import { LazyMotion, domMax } from "motion/react";
 
 function App() {
   return (
-    <MainPage />
+    <LazyMotion features={domMax}>
+      <MainPage />
+    </LazyMotion>
   )
 }
 

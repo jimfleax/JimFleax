@@ -42,7 +42,7 @@ const CardSkeleton = styled.div`
     overflow: hidden;
 `;
 
-export function ProjectsSkeleton() {
+export default function ProjectsSkeleton() {
     return (
         <Wrapper>
             <BioPlaceholder>

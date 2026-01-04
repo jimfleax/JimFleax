@@ -45,7 +45,7 @@ const RightColumn = styled.div`
   justify-content: center;
 `;
 
-export function AboutSkeleton() {
+export default function AboutSkeleton() {
     return (
         <Wrapper>
             <div style={{ maxWidth: '56rem', margin: '0 auto 2rem auto', width: '100%' }}>

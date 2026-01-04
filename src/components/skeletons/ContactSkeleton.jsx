@@ -31,7 +31,7 @@ const SocialRow = styled.div`
     justify-content: center;
 `;
 
-export function ContactSkeleton() {
+export default function ContactSkeleton() {
     return (
         <Wrapper>
             <Card>

@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 `;
 
-export function SkillsSkeleton() {
+export default function SkillsSkeleton() {
     return (
         <Wrapper>
             <div style={{ maxWidth: '56rem', margin: '0 auto', width: '100%', display: 'flex', flexDirection: 'column', gap: '2rem' }}>

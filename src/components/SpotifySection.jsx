@@ -1,6 +1,5 @@
 import React from "react";
 import styled from 'styled-components';
-import DitherShader from './ui/dither-shader';
 import { TextGenerateEffect } from "./ui/text-generate-effect";
 import { motion } from "motion/react";
 

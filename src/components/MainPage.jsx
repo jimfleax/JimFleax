@@ -3,13 +3,20 @@ import styled from 'styled-components';
 import { motion } from "motion/react";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 
-// Static imports for smoother experience
+import { Suspense } from "react";
 import HeroPage from "./HeroPage";
-import Projects from "./Projects";
-import AboutPage from "./AboutPage";
-import SkillsPage from "./SkillsPage";
-import SpotifySection from "./SpotifySection";
-import ContactPage from "./ContactPage";
+
+const Projects = React.lazy(() => import("./Projects"));
+const AboutPage = React.lazy(() => import("./AboutPage"));
+const SkillsPage = React.lazy(() => import("./SkillsPage"));
+const SpotifySection = React.lazy(() => import("./SpotifySection"));
+const ContactPage = React.lazy(() => import("./ContactPage"));
+
+import ProjectsSkeleton from "./skeletons/ProjectsSkeleton";
+import AboutSkeleton from "./skeletons/AboutSkeleton";
+import SkillsSkeleton from "./skeletons/SkillsSkeleton";
+import SpotifySkeleton from "./skeletons/SpotifySkeleton";
+import ContactSkeleton from "./skeletons/ContactSkeleton";
 
 
 const StyledAuroraBackground = styled(AuroraBackground)`
@@ -53,23 +60,33 @@ function MainPage() {
                 </SnapSection>
 
                 <SnapSection>
-                    <Projects />
+                    <Suspense fallback={<ProjectsSkeleton />}>
+                        <Projects />
+                    </Suspense>
                 </SnapSection>
 
                 <SnapSection>
-                    <AboutPage />
+                    <Suspense fallback={<AboutSkeleton />}>
+                        <AboutPage />
+                    </Suspense>
                 </SnapSection>
 
                 <SnapSection>
-                    <SpotifySection />
+                    <Suspense fallback={<SpotifySkeleton />}>
+                        <SpotifySection />
+                    </Suspense>
                 </SnapSection>
 
                 <SnapSection>
-                    <SkillsPage />
+                    <Suspense fallback={<SkillsSkeleton />}>
+                        <SkillsPage />
+                    </Suspense>
                 </SnapSection>
 
                 <SnapSection>
-                    <ContactPage />
+                    <Suspense fallback={<ContactSkeleton />}>
+                        <ContactPage />
+                    </Suspense>
                 </SnapSection>
 
             </ContentWrapper>

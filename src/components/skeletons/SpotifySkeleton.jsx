@@ -22,7 +22,7 @@ const Flex = styled.div`
   gap: 20px;
 `;
 
-export function SpotifySkeleton() {
+export default function SpotifySkeleton() {
     return (
         <Wrapper>
             <Flex>

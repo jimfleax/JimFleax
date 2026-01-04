@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import styled from 'styled-components';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 
 const AboutWrapper = styled(motion.div)`
   display: flex;
@@ -127,7 +127,29 @@ const TextParagraph = styled(motion.p)`
   }
 `;
 
+const ReadMoreButton = styled(motion.button)`
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #d4d4d4;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  align-self: flex-start;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+`;
+
 export function AboutPage() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <AboutWrapper>
       <BioSection
@@ -150,7 +172,12 @@ export function AboutPage() {
             whileHover={{ scale: 1.05, rotate: 2 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <ProfileImage src="/media/myPic.png" alt="Me" />
+            <ProfileImage
+              src="/media/myPic.png"
+              alt="Me"
+              loading="lazy"
+              decoding="async"
+            />
           </ImageFrame>
           <ImageCaption
             initial={{ opacity: 0 }}
@@ -170,15 +197,36 @@ export function AboutPage() {
           <TextParagraph>
             Hi there! I'm Reetabrata Bhandari—better known as Jim Fleax! 👋 I’m passionate about exploring computer languages and crafting innovative apps and websites. My goal is to create sleek, delicious interfaces that seamlessly blend with powerful logic and robust backends, resulting in responsive apps designed to make life simpler and more enjoyable. 👨‍💻✨
           </TextParagraph>
-          <TextParagraph>
-            Beyond coding, I find joy in losing myself in fiction 📚️, vibing along my playlist 🎵, and watching good movies 🎬️. I thrive on learning, embracing every opportunity to dive deeper into the fascinating world of computer science. 🚀
-          </TextParagraph>
-          <TextParagraph>
-            Here, you’ll find a showcase of the apps I’ve built along my web development journey. Got feedback or spotted a bug? Don’t hesitate to share—I’m always eager to improve and grow!
-          </TextParagraph>
-          <TextParagraph>
-            Thanks for stopping by! ❤️
-          </TextParagraph>
+
+          <AnimatePresence>
+            {isExpanded && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                style={{ overflow: 'hidden' }}
+              >
+                <TextParagraph style={{ marginTop: '1.5rem' }}>
+                  Beyond coding, I find joy in losing myself in fiction 📚️, vibing along my playlist 🎵, and watching good movies 🎬️. I thrive on learning, embracing every opportunity to dive deeper into the fascinating world of computer science. 🚀
+                </TextParagraph>
+                <TextParagraph style={{ marginTop: '1.5rem' }}>
+                  Here, you’ll find a showcase of the apps I’ve built along my web development journey. Got feedback or spotted a bug? Don’t hesitate to share—I’m always eager to improve and grow!
+                </TextParagraph>
+                <TextParagraph style={{ marginTop: '1.5rem' }}>
+                  Thanks for stopping by! ❤️
+                </TextParagraph>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <ReadMoreButton
+            onClick={() => setIsExpanded(!isExpanded)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {isExpanded ? "Read Less" : "Read More"}
+          </ReadMoreButton>
         </RightColumn>
       </ContentGrid>
     </AboutWrapper>
