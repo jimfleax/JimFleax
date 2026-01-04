@@ -4,44 +4,46 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: 'quicksand', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans:
+    "quicksand", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 @font-face {
-    font-family: 'Made';
-    src: url(/fonts/MADE.otf) format("opentype");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
+  font-family: "Made";
+  src: url(/fonts/MADE.otf) format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
-  @font-face {
-    font-family: 'quicksand';
-    src: url(/fonts/quicksand.woff2) format("woff2");
-    font-style: normal;
-    font-display: swap;
-  }
+@font-face {
+  font-family: "quicksand";
+  src: url(/fonts/quicksand.woff2) format("woff2");
+  font-style: normal;
+  font-display: swap;
+}
 
-  @font-face {
-    font-family: 'Dancing Script';
-    src: url(/fonts/dancingscript.woff2) format("woff2");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
+@font-face {
+  font-family: "Dancing Script";
+  src: url(/fonts/dancingscript.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
-  @font-face {
-    font-family: 'Handlee';
-    src: url(/fonts/handlee.woff2) format("woff2");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
+@font-face {
+  font-family: "Handlee";
+  src: url(/fonts/handlee.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 @theme inline {
@@ -166,4 +168,3 @@
     scroll-behavior: smooth;
   }
 }
-

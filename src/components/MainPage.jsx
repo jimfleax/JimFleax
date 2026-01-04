@@ -1,5 +1,5 @@
 import React from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { motion } from "motion/react";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 
@@ -19,7 +19,6 @@ import SkillsSkeleton from "./skeletons/SkillsSkeleton";
 import CertificationsSkeleton from "./skeletons/CertificationsSkeleton";
 import SpotifySkeleton from "./skeletons/SpotifySkeleton";
 import ContactSkeleton from "./skeletons/ContactSkeleton";
-
 
 const StyledAuroraBackground = styled(AuroraBackground)`
   min-height: 100vh;
@@ -46,60 +45,59 @@ const SnapSection = styled.section`
 `;
 
 function MainPage() {
-    return (
-        <StyledAuroraBackground>
-            <ContentWrapper
-                initial={{ opacity: 0.0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                    delay: 0.3,
-                    duration: 0.8,
-                    ease: "easeInOut",
-                }}
-            >
-                <SnapSection>
-                    <HeroPage />
-                </SnapSection>
+  return (
+    <StyledAuroraBackground>
+      <ContentWrapper
+        initial={{ opacity: 0.0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.3,
+          duration: 0.8,
+          ease: "easeInOut",
+        }}
+      >
+        <SnapSection>
+          <HeroPage />
+        </SnapSection>
 
-                <SnapSection>
-                    <Suspense fallback={<ProjectsSkeleton />}>
-                        <Projects />
-                    </Suspense>
-                </SnapSection>
+        <SnapSection>
+          <Suspense fallback={<ProjectsSkeleton />}>
+            <Projects />
+          </Suspense>
+        </SnapSection>
 
-                <SnapSection>
-                    <Suspense fallback={<AboutSkeleton />}>
-                        <AboutPage />
-                    </Suspense>
-                </SnapSection>
+        <SnapSection>
+          <Suspense fallback={<AboutSkeleton />}>
+            <AboutPage />
+          </Suspense>
+        </SnapSection>
 
-                <SnapSection>
-                    <Suspense fallback={<SpotifySkeleton />}>
-                        <SpotifySection />
-                    </Suspense>
-                </SnapSection>
+        <SnapSection>
+          <Suspense fallback={<SpotifySkeleton />}>
+            <SpotifySection />
+          </Suspense>
+        </SnapSection>
 
-                <SnapSection>
-                    <Suspense fallback={<SkillsSkeleton />}>
-                        <SkillsPage />
-                    </Suspense>
-                </SnapSection>
+        <SnapSection>
+          <Suspense fallback={<SkillsSkeleton />}>
+            <SkillsPage />
+          </Suspense>
+        </SnapSection>
 
-                <SnapSection>
-                    <Suspense fallback={<CertificationsSkeleton />}>
-                        <Certifications />
-                    </Suspense>
-                </SnapSection>
+        <SnapSection>
+          <Suspense fallback={<CertificationsSkeleton />}>
+            <Certifications />
+          </Suspense>
+        </SnapSection>
 
-                <SnapSection>
-                    <Suspense fallback={<ContactSkeleton />}>
-                        <ContactPage />
-                    </Suspense>
-                </SnapSection>
-
-            </ContentWrapper>
-        </StyledAuroraBackground>
-    )
+        <SnapSection>
+          <Suspense fallback={<ContactSkeleton />}>
+            <ContactPage />
+          </Suspense>
+        </SnapSection>
+      </ContentWrapper>
+    </StyledAuroraBackground>
+  );
 }
 
 export default MainPage;

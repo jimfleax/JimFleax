@@ -15,9 +15,9 @@ const Wrapper = styled.div`
 `;
 
 const BioPlaceholder = styled.div`
-    width: 100%;
-    max-width: 56rem;
-    margin: 0 auto 2rem auto;
+  width: 100%;
+  max-width: 56rem;
+  margin: 0 auto 2rem auto;
 `;
 
 const Grid = styled.div`
@@ -36,25 +36,25 @@ const Grid = styled.div`
 `;
 
 const CardSkeleton = styled.div`
-    aspect-ratio: 5 / 3;
-    width: 100%;
-    border-radius: 1.5rem;
-    overflow: hidden;
+  aspect-ratio: 5 / 3;
+  width: 100%;
+  border-radius: 1.5rem;
+  overflow: hidden;
 `;
 
 export default function ProjectsSkeleton() {
-    return (
-        <Wrapper>
-            <BioPlaceholder>
-                <Skeleton height="3rem" width="60%" />
-            </BioPlaceholder>
-            <Grid>
-                {[...Array(6)].map((_, i) => (
-                    <CardSkeleton key={i}>
-                        <Skeleton height="100%" />
-                    </CardSkeleton>
-                ))}
-            </Grid>
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <BioPlaceholder>
+        <Skeleton height="3rem" width="60%" />
+      </BioPlaceholder>
+      <Grid>
+        {[...Array(6)].map((_, i) => (
+          <CardSkeleton key={i}>
+            <Skeleton height="100%" />
+          </CardSkeleton>
+        ))}
+      </Grid>
+    </Wrapper>
+  );
 }

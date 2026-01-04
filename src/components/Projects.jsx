@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import styled from 'styled-components';
-import { motion } from 'motion/react';
+import styled from "styled-components";
+import { motion } from "motion/react";
 
 const ProjectsWrapper = styled(motion.div)`
   display: flex;
@@ -28,9 +28,9 @@ const BioSection = styled(motion.div)`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2rem;
-  
+
   & > *:not(:last-child) {
-     margin-bottom: 1rem;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -84,8 +84,10 @@ const ProjectCard = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  background-image: ${props => props.$gradient};
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  background-image: ${(props) => props.$gradient};
   cursor: pointer;
 `;
 
@@ -125,7 +127,9 @@ const ProjectTitle = styled.h3`
 `;
 
 const ProjectUrl = styled.a`
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
   font-size: 0.75rem;
   opacity: 0.75;
   background-color: rgba(255, 255, 255, 0.2);
@@ -146,14 +150,14 @@ const container = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1
-    }
-  }
+      staggerChildren: 0.1,
+    },
+  },
 };
 
 const item = {
   hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50 } }
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50 } },
 };
 
 export function Projects() {
@@ -162,32 +166,32 @@ export function Projects() {
       title: "CosmicMath",
       url: "cosmicmath.vercel.app",
       icon: "/media/cosmicmath.png",
-      gradient: "linear-gradient(to bottom right, #8b5cf6, #a855f7)"
+      gradient: "linear-gradient(to bottom right, #8b5cf6, #a855f7)",
     },
     {
       title: "Flashers",
       url: "flashers.vercel.app",
       icon: "/media/flashers.png",
-      gradient: "linear-gradient(to bottom right, #3b82f6, #06b6d4)"
+      gradient: "linear-gradient(to bottom right, #3b82f6, #06b6d4)",
     },
     {
       title: "Reflect",
       url: "reflecting.vercel.app",
       icon: "/media/reflect.png",
-      gradient: "linear-gradient(to bottom right, #10b981, #14b8a6)"
+      gradient: "linear-gradient(to bottom right, #10b981, #14b8a6)",
     },
     {
       title: "Poetica",
       url: "poeticaa.vercel.app",
       icon: "/media/poetica.png",
-      gradient: "linear-gradient(to bottom right, #f43f5e, #ec4899)"
+      gradient: "linear-gradient(to bottom right, #f43f5e, #ec4899)",
     },
     {
       title: "MetaSkills",
       url: "metaskills.site",
       icon: "/media/metaskills.png",
-      gradient: "linear-gradient(to bottom right, #f59e0b, #f97316)"
-    }
+      gradient: "linear-gradient(to bottom right, #f59e0b, #f97316)",
+    },
   ];
 
   return (
@@ -198,9 +202,7 @@ export function Projects() {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <BioText>
-          okay but what did i make?
-        </BioText>
+        <BioText>okay but what did i make?</BioText>
       </BioSection>
       <ProjectsGrid
         variants={container}
@@ -224,9 +226,7 @@ export function Projects() {
               />
             </IconContainer>
             <CardFooter>
-              <ProjectTitle>
-                {project.title}
-              </ProjectTitle>
+              <ProjectTitle>{project.title}</ProjectTitle>
               <ProjectUrl
                 href={`https://${project.url}`}
                 target="_blank"

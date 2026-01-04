@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { motion } from "motion/react";
 
 const Wrapper = styled(motion.div)`
@@ -16,7 +16,7 @@ const Wrapper = styled(motion.div)`
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  
+
   @media (min-width: 768px) {
     padding: 2rem;
   }
@@ -50,7 +50,7 @@ const HeaderText = styled.h2`
     padding-top: 2rem;
     padding-bottom: 1rem;
   }
-  
+
   .dark & {
     background-image: linear-gradient(to bottom, #525252, #ffffff);
   }
@@ -79,7 +79,9 @@ const CertificationCard = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
   background-color: white;
   cursor: pointer;
   transition: box-shadow 0.3s ease;
@@ -122,7 +124,9 @@ const CardFooter = styled.div`
   color: #1f2937;
   padding-left: 1rem;
   padding-right: 1rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
   gap: 0.5rem;
   flex-wrap: wrap; /* allow wrapping on very small screens */
 `;
@@ -149,27 +153,27 @@ const IssuerText = styled.span`
 `;
 
 const container = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1,
-            delayChildren: 0.2
-        }
-    }
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
 };
 
 const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            type: "spring",
-            stiffness: 50,
-            damping: 20
-        }
-    }
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 50,
+      damping: 20,
+    },
+  },
 };
 
 const TagsContainer = styled.div`
@@ -186,109 +190,117 @@ const Tag = styled.span`
   background-color: #f3f4f6;
   padding: 0.25rem 0.5rem;
   border-radius: 9999px;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Noto Sans",
+    sans-serif;
   letter-spacing: 0.025em;
   border: 1px solid #e5e7eb;
 `;
 
 export function Certifications() {
-    const certifications = [
-        {
-            title: "Legacy JavaScript Algorithms and Data Structures",
-            issuer: "FreeCodeCamp",
-            img: "/media/certifications/freecodecamp_page_1_final_cropped.png",
-            url: "https://freecodecamp.org/certification/jimfleax/javascript-algorithms-and-data-structures",
-            tags: ["JavaScript", "Algorithms", "Data Structures"]
-        },
-        {
-            title: "Learn Node.js Course",
-            issuer: "Codecademy",
-            img: "/media/certifications/nodejs_page_1_cropped.png",
-            url: "https://www.codecademy.com/profiles/jimfleax/certificates/240305d50b925c17868f1ac7a21a3261",
-            tags: ["Node.js", "Backend", "JavaScript"]
-        },
-        {
-            title: "Learn Python 3 Course",
-            issuer: "Codecademy",
-            img: "/media/certifications/python.png",
-            url: "https://www.codecademy.com/profiles/jimfleax/certificates/6c152bd262967f8c941c9707ed636bda",
-            tags: ["Python"]
-        },
-        {
-            title: "Blockchain Basics",
-            issuer: "LinkedIn Learning",
-            img: "/media/certifications/blockchain_linkedin_cropped.png",
-            url: "https://www.linkedin.com/learning/certificates/30b76a4d919d6ed957b76a6aae3cc11daf60c5cc7c551f16800ee49b64f6c550?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BT4nMNuJKRgeU8FumLdHGEg%3D%3D",
-            tags: ["Blockchain"]
-        },
-        {
-            title: "Learn the Basics of Blockchain with Python Course",
-            issuer: "Codecademy",
-            img: "/media/certifications/codecademy_blockchain_page_1_cropped.png",
-            url: "https://www.codecademy.com/profiles/jimfleax/certificates/f21a464d190cb43e78b83ca8d1f0c6b0",
-            tags: ["Blockchain", "Python", "Cryptography"]
-        },
-        {
-            title: "Sololearn certified Javascript Intermediate",
-            issuer: "SoloLearn",
-            img: "/media/certifications/sololearn.jpeg",
-            url: "https://www.linkedin.com/in/jimfleax/details/certifications/1757875672744/single-media-viewer?type=DOCUMENT&profileId=ACoAAEFHGXcB_Qn1nvV8exqtD6KmWeeTndQoi4A&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3B0mTYC8nmTTyk5eRVfCfeig%3D%3D",
-            tags: ["JavaScript", "ES6"]
-        },
-    ];
+  const certifications = [
+    {
+      title: "Legacy JavaScript Algorithms and Data Structures",
+      issuer: "FreeCodeCamp",
+      img: "/media/certifications/freecodecamp_page_1_final_cropped.png",
+      url: "https://freecodecamp.org/certification/jimfleax/javascript-algorithms-and-data-structures",
+      tags: ["JavaScript", "Algorithms", "Data Structures"],
+    },
+    {
+      title: "Learn Node.js Course",
+      issuer: "Codecademy",
+      img: "/media/certifications/nodejs_page_1_cropped.png",
+      url: "https://www.codecademy.com/profiles/jimfleax/certificates/240305d50b925c17868f1ac7a21a3261",
+      tags: ["Node.js", "Backend", "JavaScript"],
+    },
+    {
+      title: "Learn Python 3 Course",
+      issuer: "Codecademy",
+      img: "/media/certifications/python.png",
+      url: "https://www.codecademy.com/profiles/jimfleax/certificates/6c152bd262967f8c941c9707ed636bda",
+      tags: ["Python"],
+    },
+    {
+      title: "Blockchain Basics",
+      issuer: "LinkedIn Learning",
+      img: "/media/certifications/blockchain_linkedin_cropped.png",
+      url: "https://www.linkedin.com/learning/certificates/30b76a4d919d6ed957b76a6aae3cc11daf60c5cc7c551f16800ee49b64f6c550?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BT4nMNuJKRgeU8FumLdHGEg%3D%3D",
+      tags: ["Blockchain"],
+    },
+    {
+      title: "Learn the Basics of Blockchain with Python Course",
+      issuer: "Codecademy",
+      img: "/media/certifications/codecademy_blockchain_page_1_cropped.png",
+      url: "https://www.codecademy.com/profiles/jimfleax/certificates/f21a464d190cb43e78b83ca8d1f0c6b0",
+      tags: ["Blockchain", "Python", "Cryptography"],
+    },
+    {
+      title: "Sololearn certified Javascript Intermediate",
+      issuer: "SoloLearn",
+      img: "/media/certifications/sololearn.jpeg",
+      url: "https://www.linkedin.com/in/jimfleax/details/certifications/1757875672744/single-media-viewer?type=DOCUMENT&profileId=ACoAAEFHGXcB_Qn1nvV8exqtD6KmWeeTndQoi4A&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3B0mTYC8nmTTyk5eRVfCfeig%3D%3D",
+      tags: ["JavaScript", "ES6"],
+    },
+  ];
 
-    return (
-        <Wrapper
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-        >
-            <HeaderSection
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-            >
-                <HeaderText>here are some certifications I have been awarded</HeaderText>
-            </HeaderSection>
-            <CertificationsGrid
-                variants={container}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: "-100px" }}
-            >
-                {certifications.map((cert, i) => (
-                    <CertificationCard
-                        key={i}
-                        variants={item}
-                        whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => window.open(cert.url, "_blank")}
-                    >
-                        <ImageContainer>
-                            <ProjectImage
-                                src={cert.img}
-                                alt={cert.title}
-                                loading="lazy"
-                            />
-                        </ImageContainer>
-                        <CardFooter>
-                            <CertTitle title={cert.title}>{cert.title}</CertTitle>
-                            <IssuerText>{cert.issuer}</IssuerText>
-                        </CardFooter>
-                        {cert.tags && (
-                            <TagsContainer>
-                                {cert.tags.map((tag, idx) => (
-                                    <Tag key={idx}>{tag}</Tag>
-                                ))}
-                            </TagsContainer>
-                        )}
-                    </CertificationCard>
+  return (
+    <Wrapper
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
+      <HeaderSection
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <HeaderText>
+          here are some certifications I have been awarded
+        </HeaderText>
+      </HeaderSection>
+      <CertificationsGrid
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        {certifications.map((cert, i) => (
+          <CertificationCard
+            key={i}
+            variants={item}
+            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => window.open(cert.url, "_blank")}
+          >
+            <ImageContainer>
+              <ProjectImage src={cert.img} alt={cert.title} loading="lazy" />
+            </ImageContainer>
+            <CardFooter>
+              <CertTitle title={cert.title}>{cert.title}</CertTitle>
+              <IssuerText>{cert.issuer}</IssuerText>
+            </CardFooter>
+            {cert.tags && (
+              <TagsContainer>
+                {cert.tags.map((tag, idx) => (
+                  <Tag key={idx}>{tag}</Tag>
                 ))}
-            </CertificationsGrid>
-        </Wrapper>
-    );
+              </TagsContainer>
+            )}
+          </CertificationCard>
+        ))}
+      </CertificationsGrid>
+    </Wrapper>
+  );
 }
 
 export default Certifications;

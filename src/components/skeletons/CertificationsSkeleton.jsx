@@ -15,10 +15,10 @@ const Wrapper = styled.div`
 `;
 
 export default function CertificationsSkeleton() {
-    return (
-        <Wrapper>
-            <Skeleton height="4rem" width="50%" style={{ marginBottom: '2rem' }} />
-            <Skeleton height="20rem" width="100%" />
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <Skeleton height="4rem" width="50%" style={{ marginBottom: "2rem" }} />
+      <Skeleton height="20rem" width="100%" />
+    </Wrapper>
+  );
 }

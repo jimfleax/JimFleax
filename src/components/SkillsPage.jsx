@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { motion, AnimatePresence } from "motion/react"; // Updated import to match user's usage
 import { TextGenerateEffect } from "./ui/text-generate-effect";
 import { TiArrowRightThick } from "react-icons/ti";
@@ -15,10 +15,10 @@ const SkillsWrapper = styled.div`
   width: 95%;
   padding: 1rem;
   min-height: calc(100vh - 4rem);
-  box-shadow: ${props => props.$showSkills
-    ? '0 0 40px rgba(59, 130, 246, 0.6)'
-    : '0 0 40px rgba(249, 115, 22, 0.6)'
-  };
+  box-shadow: ${(props) =>
+    props.$showSkills
+      ? "0 0 40px rgba(59, 130, 246, 0.6)"
+      : "0 0 40px rgba(249, 115, 22, 0.6)"};
   transition: box-shadow 1.5s ease-in-out;
   border-radius: 2rem;
   position: relative;
@@ -33,7 +33,7 @@ const BackgroundLayer = styled(motion.div)`
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: ${props => props.$bg};
+  background: ${(props) => props.$bg};
 `;
 
 const ContentContainer = styled(motion.div)`
@@ -75,16 +75,18 @@ const ActionButton = styled(motion.button)`
   justify-content: center;
   cursor: pointer;
   font-size: 2rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-left: 2rem;
   margin-top: 1rem;
-  
+
   &:hover {
     transform: scale(1.1);
   }
 
   /* When showing skills (blue theme), change text color */
-  ${props => props.$active && `
+  ${(props) =>
+    props.$active &&
+    `
     color: #3b82f6;
   `}
 `;
@@ -134,7 +136,7 @@ const LearningBoast = styled(TextGenerateEffect)`
   color: #ffffffdf;
   font-size: 1.2rem;
   text-align: center;
-  font-family: 'Handlee'
+  font-family: "Handlee";
 `;
 
 export function SkillsPage() {
@@ -184,39 +186,63 @@ export function SkillsPage() {
               </ActionButton>
             </motion.div>
           ) : (
-            <><SkillsList
-              key="skills"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', color: 'white' }}>
-                <h3 style={{ fontSize: '2rem', fontWeight: 'bold' }}>My Skills</h3>
-                <ActionButton
-                  $active={true}
-                  onClick={() => setShowSkills(false)}
-                  style={{ margin: 0, width: '3rem', height: '3rem', fontSize: '1.5rem', transform: 'rotate(180deg)' }}
+            <>
+              <SkillsList
+                key="skills"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: "1rem",
+                    color: "white",
+                  }}
                 >
-                  <TiArrowRightThick />
-                </ActionButton>
-              </div>
+                  <h3 style={{ fontSize: "2rem", fontWeight: "bold" }}>
+                    My Skills
+                  </h3>
+                  <ActionButton
+                    $active={true}
+                    onClick={() => setShowSkills(false)}
+                    style={{
+                      margin: 0,
+                      width: "3rem",
+                      height: "3rem",
+                      fontSize: "1.5rem",
+                      transform: "rotate(180deg)",
+                    }}
+                  >
+                    <TiArrowRightThick />
+                  </ActionButton>
+                </div>
 
-              {skills.map((skill, idx) => (
-                <SkillItem key={idx}>
-                  <SkillHeader>
-                    <span>{skill.name}</span>
-                    <span>{skill.level}%</span>
-                  </SkillHeader>
-                  <ProgressBarBackground>
-                    <ProgressBarFill
-                      initial={{ width: 0 }}
-                      animate={{ width: `${skill.level}%` }}
-                      transition={{ duration: 1, delay: 0.5 + (idx * 0.1), ease: "easeOut" }} />
-                  </ProgressBarBackground>
-                </SkillItem>
-              ))}
-            </SkillsList><LearningBoast words="i'm always learning something or the other, so you will see these changing" /></>
+                {skills.map((skill, idx) => (
+                  <SkillItem key={idx}>
+                    <SkillHeader>
+                      <span>{skill.name}</span>
+                      <span>{skill.level}%</span>
+                    </SkillHeader>
+                    <ProgressBarBackground>
+                      <ProgressBarFill
+                        initial={{ width: 0 }}
+                        animate={{ width: `${skill.level}%` }}
+                        transition={{
+                          duration: 1,
+                          delay: 0.5 + idx * 0.1,
+                          ease: "easeOut",
+                        }}
+                      />
+                    </ProgressBarBackground>
+                  </SkillItem>
+                ))}
+              </SkillsList>
+              <LearningBoast words="i'm always learning something or the other, so you will see these changing" />
+            </>
           )}
         </AnimatePresence>
       </ContentContainer>

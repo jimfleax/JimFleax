@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import styled from 'styled-components';
-import { motion, AnimatePresence } from 'motion/react';
+import styled from "styled-components";
+import { motion, AnimatePresence } from "motion/react";
 
 const AboutWrapper = styled(motion.div)`
   display: flex;
@@ -30,9 +30,9 @@ const BioSection = styled(motion.div)`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2rem;
-  
+
   & > *:not(:last-child) {
-     margin-bottom: 1rem;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -84,7 +84,9 @@ const LeftColumn = styled(motion.div)`
 const ImageFrame = styled(motion.div)`
   border-radius: 1.5rem;
   overflow: hidden;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
   width: 100%;
   max-width: 300px;
   background-color: transparent;
@@ -100,7 +102,7 @@ const ProfileImage = styled.img`
 
 const ImageCaption = styled(motion.p)`
   text-align: center;
-  font-family: 'Handlee', cursive;
+  font-family: "Handlee", cursive;
   font-size: 1.25rem;
   color: #a3a3a3;
   transform: rotate(-2deg);
@@ -118,7 +120,7 @@ const TextParagraph = styled(motion.p)`
   line-height: 1.75;
   color: #d4d4d4;
   font-family: var(--font-sans, sans-serif);
-  
+
   @media (min-width: 768px) {
     font-size: 1.125rem;
   }
@@ -192,7 +194,12 @@ export function AboutPage() {
           viewport={{ once: true }}
         >
           <TextParagraph>
-            Hi there! I'm Reetabrata Bhandari—better known as Jim Fleax! 👋 I’m passionate about exploring computer languages and crafting innovative apps and websites. My goal is to create sleek, delicious interfaces that seamlessly blend with powerful logic and robust backends, resulting in responsive apps designed to make life simpler and more enjoyable. 👨‍💻✨
+            Hi there! I'm Reetabrata Bhandari—better known as Jim Fleax! 👋 I’m
+            passionate about exploring computer languages and crafting
+            innovative apps and websites. My goal is to create sleek, delicious
+            interfaces that seamlessly blend with powerful logic and robust
+            backends, resulting in responsive apps designed to make life simpler
+            and more enjoyable. 👨‍💻✨
           </TextParagraph>
 
           <AnimatePresence>
@@ -202,15 +209,20 @@ export function AboutPage() {
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.3 }}
-                style={{ overflow: 'hidden' }}
+                style={{ overflow: "hidden" }}
               >
-                <TextParagraph style={{ marginTop: '1.5rem' }}>
-                  Beyond coding, I find joy in losing myself in fiction 📚️, vibing along my playlist 🎵, and watching good movies 🎬️. I thrive on learning, embracing every opportunity to dive deeper into the fascinating world of computer science. 🚀
+                <TextParagraph style={{ marginTop: "1.5rem" }}>
+                  Beyond coding, I find joy in losing myself in fiction 📚️,
+                  vibing along my playlist 🎵, and watching good movies 🎬️. I
+                  thrive on learning, embracing every opportunity to dive deeper
+                  into the fascinating world of computer science. 🚀
                 </TextParagraph>
-                <TextParagraph style={{ marginTop: '1.5rem' }}>
-                  Here, you’ll find a showcase of the apps I’ve built along my web development journey. Got feedback or spotted a bug? Don’t hesitate to share—I’m always eager to improve and grow!
+                <TextParagraph style={{ marginTop: "1.5rem" }}>
+                  Here, you’ll find a showcase of the apps I’ve built along my
+                  web development journey. Got feedback or spotted a bug? Don’t
+                  hesitate to share—I’m always eager to improve and grow!
                 </TextParagraph>
-                <TextParagraph style={{ marginTop: '1.5rem' }}>
+                <TextParagraph style={{ marginTop: "1.5rem" }}>
                   Thanks for stopping by! ❤️
                 </TextParagraph>
               </motion.div>

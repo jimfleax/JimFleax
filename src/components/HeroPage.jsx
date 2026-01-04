@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 import { BackgroundLines } from "@/components/ui/background-lines";
-import { FlipWords } from './ui/flip-words';
-import { TextGenerateEffect } from './ui/text-generate-effect';
+import { FlipWords } from "./ui/flip-words";
+import { TextGenerateEffect } from "./ui/text-generate-effect";
 
 const StyledBackgroundLines = styled(BackgroundLines)`
   display: flex;
@@ -13,7 +13,7 @@ const StyledBackgroundLines = styled(BackgroundLines)`
   padding-right: 1rem;
   background-color: transparent;
   height: 100vh;
-  
+
   .dark & {
     background-color: transparent;
   }
@@ -33,13 +33,13 @@ const HeroTitle = styled.h2`
   z-index: 20;
   font-weight: 700;
   letter-spacing: -0.025em;
-  
+
   @media (min-width: 768px) {
     font-size: 2.25rem;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
   }
-  
+
   @media (min-width: 1024px) {
     font-size: 4.5rem;
   }
@@ -56,7 +56,7 @@ const HeroDescription = styled.p`
   font-size: 0.875rem;
   text-align: center;
   color: #404040;
-  
+
   @media (min-width: 768px) {
     font-size: 1.125rem;
   }
@@ -74,19 +74,27 @@ const StyledFlipWords = styled(FlipWords)`
   }
 `;
 
-
 function HeroPage() {
   return (
     <StyledBackgroundLines>
       <HeroTitle>
-        Reetabrata Bhandari, <br /> <StyledFlipWords duration={500} words={["Web Developer", "Python Programmer", "AI/ML Enthusiast", "Learner"]} />
+        Reetabrata Bhandari, <br />{" "}
+        <StyledFlipWords
+          duration={500}
+          words={[
+            "Web Developer",
+            "Python Programmer",
+            "AI/ML Enthusiast",
+            "Learner",
+          ]}
+        />
       </HeroTitle>
       <br />
       <HeroDescription>
         <TextGenerateEffect words="Hello! I am a self-taught software developer with a passion for creating innovative and user-friendly applications." />
       </HeroDescription>
     </StyledBackgroundLines>
-  )
+  );
 }
 
-export default HeroPage
+export default HeroPage;

@@ -23,19 +23,34 @@ const Flex = styled.div`
 `;
 
 export default function SpotifySkeleton() {
-    return (
-        <Wrapper>
-            <Flex>
-                <div style={{ borderRadius: '10px', overflow: 'hidden', height: '18rem', width: '18rem' }}>
-                    <Skeleton height="100%" />
-                </div>
-                <div style={{ width: '200px' }}>
-                    <Skeleton height="2rem" />
-                </div>
-            </Flex>
-            <div style={{ width: '100%', maxWidth: '400px', height: '400px', borderRadius: '12px', overflow: 'hidden' }}>
-                <Skeleton height="100%" />
-            </div>
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <Flex>
+        <div
+          style={{
+            borderRadius: "10px",
+            overflow: "hidden",
+            height: "18rem",
+            width: "18rem",
+          }}
+        >
+          <Skeleton height="100%" />
+        </div>
+        <div style={{ width: "200px" }}>
+          <Skeleton height="2rem" />
+        </div>
+      </Flex>
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "400px",
+          height: "400px",
+          borderRadius: "12px",
+          overflow: "hidden",
+        }}
+      >
+        <Skeleton height="100%" />
+      </div>
+    </Wrapper>
+  );
 }

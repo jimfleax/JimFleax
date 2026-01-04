@@ -11,8 +11,8 @@ const shimmer = keyframes`
 
 export const Skeleton = styled.div`
   display: inline-block;
-  height: ${props => props.height || "100%"};
-  width: ${props => props.width || "100%"};
+  height: ${(props) => props.height || "100%"};
+  width: ${(props) => props.width || "100%"};
   background: linear-gradient(
     90deg,
     rgba(190, 190, 190, 0.2) 25%,
@@ -21,10 +21,10 @@ export const Skeleton = styled.div`
   );
   background-size: 400% 100%;
   animation: ${shimmer} 1.4s ease infinite;
-  border-radius: ${props => props.borderRadius || "0.5rem"};
-  
+  border-radius: ${(props) => props.borderRadius || "0.5rem"};
+
   .dark & {
-     background: linear-gradient(
+    background: linear-gradient(
       90deg,
       rgba(255, 255, 255, 0.05) 25%,
       rgba(255, 255, 255, 0.1) 37%,
