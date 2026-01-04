@@ -9,17 +9,14 @@ const AboutWrapper = styled(motion.div)`
   flex-direction: column;
   gap: 2rem;
   max-width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
+  margin: 2rem auto;
+  width: 95%;
   padding: 1rem;
-  min-height: 100vh;
+  min-height: calc(100vh - 4rem);
   justify-content: center;
   background-color: black;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   border-radius: 2rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
 
   @media (min-width: 768px) {
     padding: 2rem;
