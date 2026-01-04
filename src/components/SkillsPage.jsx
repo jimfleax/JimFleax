@@ -15,7 +15,11 @@ const SkillsWrapper = styled.div`
   width: 95%;
   padding: 1rem;
   min-height: calc(100vh - 4rem);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: ${props => props.$showSkills
+    ? '0 0 40px rgba(59, 130, 246, 0.6)'
+    : '0 0 40px rgba(249, 115, 22, 0.6)'
+  };
+  transition: box-shadow 1.5s ease-in-out;
   border-radius: 2rem;
   position: relative;
   overflow: hidden;
@@ -147,7 +151,7 @@ export function SkillsPage() {
   ];
 
   return (
-    <SkillsWrapper>
+    <SkillsWrapper $showSkills={showSkills}>
       <BackgroundLayer
         $bg="linear-gradient(135deg, #f97316, #ef4444)"
         animate={{ opacity: showSkills ? 0 : 1 }}

@@ -74,19 +74,19 @@ const StyledFlipWords = styled(FlipWords)`
   }
 `;
 
+
 function HeroPage() {
-    const words = ["Web Developer", "Python Programmer", "AI/ML Enthusiast", "Learner"]
-    return (
-        <StyledBackgroundLines>
-            <HeroTitle>
-                Reetabrata Bhandari, <br /> <StyledFlipWords duration={500} words={words} />
-            </HeroTitle>
-            <br />
-            <HeroDescription>
-                <TextGenerateEffect words="Hello! I am a self-taught software developer with a passion for creating innovative and user-friendly applications." />
-            </HeroDescription>
-        </StyledBackgroundLines>
-    )
+  return (
+    <StyledBackgroundLines>
+      <HeroTitle>
+        Reetabrata Bhandari, <br /> <StyledFlipWords duration={500} words={["Web Developer", "Python Programmer", "AI/ML Enthusiast", "Learner"]} />
+      </HeroTitle>
+      <br />
+      <HeroDescription>
+        <TextGenerateEffect words="Hello! I am a self-taught software developer with a passion for creating innovative and user-friendly applications." />
+      </HeroDescription>
+    </StyledBackgroundLines>
+  )
 }
 
 export default HeroPage

@@ -9,12 +9,14 @@ import HeroPage from "./HeroPage";
 const Projects = React.lazy(() => import("./Projects"));
 const AboutPage = React.lazy(() => import("./AboutPage"));
 const SkillsPage = React.lazy(() => import("./SkillsPage"));
+const Certifications = React.lazy(() => import("./Certifications"));
 const SpotifySection = React.lazy(() => import("./SpotifySection"));
 const ContactPage = React.lazy(() => import("./ContactPage"));
 
 import ProjectsSkeleton from "./skeletons/ProjectsSkeleton";
 import AboutSkeleton from "./skeletons/AboutSkeleton";
 import SkillsSkeleton from "./skeletons/SkillsSkeleton";
+import CertificationsSkeleton from "./skeletons/CertificationsSkeleton";
 import SpotifySkeleton from "./skeletons/SpotifySkeleton";
 import ContactSkeleton from "./skeletons/ContactSkeleton";
 
@@ -80,6 +82,12 @@ function MainPage() {
                 <SnapSection>
                     <Suspense fallback={<SkillsSkeleton />}>
                         <SkillsPage />
+                    </Suspense>
+                </SnapSection>
+
+                <SnapSection>
+                    <Suspense fallback={<CertificationsSkeleton />}>
+                        <Certifications />
                     </Suspense>
                 </SnapSection>
 
