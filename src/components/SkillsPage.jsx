@@ -140,8 +140,9 @@ export function SkillsPage() {
     { name: "React.js", level: 80 },
     { name: "JavaScript", level: 85 },
     { name: "Node.js / Express", level: 80 },
-    { name: "Python", level: 60 },
-    { name: "C Programming", level: 70 },
+    { name: "MongoDB", level: 80 },
+    { name: "Python", level: 70 },
+    { name: "C Programming", level: 60 },
     { name: "Blockchain", level: 40 },
   ];
 
@@ -190,7 +191,7 @@ export function SkillsPage() {
                 <h3 style={{ fontSize: '2rem', fontWeight: 'bold' }}>My Skills</h3>
                 <ActionButton
                   $active={true}
-                  onClick={() => setShowSkills(false)} // Toggle back
+                  onClick={() => setShowSkills(false)}
                   style={{ margin: 0, width: '3rem', height: '3rem', fontSize: '1.5rem', transform: 'rotate(180deg)' }}
                 >
                   <TiArrowRightThick />

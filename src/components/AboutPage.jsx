@@ -171,7 +171,7 @@ export function AboutPage() {
           >
             <ProfileImage
               src="/media/myPic.png"
-              alt="Me"
+              alt="A picture of myself"
               loading="lazy"
               decoding="async"
             />
