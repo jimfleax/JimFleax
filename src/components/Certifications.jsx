@@ -247,7 +247,7 @@ export function Certifications() {
       title: "Sololearn certified Javascript Intermediate",
       issuer: "SoloLearn",
       img: "/media/certifications/sololearn.jpeg",
-      url: "https://www.linkedin.com/in/jimfleax/details/certifications/1757875672744/single-media-viewer?type=DOCUMENT&profileId=ACoAAEFHGXcB_Qn1nvV8exqtD6KmWeeTndQoi4A&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3B0mTYC8nmTTyk5eRVfCfeig%3D%3D",
+      url: "https://www.sololearn.com/certificates/CC-ESKIEUQM",
       tags: ["JavaScript", "ES6"],
     },
   ];
