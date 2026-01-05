@@ -3,6 +3,7 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "motion/react";
+import { LinkPreview } from "./ui/link-preview";
 
 const ProjectsWrapper = styled(motion.div)`
   display: flex;
@@ -195,7 +196,12 @@ export function Projects() {
   ];
 
   return (
-    <ProjectsWrapper>
+    <ProjectsWrapper
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true }}
+    >
       <BioSection
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -211,31 +217,33 @@ export function Projects() {
         viewport={{ once: true, margin: "-100px" }}
       >
         {projects.map((project, idx) => (
-          <ProjectCard
-            key={idx}
-            $gradient={project.gradient}
-            variants={item}
-            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-          >
-            <IconContainer>
-              <ProjectIcon
-                src={project.icon}
-                alt={project.title}
-                loading="lazy"
-                decoding="async"
-              />
-            </IconContainer>
-            <CardFooter>
-              <ProjectTitle>{project.title}</ProjectTitle>
-              <ProjectUrl
-                href={`https://${project.url}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {project.url}
-              </ProjectUrl>
-            </CardFooter>
-          </ProjectCard>
+          <LinkPreview url={`https://${project.url}`}>
+            <ProjectCard
+              key={idx}
+              $gradient={project.gradient}
+              variants={item}
+              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+            >
+              <IconContainer>
+                <ProjectIcon
+                  src={project.icon}
+                  alt={project.title}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </IconContainer>
+              <CardFooter>
+                <ProjectTitle>{project.title}</ProjectTitle>
+                <ProjectUrl
+                  href={`https://${project.url}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {project.url}
+                </ProjectUrl>
+              </CardFooter>
+            </ProjectCard>
+          </LinkPreview>
         ))}
       </ProjectsGrid>
     </ProjectsWrapper>

@@ -64,8 +64,15 @@ export function SpotifySection() {
       viewport={{ once: true }}
     >
       <Flex
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
         whileHover={{ scale: 1.02 }}
-        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        transition={{
+          type: "spring",
+          stiffness: 400,
+          damping: 10,
+          delay: 0.2,
+        }}
       >
         <DitherContainer>
           <img

@@ -3,6 +3,7 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "motion/react";
+import { LinkPreview } from "./ui/link-preview";
 
 const Wrapper = styled(motion.div)`
   display: flex;
@@ -253,9 +254,9 @@ export function Certifications() {
 
   return (
     <Wrapper
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
       viewport={{ once: true }}
     >
       <HeaderSection
@@ -275,28 +276,30 @@ export function Certifications() {
         viewport={{ once: true, margin: "-100px" }}
       >
         {certifications.map((cert, i) => (
-          <CertificationCard
-            key={i}
-            variants={item}
-            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => window.open(cert.url, "_blank")}
-          >
-            <ImageContainer>
-              <ProjectImage src={cert.img} alt={cert.title} loading="lazy" />
-            </ImageContainer>
-            <CardFooter>
-              <CertTitle title={cert.title}>{cert.title}</CertTitle>
-              <IssuerText>{cert.issuer}</IssuerText>
-            </CardFooter>
-            {cert.tags && (
-              <TagsContainer>
-                {cert.tags.map((tag, idx) => (
-                  <Tag key={idx}>{tag}</Tag>
-                ))}
-              </TagsContainer>
-            )}
-          </CertificationCard>
+          <LinkPreview url={cert.url}>
+            <CertificationCard
+              key={i}
+              variants={item}
+              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => window.open(cert.url, "_blank")}
+            >
+              <ImageContainer>
+                <ProjectImage src={cert.img} alt={cert.title} loading="lazy" />
+              </ImageContainer>
+              <CardFooter>
+                <CertTitle title={cert.title}>{cert.title}</CertTitle>
+                <IssuerText>{cert.issuer}</IssuerText>
+              </CardFooter>
+              {cert.tags && (
+                <TagsContainer>
+                  {cert.tags.map((tag, idx) => (
+                    <Tag key={idx}>{tag}</Tag>
+                  ))}
+                </TagsContainer>
+              )}
+            </CertificationCard>
+          </LinkPreview>
         ))}
       </CertificationsGrid>
     </Wrapper>

@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { FaInstagram, FaMedium, FaReddit, FaGithub } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { BackgroundBeams } from "./ui/background-beams";
+import { LinkPreview } from "./ui/link-preview";
 
 const ContactWrapper = styled(motion.div)`
   display: flex;
@@ -139,7 +140,12 @@ const itemVariants = {
 
 export function ContactPage() {
   return (
-    <ContactWrapper>
+    <ContactWrapper
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true }}
+    >
       <BackgroundBeams />
       <ContentContainer
         variants={containerVariants}
@@ -153,50 +159,58 @@ export function ContactPage() {
         </Address>
 
         <SocialLinks variants={itemVariants}>
-          <SocialIcon
-            href="https://instagram.com/jimfleax"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            whileHover={{ scale: 1.2, rotate: 10 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <FaInstagram />
-          </SocialIcon>
-          <SocialIcon
-            href="https://medium.com/@jimfleax"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Medium"
-            whileHover={{ scale: 1.2, rotate: -10 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <FaMedium />
-          </SocialIcon>
-          <SocialIcon
-            href="https://reddit.com/u/jimfleax"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Reddit"
-            whileHover={{ scale: 1.2, rotate: 10 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <FaReddit />
-          </SocialIcon>
-          <SocialIcon
-            href="https://github.com/jimfleax"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            whileHover={{ scale: 1.2, rotate: -10 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <FaGithub />
-          </SocialIcon>
+          <LinkPreview url="https://instagram.com/jimfleax">
+            <SocialIcon
+              href="https://instagram.com/jimfleax"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              whileHover={{ scale: 1.2, rotate: 10 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FaInstagram />
+            </SocialIcon>
+          </LinkPreview>
+          <LinkPreview url="https://medium.com/@jimfleax">
+            <SocialIcon
+              href="https://medium.com/@jimfleax"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Medium"
+              whileHover={{ scale: 1.2, rotate: -10 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FaMedium />
+            </SocialIcon>
+          </LinkPreview>
+          <LinkPreview url="https://reddit.com/u/jimfleax">
+            <SocialIcon
+              href="https://reddit.com/u/jimfleax"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Reddit"
+              whileHover={{ scale: 1.2, rotate: 10 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FaReddit />
+            </SocialIcon>
+          </LinkPreview>
+          <LinkPreview url="https://github.com/jimfleax">
+            <SocialIcon
+              href="https://github.com/jimfleax"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              whileHover={{ scale: 1.2, rotate: -10 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FaGithub />
+            </SocialIcon>
+          </LinkPreview>
         </SocialLinks>
 
         <MailButton
-          href="mailto:reetabrata.bhandari@gmail.com"
+          href="mailto:reetabrata.bhandari@gmail.com?subject=Hello%20Reetabrata&body=Hi%20Reetabrata,%20"
           variants={itemVariants}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}

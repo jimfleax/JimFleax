@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { BackgroundLines } from "@/components/ui/background-lines";
 import { FlipWords } from "./ui/flip-words";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
+import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 
 const StyledBackgroundLines = styled(BackgroundLines)`
   display: flex;
@@ -76,24 +77,33 @@ const StyledFlipWords = styled(FlipWords)`
 
 function HeroPage() {
   return (
-    <StyledBackgroundLines>
-      <HeroTitle>
-        Reetabrata Bhandari, <br />{" "}
-        <StyledFlipWords
-          duration={500}
-          words={[
-            "Web Developer",
-            "Python Programmer",
-            "AI/ML Enthusiast",
-            "Learner",
-          ]}
-        />
-      </HeroTitle>
-      <br />
-      <HeroDescription>
-        <TextGenerateEffect words="Hello! I am a self-taught software developer with a passion for creating innovative and user-friendly applications." />
-      </HeroDescription>
+    
+      <CardContainer>
+        <StyledBackgroundLines>
+        <CardBody className="w-full dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1]">
+          <CardItem className="flex flex-col items-center justify-center w-full">
+            <HeroTitle>
+              Reetabrata Bhandari, <br />{" "}
+              <StyledFlipWords
+                duration={500}
+                words={[
+                  "Web Developer",
+                  "Python Programmer",
+                  "AI/ML Enthusiast",
+                  "Learner",
+                ]}
+              />
+            </HeroTitle>
+          </CardItem>
+          <br />
+          <CardItem className="flex flex-col items-center justify-center w-full">
+            <HeroDescription>
+              <TextGenerateEffect words="Hello! I am a self-taught software developer with a passion for creating innovative and user-friendly applications." />
+            </HeroDescription>
+          </CardItem>
+        </CardBody>
     </StyledBackgroundLines>
+      </CardContainer>
   );
 }
 

@@ -5,6 +5,7 @@ import { AuroraBackground } from "@/components/ui/aurora-background";
 
 import { Suspense } from "react";
 import HeroPage from "./HeroPage";
+import FooterPage from "./FooterPage";
 
 const Projects = React.lazy(() => import("./Projects"));
 const AboutPage = React.lazy(() => import("./AboutPage"));
@@ -94,6 +95,10 @@ function MainPage() {
           <Suspense fallback={<ContactSkeleton />}>
             <ContactPage />
           </Suspense>
+        </SnapSection>
+
+        <SnapSection>
+          <FooterPage />
         </SnapSection>
       </ContentWrapper>
     </StyledAuroraBackground>
