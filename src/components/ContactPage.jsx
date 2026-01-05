@@ -83,12 +83,13 @@ const SocialLinks = styled(motion.div)`
   margin-top: 1rem;
 `;
 
-const SocialIcon = styled(motion.a)`
+const SocialIcon = styled(motion.span)`
   color: #4b5563;
   font-size: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 
   &:hover {
     color: #f97316;
@@ -161,10 +162,6 @@ export function ContactPage() {
         <SocialLinks variants={itemVariants}>
           <LinkPreview url="https://instagram.com/jimfleax">
             <SocialIcon
-              href="https://instagram.com/jimfleax"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
               whileHover={{ scale: 1.2, rotate: 10 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -173,10 +170,6 @@ export function ContactPage() {
           </LinkPreview>
           <LinkPreview url="https://medium.com/@jimfleax">
             <SocialIcon
-              href="https://medium.com/@jimfleax"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Medium"
               whileHover={{ scale: 1.2, rotate: -10 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -185,10 +178,6 @@ export function ContactPage() {
           </LinkPreview>
           <LinkPreview url="https://reddit.com/u/jimfleax">
             <SocialIcon
-              href="https://reddit.com/u/jimfleax"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Reddit"
               whileHover={{ scale: 1.2, rotate: 10 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -197,10 +186,6 @@ export function ContactPage() {
           </LinkPreview>
           <LinkPreview url="https://github.com/jimfleax">
             <SocialIcon
-              href="https://github.com/jimfleax"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
               whileHover={{ scale: 1.2, rotate: -10 }}
               whileTap={{ scale: 0.9 }}
             >

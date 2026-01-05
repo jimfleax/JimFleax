@@ -127,7 +127,7 @@ const ProjectTitle = styled.h3`
   letter-spacing: -0.025em;
 `;
 
-const ProjectUrl = styled.a`
+const ProjectUrl = styled.span`
   font-family:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
@@ -234,13 +234,7 @@ export function Projects() {
               </IconContainer>
               <CardFooter>
                 <ProjectTitle>{project.title}</ProjectTitle>
-                <ProjectUrl
-                  href={`https://${project.url}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {project.url}
-                </ProjectUrl>
+                <ProjectUrl>{project.url}</ProjectUrl>
               </CardFooter>
             </ProjectCard>
           </LinkPreview>

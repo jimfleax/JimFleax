@@ -30,7 +30,7 @@ const BackgroundTextContainer = styled.div`
   justify-content: center;
   z-index: 1;
   pointer-events: none;
-  pointer-events: auto; 
+  pointer-events: auto;
 `;
 
 const FooterContainer = styled(motion.div)`
@@ -81,100 +81,102 @@ const EffectContainer = styled.div`
 `;
 
 export function FooterPage() {
-    const [hearts, setHearts] = useState([]);
+  const [hearts, setHearts] = useState([]);
 
-    const handleFooterClick = (e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const x = rect.left + rect.width / 2;
-        const y = rect.top;
+  const handleFooterClick = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top;
 
-        const newHearts = Array.from({ length: 10 }).map((_, i) => ({
-            id: Date.now() + i,
-            x: x + (Math.random() - 0.5) * 50,
-            y: y,
-        }));
+    const newHearts = Array.from({ length: 10 }).map((_, i) => ({
+      id: Date.now() + i,
+      x: x + (Math.random() - 0.5) * 50,
+      y: y,
+    }));
 
-        setHearts((prev) => [...prev, ...newHearts]);
+    setHearts((prev) => [...prev, ...newHearts]);
 
-        setTimeout(() => {
-            setHearts((prev) => prev.filter(h => !newHearts.find(nh => nh.id === h.id)));
-        }, 2000);
-    };
+    setTimeout(() => {
+      setHearts((prev) =>
+        prev.filter((h) => !newHearts.find((nh) => nh.id === h.id)),
+      );
+    }, 2000);
+  };
 
+  return (
+    <PageWrapper className="dark:bg-black bg-transparent">
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+        <div
+          className={cn(
+            "absolute inset-0",
+            "[background-size:40px_40px]",
+            "[background-image:linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)]",
+            "dark:[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]",
+            "[mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]",
+          )}
+        />
+      </div>
+      <BackgroundTextContainer>
+        <EffectContainer>
+          <TextHoverEffect text="JIM FLEAX" />
+        </EffectContainer>
+      </BackgroundTextContainer>
 
+      <FooterContainer
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        whileHover={{ scale: 1.1, letterSpacing: "1px", color: "#374151" }}
+        onClick={handleFooterClick}
+        style={{
+          flexWrap: "wrap",
+          justifyContent: "center",
+          textAlign: "center",
+        }}
+      >
+        <span>Made with</span>
+        <HeartIcon
+          animate={{
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 0.8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          whileHover={{
+            filter: "drop-shadow(0 0 8px rgba(239, 68, 68, 0.5))",
+            scale: 1.3,
+          }}
+        >
+          <FaHeart />
+        </HeartIcon>
+        <span>by Reetabrata</span>
+      </FooterContainer>
 
-
-
-    return (
-        <PageWrapper className="dark:bg-black bg-transparent">
-            <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-                <div
-                    className={cn(
-                        "absolute inset-0",
-                        "[background-size:40px_40px]",
-                        "[background-image:linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)]",
-                        "dark:[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]",
-                        "[mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]"
-                    )}
-                />
-            </div>
-            <BackgroundTextContainer>
-                <EffectContainer>
-                    <TextHoverEffect text="JIM FLEAX" />
-                </EffectContainer>
-            </BackgroundTextContainer>
-
-            <FooterContainer
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                whileHover={{ scale: 1.1, letterSpacing: "1px", color: "#374151" }}
-                onClick={handleFooterClick}
-                style={{ flexWrap: "wrap", justifyContent: "center", textAlign: "center" }}
-            >
-                <span>Made with</span>
-                <HeartIcon
-                    animate={{
-                        scale: [1, 1.2, 1],
-                    }}
-                    transition={{
-                        duration: 0.8,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                    }}
-                    whileHover={{
-                        filter: "drop-shadow(0 0 8px rgba(239, 68, 68, 0.5))",
-                        scale: 1.3
-                    }}
-                >
-                    <FaHeart />
-                </HeartIcon>
-                <span>by Reetabrata</span>
-            </FooterContainer>
-
-            <AnimatePresence>
-                {hearts.map((heart) => (
-                    <FloatingHeart
-                        key={heart.id}
-                        initial={{ opacity: 1, x: 0, y: 0, scale: 0.5 }}
-                        style={{
-                            left: `calc(50% + ${(Math.random() - 0.5) * 100}px)`,
-                            bottom: "3rem"
-                        }}
-                        animate={{
-                            y: -200 - Math.random() * 100,
-                            x: (Math.random() - 0.5) * 100,
-                            opacity: 0,
-                            scale: Math.random() * 0.5 + 0.8,
-                        }}
-                        transition={{ duration: 1.5 + Math.random(), ease: "easeOut" }}
-                    >
-                        <FaHeart />
-                    </FloatingHeart>
-                ))}
-            </AnimatePresence>
-        </PageWrapper>
-    );
+      <AnimatePresence>
+        {hearts.map((heart) => (
+          <FloatingHeart
+            key={heart.id}
+            initial={{ opacity: 1, x: 0, y: 0, scale: 0.5 }}
+            style={{
+              left: `calc(50% + ${(Math.random() - 0.5) * 100}px)`,
+              bottom: "3rem",
+            }}
+            animate={{
+              y: -200 - Math.random() * 100,
+              x: (Math.random() - 0.5) * 100,
+              opacity: 0,
+              scale: Math.random() * 0.5 + 0.8,
+            }}
+            transition={{ duration: 1.5 + Math.random(), ease: "easeOut" }}
+          >
+            <FaHeart />
+          </FloatingHeart>
+        ))}
+      </AnimatePresence>
+    </PageWrapper>
+  );
 }
 
 export default FooterPage;

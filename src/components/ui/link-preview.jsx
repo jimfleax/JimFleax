@@ -1,4 +1,4 @@
-"use client";;
+"use client";
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
 
 import { encode } from "qss";
@@ -21,7 +21,7 @@ export const LinkPreview = ({
   quality = 50,
   layout = "fixed",
   isStatic = false,
-  imageSrc = ""
+  imageSrc = "",
 }) => {
   let src;
   if (!isStatic) {
@@ -73,11 +73,13 @@ export const LinkPreview = ({
         closeDelay={100}
         onOpenChange={(open) => {
           setOpen(open);
-        }}>
+        }}
+      >
         <HoverCardPrimitive.Trigger
           onMouseMove={handleMouseMove}
           className={cn("text-black dark:text-white", className)}
-          href={url}>
+          href={url}
+        >
           {children}
         </HoverCardPrimitive.Trigger>
 
@@ -85,7 +87,8 @@ export const LinkPreview = ({
           className="[transform-origin:var(--radix-hover-card-content-transform-origin)] z-50"
           side="top"
           align="center"
-          sideOffset={10}>
+          sideOffset={10}
+        >
           <AnimatePresence>
             {isOpen && (
               <motion.div
@@ -104,17 +107,20 @@ export const LinkPreview = ({
                 className="shadow-xl rounded-xl"
                 style={{
                   x: translateX,
-                }}>
+                }}
+              >
                 <a
                   href={url}
                   className="block p-1 bg-white border-2 border-transparent shadow rounded-xl hover:border-neutral-200 dark:hover:border-neutral-800"
-                  style={{ fontSize: 0 }}>
+                  style={{ fontSize: 0 }}
+                >
                   <img
                     src={isStatic ? imageSrc : src}
                     width={width}
                     height={height}
                     className="rounded-lg"
-                    alt="preview image" />
+                    alt="preview image"
+                  />
                 </a>
               </motion.div>
             )}

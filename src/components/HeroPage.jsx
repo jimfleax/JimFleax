@@ -20,7 +20,7 @@ const StyledBackgroundLines = styled(BackgroundLines)`
   }
 `;
 
-const HeroTitle = styled.h2`
+const HeroTitle = styled.div`
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -50,7 +50,7 @@ const HeroTitle = styled.h2`
   }
 `;
 
-const HeroDescription = styled.p`
+const HeroDescription = styled.div`
   max-width: 36rem;
   margin-left: auto;
   margin-right: auto;
@@ -77,9 +77,8 @@ const StyledFlipWords = styled(FlipWords)`
 
 function HeroPage() {
   return (
-    
-      <CardContainer>
-        <StyledBackgroundLines>
+    <CardContainer>
+      <StyledBackgroundLines>
         <CardBody className="w-full dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1]">
           <CardItem className="flex flex-col items-center justify-center w-full">
             <HeroTitle>
@@ -102,8 +101,8 @@ function HeroPage() {
             </HeroDescription>
           </CardItem>
         </CardBody>
-    </StyledBackgroundLines>
-      </CardContainer>
+      </StyledBackgroundLines>
+    </CardContainer>
   );
 }
 
