@@ -1,0 +1,26 @@
+{
+  "name": "Jim Fleax",
+  "short_name": "JimFleax",
+  "description": "Explore the web apps and projects created by Reetabrata Bhandari, a self-taught programmer.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#E8EAF6",
+  "icons": [
+    {
+      "src": "/icons/128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -29,7 +29,7 @@ const BackgroundTextContainer = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 1;
-  pointer-events: none; /* Let clicks pass through to the footer? Or maybe the text effect needs pointer events. Let's check text-hover-effect implementation. It uses onMouseMove on the svg, so it needs pointer events. */
+  pointer-events: none;
   pointer-events: auto; 
 `;
 
@@ -41,13 +41,13 @@ const FooterContainer = styled(motion.div)`
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-sans, sans-serif);
-  color: #6b7280; /* gray-500 */
-  font-size: 0.875rem; /* text-sm */
+  color: #6b7280;
+  font-size: 0.875rem;
   cursor: pointer;
   user-select: none;
 
   .dark & {
-    color: #9ca3af; /* gray-400 */
+    color: #9ca3af;
   }
 `;
 
@@ -55,7 +55,7 @@ const HeartIcon = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ef4444; /* red-500 */
+  color: #ef4444;
 `;
 
 const FloatingHeart = styled(motion.div)`
@@ -90,13 +90,12 @@ export function FooterPage() {
 
         const newHearts = Array.from({ length: 10 }).map((_, i) => ({
             id: Date.now() + i,
-            x: x + (Math.random() - 0.5) * 50, // slight random x spread around center
+            x: x + (Math.random() - 0.5) * 50,
             y: y,
         }));
 
         setHearts((prev) => [...prev, ...newHearts]);
 
-        // Cleanup hearts after animation
         setTimeout(() => {
             setHearts((prev) => prev.filter(h => !newHearts.find(nh => nh.id === h.id)));
         }, 2000);
@@ -129,7 +128,7 @@ export function FooterPage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                whileHover={{ scale: 1.1, letterSpacing: "1px", color: "#374151" }} // darkened gray on hover
+                whileHover={{ scale: 1.1, letterSpacing: "1px", color: "#374151" }}
                 onClick={handleFooterClick}
                 style={{ flexWrap: "wrap", justifyContent: "center", textAlign: "center" }}
             >
@@ -157,10 +156,7 @@ export function FooterPage() {
                 {hearts.map((heart) => (
                     <FloatingHeart
                         key={heart.id}
-                        initial={{ opacity: 1, x: 0, y: 0, scale: 0.5 }} // Position relative to parent if inside, but better to be fixed/absolute to page. 
-                        // Actually, since floating hearts are absolutely positioned, we need their coordinates relative to the PageWrapper.
-                        // The click handler gave us screen coordinates. Let's make FloatingHeart use fixed positioning or adjust logic.
-                        // Simpler: Just render them near the footer 'visually' using absolute position relative to PageWrapper bottom.
+                        initial={{ opacity: 1, x: 0, y: 0, scale: 0.5 }}
                         style={{
                             left: `calc(50% + ${(Math.random() - 0.5) * 100}px)`,
                             bottom: "3rem"
