@@ -1,24 +1,34 @@
 "use client";
-import React, { useRef, useEffect, useState } from "react";
-import { motion } from "motion/react";
+import React, { useRef, useState } from "react";
+// eslint-disable-next-line no-unused-vars
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 
-export const TextHoverEffect = ({ text, duration }) => {
+export const TextHoverEffect = ({ text }) => {
   const svgRef = useRef(null);
-  const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
-  const [maskPosition, setMaskPosition] = useState({ cx: "50%", cy: "50%" });
 
-  useEffect(() => {
-    if (svgRef.current && cursor.x !== null && cursor.y !== null) {
-      const svgRect = svgRef.current.getBoundingClientRect();
-      const cxPercentage = ((cursor.x - svgRect.left) / svgRect.width) * 100;
-      const cyPercentage = ((cursor.y - svgRect.top) / svgRect.height) * 100;
-      setMaskPosition({
-        cx: `${cxPercentage}%`,
-        cy: `${cyPercentage}%`,
-      });
+  // Use MotionValues to track cursor position without re-renders
+  const maskX = useMotionValue(50);
+  const maskY = useMotionValue(50);
+
+  // Use Spring to create a smooth follow effect, replicating the original transition
+  const springConfig = { stiffness: 200, damping: 30, mass: 0.8 };
+  const maskXSpring = useSpring(maskX, springConfig);
+  const maskYSpring = useSpring(maskY, springConfig);
+
+  // Transform to percentage strings for the SVG gradient
+  const cx = useTransform(maskXSpring, (v) => `${v}%`);
+  const cy = useTransform(maskYSpring, (v) => `${v}%`);
+
+  const handleMouseMove = (e) => {
+    if (svgRef.current) {
+      const rect = svgRef.current.getBoundingClientRect();
+      const xPercent = ((e.clientX - rect.left) / rect.width) * 100;
+      const yPercent = ((e.clientY - rect.top) / rect.height) * 100;
+      maskX.set(xPercent);
+      maskY.set(yPercent);
     }
-  }, [cursor]);
+  };
 
   return (
     <svg
@@ -29,7 +39,7 @@ export const TextHoverEffect = ({ text, duration }) => {
       xmlns="http://www.w3.org/2000/svg"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
+      onMouseMove={handleMouseMove}
       className="select-none"
     >
       <defs>
@@ -40,29 +50,20 @@ export const TextHoverEffect = ({ text, duration }) => {
           cy="50%"
           r="25%"
         >
-          {hovered && (
-            <>
-              <stop offset="0%" stopColor="#eab308" />
-              <stop offset="25%" stopColor="#ef4444" />
-              <stop offset="50%" stopColor="#3b82f6" />
-              <stop offset="75%" stopColor="#06b6d4" />
-              <stop offset="100%" stopColor="#8b5cf6" />
-            </>
-          )}
+          {/* Always render stops to avoid layout thrashing on hover */}
+          <stop offset="0%" stopColor="#eab308" />
+          <stop offset="25%" stopColor="#ef4444" />
+          <stop offset="50%" stopColor="#3b82f6" />
+          <stop offset="75%" stopColor="#06b6d4" />
+          <stop offset="100%" stopColor="#8b5cf6" />
         </linearGradient>
 
         <motion.radialGradient
           id="revealMask"
           gradientUnits="userSpaceOnUse"
           r="20%"
-          initial={{ cx: "50%", cy: "50%" }}
-          animate={maskPosition}
-          transition={{
-            type: "spring",
-            stiffness: 200,
-            damping: 30,
-            mass: 0.8,
-          }}
+          cx={cx}
+          cy={cy}
         >
           <stop offset="0%" stopColor="white" />
           <stop offset="100%" stopColor="black" />
