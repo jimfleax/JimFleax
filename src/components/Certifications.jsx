@@ -438,13 +438,8 @@ export function Certifications() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {/* Render cards fro back to front to get stacking effect */}
                 {item.certs.slice(0, 3).reverse().map((cert, index, array) => {
-                  // index 0 is bottom most card (last in this slice reverse)
-                  // but we want visual hierarchy.
-                  // Let's use the original array index logic relative to top
-                  // Let's use the original array index logic relative to top
-                  const originalIndex = array.length - 1 - index; // 0 for top card
+                  const originalIndex = array.length - 1 - index;
                   const yOffset = originalIndex * -32;
                   const scale = 1 - originalIndex * 0.05;
                   const zIndex = 3 - originalIndex;
@@ -457,7 +452,7 @@ export function Certifications() {
                         y: yOffset,
                         scale: scale,
                       }}
-                      layoutId={`deck-${item.issuer}-${cert.title}`} // For expansion magic? Maybe overkill complexity without shared layout
+                      layoutId={`deck-${item.issuer}-${cert.title}`}
                     >
                       <ImageContainer>
                         <ProjectImage src={cert.img} alt={cert.title} />
