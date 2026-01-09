@@ -100,13 +100,10 @@ const CertificationCard = styled(CardBase)`
   }
 `;
 
-const DeckContainer = styled(motion.div)`
+const DeckWrapper = styled(motion.div)`
   position: relative;
   width: 100%;
-  aspect-ratio: 5 / 3;
-  cursor: pointer;
-  z-index: 1;
-  margin-top: 5rem;
+  padding-top: 5rem;
 
   @media (max-width: 767px) {
     width: 85%;
@@ -114,13 +111,23 @@ const DeckContainer = styled(motion.div)`
   }
 
   @media (min-width: 768px) {
-    margin-top: 0;
+    padding-top: 0;
   }
+`;
+
+const DeckContainer = styled(motion.div)`
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 3;
+  cursor: pointer;
+  z-index: 1;
 
   &:hover {
     z-index: 10;
   }
 `;
+
+
 
 const DeckCard = styled(CardBase)`
   position: absolute;
@@ -468,52 +475,56 @@ export function Certifications() {
                 variants={item}
               />
             ) : (
-              <DeckContainer
+              <DeckWrapper
                 key={item.issuer}
                 layout
                 variants={item}
-                onClick={() => toggleIssuer(item.issuer)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
               >
-                {item.certs.slice(0, 3).reverse().map((cert, index, array) => {
-                  const originalIndex = array.length - 1 - index;
-                  const yOffset = originalIndex * -32;
-                  const scale = 1 - originalIndex * 0.05;
-                  const zIndex = 3 - originalIndex;
+                <DeckContainer
+                  onClick={() => toggleIssuer(item.issuer)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  layoutId={`deck-container-${item.issuer}`}
+                >
+                  {item.certs.slice(0, 3).reverse().map((cert, index, array) => {
+                    const originalIndex = array.length - 1 - index;
+                    const yOffset = originalIndex * -32;
+                    const scale = 1 - originalIndex * 0.05;
+                    const zIndex = 3 - originalIndex;
 
-                  return (
-                    <DeckCard
-                      key={cert.title}
-                      style={{
-                        zIndex: zIndex,
-                        y: yOffset,
-                        scale: scale,
-                      }}
-                      layoutId={`deck-${item.issuer}-${cert.title}`}
-                    >
-                      <ImageContainer>
-                        <ProjectImage src={cert.img} alt={cert.title} />
-                      </ImageContainer>
-                      <CardFooter>
-                        {originalIndex === 0 ? (
-                          <CertTitle style={{ textAlign: "center", width: "100%" }}>
-                            {item.issuer} Certifications{" "}
-                            <CountBadge style={{ verticalAlign: "middle", marginLeft: "0.5rem" }}>
-                              {item.certs.length}
-                            </CountBadge>
-                          </CertTitle>
-                        ) : (
-                          <>
-                            <CertTitle title={cert.title}>{cert.title}</CertTitle>
-                            <IssuerText>{cert.issuer}</IssuerText>
-                          </>
-                        )}
-                      </CardFooter>
-                    </DeckCard>
-                  )
-                })}
-              </DeckContainer>
+                    return (
+                      <DeckCard
+                        key={cert.title}
+                        style={{
+                          zIndex: zIndex,
+                          y: yOffset,
+                          scale: scale,
+                        }}
+                        layoutId={`deck-${item.issuer}-${cert.title}`}
+                      >
+                        <ImageContainer>
+                          <ProjectImage src={cert.img} alt={cert.title} />
+                        </ImageContainer>
+                        <CardFooter>
+                          {originalIndex === 0 ? (
+                            <CertTitle style={{ textAlign: "center", width: "100%" }}>
+                              {item.issuer} Certifications{" "}
+                              <CountBadge style={{ verticalAlign: "middle", marginLeft: "0.5rem" }}>
+                                {item.certs.length}
+                              </CountBadge>
+                            </CertTitle>
+                          ) : (
+                            <>
+                              <CertTitle title={cert.title}>{cert.title}</CertTitle>
+                              <IssuerText>{cert.issuer}</IssuerText>
+                            </>
+                          )}
+                        </CardFooter>
+                      </DeckCard>
+                    )
+                  })}
+                </DeckContainer>
+              </DeckWrapper>
             )
           )}
         </CertificationsGrid>

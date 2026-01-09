@@ -53,7 +53,7 @@ const TextContainer = styled(TextGenerateEffect)`
   @media (min-width: 640px) {
     margin-left: 40px;
     width: 200px;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 `;
 export function SpotifySection() {
