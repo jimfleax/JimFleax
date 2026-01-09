@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState, useMemo } from "react";
 import styled from "styled-components";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { LinkPreview } from "./ui/link-preview";
 
 const Wrapper = styled(motion.div)`
@@ -72,7 +72,7 @@ const CertificationsGrid = styled(motion.div)`
   }
 `;
 
-const CertificationCard = styled(motion.div)`
+const CardBase = styled(motion.div)`
   width: 100%;
   aspect-ratio: 5 / 3;
   border-radius: 1.5rem;
@@ -84,12 +84,35 @@ const CertificationCard = styled(motion.div)`
     0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
   background-color: white;
-  cursor: pointer;
   transition: box-shadow 0.3s ease;
+`;
 
+const CertificationCard = styled(CardBase)`
+  cursor: pointer;
+  
   &:hover {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
+`;
+
+const DeckContainer = styled(motion.div)`
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 3;
+  cursor: pointer;
+  z-index: 1;
+
+  &:hover {
+    z-index: 10;
+  }
+`;
+
+const DeckCard = styled(CardBase)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: center bottom;
+  border: 1px solid rgba(0,0,0,0.1);
 `;
 
 const ImageContainer = styled.div`
@@ -151,31 +174,24 @@ const IssuerText = styled.span`
   color: inherit;
   white-space: nowrap;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 `;
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
+const CountBadge = styled.span`
+  background-color: #000;
+  color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 600;
+`;
 
-const item = {
-  hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 50,
-      damping: 20,
-    },
-  },
-};
 
 const TagsContainer = styled.div`
   display: flex;
@@ -206,7 +222,60 @@ const Tag = styled.span`
   border: 1px solid #e5e7eb;
 `;
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 50,
+      damping: 20,
+    },
+  },
+};
+
+const SingleCertCard = ({ cert, onClick, variants }) => (
+  <LinkPreview url={cert.url}>
+    <CertificationCard
+      variants={variants}
+      layout
+      whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+      whileTap={{ scale: 0.95 }}
+      onClick={() => window.open(cert.url, "_blank")}
+    >
+      <ImageContainer>
+        <ProjectImage src={cert.img} alt={cert.title} loading="lazy" />
+      </ImageContainer>
+      <CardFooter>
+        <CertTitle title={cert.title}>{cert.title}</CertTitle>
+        <IssuerText>{cert.issuer}</IssuerText>
+      </CardFooter>
+      {cert.tags && (
+        <TagsContainer>
+          {cert.tags.map((tag, idx) => (
+            <Tag key={idx}>{tag}</Tag>
+          ))}
+        </TagsContainer>
+      )}
+    </CertificationCard>
+  </LinkPreview>
+);
+
 export function Certifications() {
+  const [expandedIssuers, setExpandedIssuers] = useState(new Set());
+
   const certifications = [
     {
       title: "Legacy JavaScript Algorithms and Data Structures",
@@ -214,6 +283,48 @@ export function Certifications() {
       img: "/media/certifications/freecodecamp_javascript_algorithms.png",
       url: "https://freecodecamp.org/certification/jimfleax/javascript-algorithms-and-data-structures",
       tags: ["JavaScript", "Algorithms", "Data Structures"],
+    },
+    {
+      title: "JavaScript (Basic)",
+      issuer: "HackerRank",
+      img: "/media/certifications/hackerrank_javascript_basic.png",
+      url: "https://www.hackerrank.com/certificates/f1bb8d29b7f1",
+      tags: ["JavaScript"],
+    },
+    {
+      title: "JavaScript (Intermediate)",
+      issuer: "HackerRank",
+      img: "/media/certifications/hackerrank_javascript_intermediate.png",
+      url: "https://www.hackerrank.com/certificates/ce446e1ccfee",
+      tags: ["JavaScript"],
+    },
+    {
+      title: "Node (Basic)",
+      issuer: "HackerRank",
+      img: "/media/certifications/hackerrank_node_basic.png",
+      url: "https://www.hackerrank.com/certificates/8b07abef6c30",
+      tags: ["Node.js"],
+    },
+    {
+      title: "React (Basic)",
+      issuer: "HackerRank",
+      img: "/media/certifications/hackerrank_react_basic.png",
+      url: "https://www.hackerrank.com/certificates/b777c27b4543",
+      tags: ["React"],
+    },
+    {
+      title: "Frontend Developer (React)",
+      issuer: "HackerRank",
+      img: "/media/certifications/hackerrank_frontend_developer_react.png",
+      url: "https://www.hackerrank.com/certificates/8f54dc2837ac",
+      tags: ["React", "Frontend"],
+    },
+    {
+      title: "Python (Basic)",
+      issuer: "HackerRank",
+      img: "/media/certifications/hackerrank_python_basic.png",
+      url: "https://www.hackerrank.com/certificates/fb15b4149c11",
+      tags: ["Python"],
     },
     {
       title: "Learn Node.js Course",
@@ -252,6 +363,40 @@ export function Certifications() {
     },
   ];
 
+  const groupedCerts = useMemo(() => {
+    return certifications.reduce((acc, cert) => {
+      if (!acc[cert.issuer]) {
+        acc[cert.issuer] = [];
+      }
+      acc[cert.issuer].push(cert);
+      return acc;
+    }, {});
+  }, []);
+
+  const toggleIssuer = (issuer) => {
+    setExpandedIssuers((prev) => {
+      const next = new Set(prev);
+      if (next.has(issuer)) {
+        next.delete(issuer);
+      } else {
+        next.add(issuer);
+      }
+      return next;
+    });
+  };
+
+  const displayList = useMemo(() => {
+    const list = [];
+    Object.entries(groupedCerts).forEach(([issuer, certs]) => {
+      if (certs.length === 1 || expandedIssuers.has(issuer)) {
+        certs.forEach((cert) => list.push({ type: "single", data: cert }));
+      } else {
+        list.push({ type: "deck", issuer, certs });
+      }
+    });
+    return list;
+  }, [groupedCerts, expandedIssuers]);
+
   return (
     <Wrapper
       initial={{ opacity: 0, y: 50 }}
@@ -269,39 +414,76 @@ export function Certifications() {
           here are some certifications I have been awarded
         </HeaderText>
       </HeaderSection>
-      <CertificationsGrid
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        {certifications.map((cert, i) => (
-          <LinkPreview url={cert.url}>
-            <CertificationCard
-              key={i}
-              variants={item}
-              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => window.open(cert.url, "_blank")}
-            >
-              <ImageContainer>
-                <ProjectImage src={cert.img} alt={cert.title} loading="lazy" />
-              </ImageContainer>
-              <CardFooter>
-                <CertTitle title={cert.title}>{cert.title}</CertTitle>
-                <IssuerText>{cert.issuer}</IssuerText>
-              </CardFooter>
-              {cert.tags && (
-                <TagsContainer>
-                  {cert.tags.map((tag, idx) => (
-                    <Tag key={idx}>{tag}</Tag>
-                  ))}
-                </TagsContainer>
-              )}
-            </CertificationCard>
-          </LinkPreview>
-        ))}
-      </CertificationsGrid>
+      <AnimatePresence>
+        <CertificationsGrid
+          layout
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          {displayList.map((item, i) =>
+            item.type === "single" ? (
+              <SingleCertCard
+                key={item.data.title}
+                cert={item.data}
+                variants={item}
+              />
+            ) : (
+              <DeckContainer
+                key={item.issuer}
+                layout
+                variants={item}
+                onClick={() => toggleIssuer(item.issuer)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {/* Render cards fro back to front to get stacking effect */}
+                {item.certs.slice(0, 3).reverse().map((cert, index, array) => {
+                  // index 0 is bottom most card (last in this slice reverse)
+                  // but we want visual hierarchy.
+                  // Let's use the original array index logic relative to top
+                  const originalIndex = array.length - 1 - index; // 0 for top card
+                  const yOffset = originalIndex * -18;
+                  const scale = 1 - originalIndex * 0.05;
+                  const zIndex = 3 - originalIndex;
+
+                  return (
+                    <DeckCard
+                      key={cert.title}
+                      style={{
+                        zIndex: zIndex,
+                        y: yOffset,
+                        scale: scale,
+                      }}
+                      layoutId={`deck-${item.issuer}-${cert.title}`} // For expansion magic? Maybe overkill complexity without shared layout
+                    >
+                      <ImageContainer>
+                        <ProjectImage src={cert.img} alt={cert.title} />
+                      </ImageContainer>
+                      <CardFooter>
+                        {originalIndex === 0 ? (
+                          <CertTitle style={{ textAlign: "center", width: "100%" }}>
+                            {item.issuer} Certifications{" "}
+                            <CountBadge style={{ verticalAlign: "middle", marginLeft: "0.5rem" }}>
+                              {item.certs.length}
+                            </CountBadge>
+                          </CertTitle>
+                        ) : (
+                          <>
+                            <CertTitle title={cert.title}>{cert.title}</CertTitle>
+                            <IssuerText>{cert.issuer}</IssuerText>
+                          </>
+                        )}
+                      </CardFooter>
+                    </DeckCard>
+                  )
+                })}
+              </DeckContainer>
+            )
+          )}
+        </CertificationsGrid>
+      </AnimatePresence>
     </Wrapper>
   );
 }
