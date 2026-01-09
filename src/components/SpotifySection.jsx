@@ -46,13 +46,14 @@ const TextContainer = styled(TextGenerateEffect)`
   color: #000000d4;
   font-family: "Handlee";
   font-weight: 900;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-left: 0;
   width: 100%;
 
   @media (min-width: 640px) {
     margin-left: 40px;
     width: 200px;
+    font-size: 1.5rem;
   }
 `;
 export function SpotifySection() {

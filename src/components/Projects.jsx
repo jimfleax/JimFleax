@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "motion/react";
 import { LinkPreview } from "./ui/link-preview";
+import { MdConstruction } from "react-icons/md";
 
 const ProjectsWrapper = styled(motion.div)`
   display: flex;
@@ -94,7 +95,7 @@ const ProjectCard = styled(motion.div)`
 
 const IconContainer = styled.div`
   flex-grow: 1;
-  background-color: white;
+  background-color: #ffffffde;
   border-radius: 1rem;
   display: flex;
   align-items: center;
@@ -146,6 +147,16 @@ const ProjectUrl = styled.span`
   }
 `;
 
+const LeftSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  > svg {
+    color: #ffffffb8;
+  }
+`;
+
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -192,6 +203,7 @@ export function Projects() {
       url: "metaskills.site",
       icon: "/media/metaskills.png",
       gradient: "linear-gradient(to bottom right, #f59e0b, #f97316)",
+      in_progress: true,
     },
   ];
 
@@ -233,7 +245,10 @@ export function Projects() {
                 />
               </IconContainer>
               <CardFooter>
-                <ProjectTitle>{project.title}</ProjectTitle>
+                <LeftSection>
+                  <ProjectTitle>{project.title}</ProjectTitle>
+                  {(project.in_progress) ? <MdConstruction />:null}
+                </LeftSection>
                 <ProjectUrl>{project.url}</ProjectUrl>
               </CardFooter>
             </ProjectCard>

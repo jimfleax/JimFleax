@@ -37,7 +37,7 @@ const HeaderText = styled.h2`
   text-align: left;
   background-image: linear-gradient(to bottom, #171717, #404040);
   font-family: var(--font-sans, sans-serif);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   position: relative;
@@ -90,6 +90,11 @@ const CardBase = styled(motion.div)`
 const CertificationCard = styled(CardBase)`
   cursor: pointer;
   
+  @media (max-width: 767px) {
+    width: 85%;
+    margin-inline: auto;
+  }
+
   &:hover {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
@@ -101,6 +106,16 @@ const DeckContainer = styled(motion.div)`
   aspect-ratio: 5 / 3;
   cursor: pointer;
   z-index: 1;
+  margin-top: 5rem;
+
+  @media (max-width: 767px) {
+    width: 85%;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 768px) {
+    margin-top: 0;
+  }
 
   &:hover {
     z-index: 10;
@@ -128,6 +143,12 @@ const ImageContainer = styled.div`
   margin-bottom: 0.5rem;
   overflow: hidden;
   position: relative;
+
+  @media (max-width: 767px) {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
 `;
 
 const ProjectImage = styled.img`
@@ -153,6 +174,11 @@ const CardFooter = styled.div`
     "Courier New", monospace;
   gap: 0.5rem;
   flex-wrap: wrap;
+
+  @media (max-width: 767px) {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 `;
 
 const CertTitle = styled.h3`
@@ -163,6 +189,10 @@ const CertTitle = styled.h3`
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+
+  @media (max-width: 767px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const IssuerText = styled.span`
@@ -177,6 +207,10 @@ const IssuerText = styled.span`
   display: flex;
   align-items: center;
   gap: 0.25rem;
+
+  @media (max-width: 767px) {
+    font-size: 0.65rem;
+  }
 `;
 
 const CountBadge = styled.span`
@@ -198,6 +232,10 @@ const TagsContainer = styled.div`
   flex-wrap: wrap;
   gap: 0.5rem;
   padding: 0 1rem 1rem 1rem;
+
+  @media (max-width: 767px) {
+    padding: 0 0.5rem 0.5rem 0.5rem;
+  }
 `;
 
 const Tag = styled.span`
