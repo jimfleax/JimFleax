@@ -443,8 +443,9 @@ export function Certifications() {
                   // index 0 is bottom most card (last in this slice reverse)
                   // but we want visual hierarchy.
                   // Let's use the original array index logic relative to top
+                  // Let's use the original array index logic relative to top
                   const originalIndex = array.length - 1 - index; // 0 for top card
-                  const yOffset = originalIndex * -18;
+                  const yOffset = originalIndex * -32;
                   const scale = 1 - originalIndex * 0.05;
                   const zIndex = 3 - originalIndex;
 
