@@ -103,11 +103,12 @@ const CertificationCard = styled(CardBase)`
 const DeckWrapper = styled(motion.div)`
   position: relative;
   width: 100%;
-  padding-top: 5rem;
+  padding-top: 4rem;
 
   @media (max-width: 767px) {
     width: 85%;
     margin-inline: auto;
+    margin-bottom: 2rem;
   }
 
   @media (min-width: 768px) {
