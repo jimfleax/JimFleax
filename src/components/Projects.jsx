@@ -235,6 +235,10 @@ export function Projects() {
               $gradient={project.gradient}
               variants={item}
               whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+              href={`https://${project.url}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              as={motion.a}
             >
               <IconContainer>
                 <ProjectIcon
@@ -247,7 +251,7 @@ export function Projects() {
               <CardFooter>
                 <LeftSection>
                   <ProjectTitle>{project.title}</ProjectTitle>
-                  {(project.in_progress) ? <MdConstruction />:null}
+                  {(project.in_progress) ? <MdConstruction /> : null}
                 </LeftSection>
                 <ProjectUrl>{project.url}</ProjectUrl>
               </CardFooter>

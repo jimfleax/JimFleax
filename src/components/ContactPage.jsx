@@ -3,7 +3,7 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "motion/react";
-import { FaInstagram, FaMedium, FaReddit, FaGithub } from "react-icons/fa";
+import { FaInstagram, FaMedium, FaReddit, FaGithub, FaLinkedin } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { BackgroundBeams } from "./ui/background-beams";
 import { LinkPreview } from "./ui/link-preview";
@@ -164,6 +164,10 @@ export function ContactPage() {
             <SocialIcon
               whileHover={{ scale: 1.2, rotate: 10 }}
               whileTap={{ scale: 0.9 }}
+              href="https://instagram.com/jimfleax"
+              target="_blank"
+              rel="noopener noreferrer"
+              as={motion.a}
             >
               <FaInstagram />
             </SocialIcon>
@@ -172,6 +176,10 @@ export function ContactPage() {
             <SocialIcon
               whileHover={{ scale: 1.2, rotate: -10 }}
               whileTap={{ scale: 0.9 }}
+              href="https://medium.com/@jimfleax"
+              target="_blank"
+              rel="noopener noreferrer"
+              as={motion.a}
             >
               <FaMedium />
             </SocialIcon>
@@ -180,6 +188,10 @@ export function ContactPage() {
             <SocialIcon
               whileHover={{ scale: 1.2, rotate: 10 }}
               whileTap={{ scale: 0.9 }}
+              href="https://reddit.com/u/jimfleax"
+              target="_blank"
+              rel="noopener noreferrer"
+              as={motion.a}
             >
               <FaReddit />
             </SocialIcon>
@@ -188,8 +200,24 @@ export function ContactPage() {
             <SocialIcon
               whileHover={{ scale: 1.2, rotate: -10 }}
               whileTap={{ scale: 0.9 }}
+              href="https://github.com/jimfleax"
+              target="_blank"
+              rel="noopener noreferrer"
+              as={motion.a}
             >
               <FaGithub />
+            </SocialIcon>
+          </LinkPreview>
+          <LinkPreview url="https://linkedin.com/in/jimfleax">
+            <SocialIcon
+              whileHover={{ scale: 1.2, rotate: 10 }}
+              whileTap={{ scale: 0.9 }}
+              href="https://linkedin.com/in/jimfleax"
+              target="_blank"
+              rel="noopener noreferrer"
+              as={motion.a}
+            >
+              <FaLinkedin />
             </SocialIcon>
           </LinkPreview>
         </SocialLinks>

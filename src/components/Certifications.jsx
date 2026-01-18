@@ -299,7 +299,10 @@ const SingleCertCard = ({ cert, onClick, variants }) => (
       layout
       whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
       whileTap={{ scale: 0.95 }}
-      onClick={() => window.open(cert.url, "_blank")}
+      href={cert.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      as={motion.a}
     >
       <ImageContainer>
         <ProjectImage src={cert.img} alt={cert.title} loading="lazy" />
