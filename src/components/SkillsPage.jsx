@@ -50,7 +50,7 @@ const ContentContainer = styled(motion.div)`
 
 const TitleText = styled.div`
   color: rgba(255, 255, 255, 0.78);
-  font-family: var(--font-sans, sans-serif);
+  font-family: "Garamond", serif;
   font-size: 2rem;
   font-weight: 800;
   letter-spacing: -0.025em;
@@ -175,7 +175,7 @@ export function SkillsPage() {
               transition={{ duration: 0.5 }}
             >
               <TitleText>
-                <TextGenerateEffect words="do you want to know what i can do?" />
+                <TextGenerateEffect words="want to know what i can do?" />
               </TitleText>
               <ActionButton
                 onClick={() => setShowSkills(true)}
@@ -203,7 +203,7 @@ export function SkillsPage() {
                     color: "white",
                   }}
                 >
-                  <h3 style={{ fontSize: "2rem", fontWeight: "bold" }}>
+                  <h3 style={{ fontSize: "2rem", fontWeight: "bold", fontFamily: "Garamond, serif" }}>
                     My Skills
                   </h3>
                   <ActionButton

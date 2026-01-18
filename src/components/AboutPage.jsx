@@ -42,7 +42,7 @@ const BioText = styled.h2`
   color: transparent;
   text-align: left;
   background-image: linear-gradient(to bottom, #d4d4d4, #ffffff);
-  font-family: var(--font-sans, sans-serif);
+  font-family: "Garamond", serif;
   font-size: 1.5rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;

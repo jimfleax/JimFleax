@@ -36,7 +36,7 @@ const HeaderText = styled.h2`
   color: transparent;
   text-align: left;
   background-image: linear-gradient(to bottom, #171717, #404040);
-  font-family: var(--font-sans, sans-serif);
+  font-family: "Garamond", serif;
   font-size: 1.25rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;

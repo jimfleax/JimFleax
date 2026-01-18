@@ -26,7 +26,7 @@ const HeroTitle = styled.div`
   color: transparent;
   text-align: center;
   background-image: linear-gradient(to bottom, #171717, #404040);
-  font-family: var(--font-sans, sans-serif);
+  font-family: "Vogun Medium", serif;
   font-size: 1.5rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -82,7 +82,7 @@ function HeroPage() {
         <CardBody className="w-full dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1]">
           <CardItem className="flex flex-col items-center justify-center w-full">
             <HeroTitle>
-              Reetabrata Bhandari, <br />{" "}
+              <span>Reetabrata Bhandari,</span> <br />{" "}
               <StyledFlipWords
                 duration={500}
                 words={[

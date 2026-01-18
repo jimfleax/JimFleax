@@ -44,6 +44,7 @@ const ContentContainer = styled(motion.div)`
 `;
 
 const Title = styled(motion.h2)`
+  font-family: "Garamond", serif;
   font-size: 2rem;
   font-weight: 800;
   color: #333;

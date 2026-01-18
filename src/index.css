@@ -5,17 +5,11 @@
 
 @theme {
   --font-sans:
-    "quicksand", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    'quicksand', serif, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-@font-face {
-  font-family: "Made";
-  src: url(/fonts/MADE.otf) format("opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+
 
 @font-face {
   font-family: "quicksand";
@@ -24,19 +18,37 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "Dancing Script";
-  src: url(/fonts/dancingscript.woff2) format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+
 
 @font-face {
   font-family: "Handlee";
   src: url(/fonts/handlee.woff2) format("woff2");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vogun Medium";
+  src: url(/fonts/Vogun-Medium.woff) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Garamond";
+  src: url(/fonts/EBGaramond-VariableFont_wght.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Garamond Italic";
+  src: url(/fonts/EBGaramond-Italic-VariableFont_wght.ttf) format("truetype");
+  font-weight: 400;
+  font-style: italic;
   font-display: swap;
 }
 
