@@ -176,25 +176,25 @@ export function Projects() {
   const projects = [
     {
       title: "CosmicMath",
-      url: "cosmicmath.vercel.app",
+      url: "cosmicmath.jimfleax.in",
       icon: "/media/cosmicmath.png",
       gradient: "linear-gradient(to bottom right, #8b5cf6, #a855f7)",
     },
     {
       title: "Flashers",
-      url: "flashers.vercel.app",
+      url: "flashers.jimfleax.in",
       icon: "/media/flashers.png",
       gradient: "linear-gradient(to bottom right, #3b82f6, #06b6d4)",
     },
     {
       title: "Reflect",
-      url: "reflecting.vercel.app",
+      url: "reflect.jimfleax.in",
       icon: "/media/reflect.png",
       gradient: "linear-gradient(to bottom right, #10b981, #14b8a6)",
     },
     {
       title: "Poetica",
-      url: "poeticaa.vercel.app",
+      url: "poetica.jimfleax.in",
       icon: "/media/poetica.png",
       gradient: "linear-gradient(to bottom right, #f43f5e, #ec4899)",
     },
