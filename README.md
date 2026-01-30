@@ -4,7 +4,7 @@
 
 ### _I'm a passionate, self-taught programmer._
 
-#### Check out my other projects on my personal website 👨‍💻 --> [jimfleax.vercel.app](https://jimfleax.vercel.app)
+#### Check out my other projects on my personal website 👨‍💻 --> [jimfleax.in](https://jimfleax.in)
 
 ### Check out my latest project 🔥 - [MetaSkills](https://metaskills.site/)
 
