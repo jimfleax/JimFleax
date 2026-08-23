@@ -1,3 +1,9 @@
+/**
+ * @file HeroPage.jsx
+ * @description Renders the main hero landing section with introductory text.
+ * @architecture Serves as the entry point UI for the portfolio, utilizing motion components for entry animations.
+ */
+
 import styled from "styled-components";
 import { BackgroundLines } from "@/components/ui/background-lines";
 import { FlipWords } from "./ui/flip-words";
@@ -75,6 +81,10 @@ const StyledFlipWords = styled(FlipWords)`
   }
 `;
 
+/**
+ * @desc    Renders the hero section displayed at the top of the site.
+ * @returns {JSX.Element} The rendered component.
+ */
 function HeroPage() {
   return (
     <CardContainer>

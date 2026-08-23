@@ -1,5 +1,11 @@
 "use client";
 
+/**
+ * @file AboutPage.jsx
+ * @description Renders the About Me section of the portfolio.
+ * @architecture Uses framer-motion for animations and styled-components for layout, operating as a top-level section component.
+ */
+
 import React, { useState } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "motion/react";
@@ -146,6 +152,10 @@ const ReadMoreButton = styled(motion.button)`
   }
 `;
 
+/**
+ * @desc    Renders the About page with an interactive bio and profile image.
+ * @returns {JSX.Element} The rendered component.
+ */
 export function AboutPage() {
   const [isExpanded, setIsExpanded] = useState(false);
 

@@ -1,3 +1,9 @@
+/**
+ * @file MainPage.jsx
+ * @description Main orchestrator component for the portfolio application.
+ * @architecture Assembles various section components (Hero, About, Projects, etc.) into a cohesive single-page layout.
+ */
+
 import React from "react";
 import styled from "styled-components";
 import { motion } from "motion/react";
@@ -55,6 +61,10 @@ const DesktopOnlySnapSection = styled(SnapSection)`
   }
 `;
 
+/**
+ * @desc    Renders the main assembled page for the portfolio.
+ * @returns {JSX.Element} The rendered component.
+ */
 function MainPage() {
   // Nevermind this piece of code
   useEffect(

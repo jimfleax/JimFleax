@@ -1,6 +1,5 @@
 "use client";
 import React, { useRef, useState } from "react";
-// eslint-disable-next-line no-unused-vars
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 
 export const TextHoverEffect = ({ text }) => {

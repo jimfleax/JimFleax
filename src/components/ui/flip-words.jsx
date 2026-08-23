@@ -1,89 +1,50 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export const FlipWords = ({ words, duration = 3000, className }) => {
-  const [currentWord, setCurrentWord] = useState(words[0]);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  // thanks for the fix Julian - https://github.com/Julian-AT
-  const startAnimation = useCallback(() => {
-    const word = words[words.indexOf(currentWord) + 1] || words[0];
-    setCurrentWord(word);
-    setIsAnimating(true);
-  }, [currentWord, words]);
+  const [wordIndex, setWordIndex] = useState(0);
+  const [text, setText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    if (!isAnimating)
-      setTimeout(() => {
-        startAnimation();
+    const currentWord = words[wordIndex];
+    let nextText = text;
+    let typingSpeed = isDeleting ? 40 : 80; // Deleting is faster than typing
+
+    if (!isDeleting && text === currentWord) {
+      // Finished typing: pause before starting to delete
+      const timeout = setTimeout(() => {
+        setIsDeleting(true);
       }, duration);
-  }, [isAnimating, duration, startAnimation]);
+      return () => clearTimeout(timeout);
+    } else if (isDeleting && text === "") {
+      // Finished deleting: pause briefly, then switch to next word
+      const timeout = setTimeout(() => {
+        setIsDeleting(false);
+        setWordIndex((prev) => (prev + 1) % words.length);
+      }, 300);
+      return () => clearTimeout(timeout);
+    } else {
+      // Normal typing or deleting cycle
+      nextText = isDeleting 
+        ? currentWord.substring(0, text.length - 1)
+        : currentWord.substring(0, text.length + 1);
+
+      const timeout = setTimeout(() => {
+        setText(nextText);
+      }, typingSpeed);
+      return () => clearTimeout(timeout);
+    }
+  }, [text, isDeleting, wordIndex, words, duration]);
 
   return (
-    <AnimatePresence
-      onExitComplete={() => {
-        setIsAnimating(false);
-      }}
-    >
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 10,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 100,
-          damping: 10,
-        }}
-        exit={{
-          opacity: 0,
-          y: -40,
-          x: 40,
-          filter: "blur(8px)",
-          scale: 2,
-          position: "absolute",
-        }}
-        className={cn(
-          "z-10 inline-block relative text-left text-neutral-900 dark:text-neutral-100 px-2",
-          className,
-        )}
-        key={currentWord}
-      >
-        {currentWord.split(" ").map((word, wordIndex) => (
-          <motion.span
-            key={word + wordIndex}
-            initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{
-              delay: wordIndex * 0.3,
-              duration: 0.3,
-            }}
-            className="inline-block whitespace-nowrap"
-          >
-            {word.split("").map((letter, letterIndex) => (
-              <motion.span
-                key={word + letterIndex}
-                initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{
-                  delay: wordIndex * 0.3 + letterIndex * 0.05,
-                  duration: 0.2,
-                }}
-                className="inline-block"
-              >
-                {letter}
-              </motion.span>
-            ))}
-            <span className="inline-block">&nbsp;</span>
-          </motion.span>
-        ))}
-      </motion.div>
-    </AnimatePresence>
+    <div className={cn("relative inline-block text-left min-w-[200px]", className)}>
+      <div className="z-10 inline-block relative text-neutral-900 dark:text-neutral-100 px-2">
+        {text}
+        <span className="inline-block w-[3px] h-[1.1em] bg-neutral-900 dark:bg-neutral-100 ml-1 -mb-1 animate-pulse" style={{ animationDuration: '0.8s' }}></span>
+      </div>
+    </div>
   );
 };
+console.log("FlipWords patched");

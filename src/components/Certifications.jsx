@@ -1,5 +1,11 @@
 "use client";
 
+/**
+ * @file Certifications.jsx
+ * @description Displays a grid of certification cards.
+ * @architecture Consumes data from the certifications list and renders them using reusable UI components like CardDeck.
+ */
+
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "motion/react";
@@ -237,6 +243,10 @@ const SingleCertCard = ({ cert, onClick, variants }) => (
   </LinkPreview>
 );
 
+/**
+ * @desc    Renders the certifications section displaying various achievements.
+ * @returns {JSX.Element} The rendered component.
+ */
 export function Certifications() {
 
 

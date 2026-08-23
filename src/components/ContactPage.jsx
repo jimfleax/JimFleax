@@ -1,5 +1,11 @@
 "use client";
 
+/**
+ * @file ContactPage.jsx
+ * @description Provides contact information and form for user inquiries.
+ * @architecture Acts as the communication gateway for the portfolio, handling user inputs.
+ */
+
 import React from "react";
 import styled from "styled-components";
 import { motion } from "motion/react";
@@ -140,6 +146,10 @@ const itemVariants = {
   },
 };
 
+/**
+ * @desc    Renders the Contact section of the portfolio.
+ * @returns {JSX.Element} The rendered component.
+ */
 export function ContactPage() {
   return (
     <ContactWrapper

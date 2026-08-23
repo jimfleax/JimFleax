@@ -1,5 +1,11 @@
 "use client";
 
+/**
+ * @file SkillsPage.jsx
+ * @description Visualizes the developer technical skills and tools.
+ * @architecture Categorizes and displays technical proficiencies using visual indicators.
+ */
+
 import React, { useState } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "motion/react"; // Updated import to match user's usage
@@ -139,6 +145,10 @@ const LearningBoast = styled(TextGenerateEffect)`
   font-family: "Handlee";
 `;
 
+/**
+ * @desc    Renders the skills section.
+ * @returns {JSX.Element} The rendered component.
+ */
 export function SkillsPage() {
   const [showSkills, setShowSkills] = useState(false);
 

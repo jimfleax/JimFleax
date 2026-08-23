@@ -1,3 +1,13 @@
+/**
+ * @file projects.js
+ * @description Project portfolio data containing showcase project metadata, links, icons, and styling details.
+ * @architecture Serves as static content source for project cards and showcase components across the portfolio.
+ */
+
+/**
+ * @constant {Array<Object>} projects
+ * @desc List of featured projects with metadata, external URLs, icon paths, gradient themes, and progress flags.
+ */
 export const projects = [
   {
     title: "CosmicMath",

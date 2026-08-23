@@ -1,3 +1,9 @@
+/**
+ * @file SpotifySection.jsx
+ * @description Displays current or favorite Spotify tracks.
+ * @architecture Integrates with Spotify API or mocked data to show music listening habits.
+ */
+
 import React from "react";
 import styled from "styled-components";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
@@ -56,6 +62,10 @@ const TextContainer = styled(TextGenerateEffect)`
     font-size: 1.3rem;
   }
 `;
+/**
+ * @desc    Renders the Spotify integration section.
+ * @returns {JSX.Element} The rendered component.
+ */
 export function SpotifySection() {
   return (
     <SectionWrapper

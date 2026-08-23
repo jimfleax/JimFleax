@@ -1,5 +1,11 @@
 "use client";
 
+/**
+ * @file FooterPage.jsx
+ * @description Renders the site footer with links and copyrights.
+ * @architecture Acts as the bottom navigation and metadata section for the application.
+ */
+
 import React, { useState } from "react";
 import styled, { keyframes, css } from "styled-components";
 import { motion, AnimatePresence } from "motion/react";
@@ -80,6 +86,10 @@ const EffectContainer = styled.div`
   }
 `;
 
+/**
+ * @desc    Renders the footer component.
+ * @returns {JSX.Element} The rendered component.
+ */
 export function FooterPage() {
   const [hearts, setHearts] = useState([]);
 

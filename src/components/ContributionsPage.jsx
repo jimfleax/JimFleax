@@ -1,5 +1,11 @@
 "use client";
 
+/**
+ * @file ContributionsPage.jsx
+ * @description Displays open-source contributions and activity.
+ * @architecture Fetches and displays GitHub or similar platform contribution data.
+ */
+
 import React from "react";
 import styled from "styled-components";
 import { motion } from "motion/react";
@@ -35,6 +41,10 @@ const StyledGithubContributionGraph = styled.div`
   }
 `;
 
+/**
+ * @desc    Renders the GitHub contributions or open source activity section.
+ * @returns {JSX.Element} The rendered component.
+ */
 function ContributionsPage() {
   return (
     <PageSection title="here's how i spent my year on github">

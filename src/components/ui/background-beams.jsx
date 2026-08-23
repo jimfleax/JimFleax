@@ -26,6 +26,14 @@ export const BackgroundBeams = React.memo(({ className }) => {
     "M-128 -477C-128 -477 -60 -72 404 55C868 182 936 587 936 587",
     "M-114 -493C-114 -493 -46 -88 418 39C882 166 950 571 950 571",
   ];
+  const [randomValues] = React.useState(() => {
+    return paths.map(() => ({
+      y2: `${93 + Math.random() * 8}%`,
+      duration: Math.random() * 10 + 10,
+      delay: Math.random() * 10,
+    }));
+  });
+
   return (
     <div
       className={cn(
@@ -72,13 +80,13 @@ export const BackgroundBeams = React.memo(({ className }) => {
                 x1: ["0%", "100%"],
                 x2: ["0%", "95%"],
                 y1: ["0%", "100%"],
-                y2: ["0%", `${93 + Math.random() * 8}%`],
+                y2: ["0%", randomValues[index].y2],
               }}
               transition={{
-                duration: Math.random() * 10 + 10,
+                duration: randomValues[index].duration,
                 ease: "easeInOut",
                 repeat: Infinity,
-                delay: Math.random() * 10,
+                delay: randomValues[index].delay,
               }}
             >
               <stop stopColor="#18CCFC" stopOpacity="0"></stop>

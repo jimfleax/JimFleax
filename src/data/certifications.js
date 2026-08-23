@@ -1,3 +1,13 @@
+/**
+ * @file certifications.js
+ * @description Professional certifications dataset detailing course titles, issuing organizations, credentials, badges, and skill tags.
+ * @architecture Serves as static content source for the certifications gallery and skill verification components across the portfolio.
+ */
+
+/**
+ * @constant {Array<Object>} certifications
+ * @desc List of earned certificates with credential URLs, issuer names, badge image paths, and associated technology tags.
+ */
 export const certifications = [
   {
     title: "Legacy JavaScript Algorithms and Data Structures",

@@ -74,6 +74,15 @@ const SVG = ({ svgOptions }) => {
     "#6A286F",
     "#604483",
   ];
+  const [randomDelays] = React.useState(() => {
+    return paths.map(() => ({
+      firstDelay: Math.floor(Math.random() * 10),
+      firstRepeatDelay: Math.floor(Math.random() * 10 + 2),
+      secondDelay: Math.floor(Math.random() * 10),
+      secondRepeatDelay: Math.floor(Math.random() * 10 + 2),
+    }));
+  });
+
   return (
     <motion.svg
       viewBox="0 0 1440 900"
@@ -99,8 +108,8 @@ const SVG = ({ svgOptions }) => {
             ease: "linear",
             repeat: Infinity,
             repeatType: "loop",
-            delay: Math.floor(Math.random() * 10),
-            repeatDelay: Math.floor(Math.random() * 10 + 2),
+            delay: randomDelays[idx].firstDelay,
+            repeatDelay: randomDelays[idx].firstRepeatDelay,
           }}
           key={`path-first-${idx}`}
         />
@@ -120,8 +129,8 @@ const SVG = ({ svgOptions }) => {
             ease: "linear",
             repeat: Infinity,
             repeatType: "loop",
-            delay: Math.floor(Math.random() * 10),
-            repeatDelay: Math.floor(Math.random() * 10 + 2),
+            delay: randomDelays[idx].secondDelay,
+            repeatDelay: randomDelays[idx].secondRepeatDelay,
           }}
           key={`path-second-${idx}`}
         />

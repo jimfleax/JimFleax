@@ -1,5 +1,11 @@
 "use client";
 
+/**
+ * @file Projects.jsx
+ * @description Displays the portfolio projects in a grid or list.
+ * @architecture Maps over project data and utilizes UI components to display project cards.
+ */
+
 import React from "react";
 import styled from "styled-components";
 import { motion } from "motion/react";
@@ -119,6 +125,10 @@ const item = {
   show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50 } },
 };
 
+/**
+ * @desc    Renders the projects showcase section.
+ * @returns {JSX.Element} The rendered component.
+ */
 export function Projects() {
 
 
