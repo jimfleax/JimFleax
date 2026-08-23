@@ -4,58 +4,9 @@ import React, { useState, useMemo } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "motion/react";
 import { LinkPreview } from "./ui/link-preview";
+import { PageSection } from "./ui/PageSection";
 
-const Wrapper = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  max-width: 80rem;
-  margin: 2rem auto;
-  width: 95%;
-  padding: 1rem;
-  min-height: calc(100vh - 4rem);
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
 
-  @media (min-width: 768px) {
-    padding: 2rem;
-  }
-`;
-
-const HeaderSection = styled(motion.div)`
-  width: 100%;
-  text-align: left;
-  max-width: 56rem;
-  margin-inline: auto;
-`;
-
-const HeaderText = styled.h2`
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  text-align: left;
-  background-image: linear-gradient(to bottom, #171717, #404040);
-  font-family: "Garamond", serif;
-  font-size: 1.25rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  position: relative;
-  z-index: 20;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.625;
-
-  @media (min-width: 768px) {
-    font-size: 1.6rem;
-    padding-top: 2rem;
-    padding-bottom: 1rem;
-  }
-
-  .dark & {
-    background-image: linear-gradient(to bottom, #525252, #ffffff);
-  }
-`;
 
 const CertificationsGrid = styled(motion.div)`
   display: grid;
@@ -447,22 +398,8 @@ export function Certifications() {
   }, [groupedCerts, expandedIssuers]);
 
   return (
-    <Wrapper
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true }}
-    >
-      <HeaderSection
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <HeaderText>
-          here are some certifications I have been awarded
-        </HeaderText>
-      </HeaderSection>
+    <PageSection title="here are some certifications I have been awarded">
+      
       <AnimatePresence>
         <CertificationsGrid
           layout
@@ -533,7 +470,7 @@ export function Certifications() {
           )}
         </CertificationsGrid>
       </AnimatePresence>
-    </Wrapper>
+    </PageSection>
   );
 }
 
