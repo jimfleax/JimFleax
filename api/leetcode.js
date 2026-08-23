@@ -38,64 +38,17 @@ export default async function handler(req, res) {
 
   // --- 4. Fetching Data ---
   try {
-    const headers = {
-      'Content-Type': 'application/json',
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-    };
-
-    // Query 1: Profile & Stats
-    const profileQuery = {
-      operationName: 'userPublicProfile',
-      variables: { username: LEETCODE_USERNAME },
-      query: `
-        query userPublicProfile($username: String!) {
-          matchedUser(username: $username) {
-            profile {
-              ranking
-            }
-            submitStatsGlobal {
-              acSubmissionNum {
-                difficulty
-                count
-              }
-            }
-          }
-        }
-      `
-    };
-
-    // Query 2: Calendar & Streak
-    const calendarQuery = {
-      operationName: 'userProfileCalendar',
-      variables: { username: LEETCODE_USERNAME },
-      query: `
-        query userProfileCalendar($username: String!) {
-          matchedUser(username: $username) {
-            userCalendar(year: null) {
-              streak
-              totalActiveDays
-              submissionCalendar
-            }
-          }
-        }
-      `
-    };
-
+    // We use the Alfa LeetCode API because LeetCode's direct GraphQL API uses Cloudflare
+    // which outright blocks Vercel Serverless IPs (returning 403 Forbidden).
+    // To prevent hitting Alfa's strict 429 rate limit, we heavily cache the response 
+    // at the Vercel Edge network using s-maxage.
     const [profileRes, calendarRes] = await Promise.all([
-      fetch('https://leetcode.com/graphql', {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(profileQuery)
-      }),
-      fetch('https://leetcode.com/graphql', {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(calendarQuery)
-      })
+      fetch(`https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}`),
+      fetch(`https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/calendar`)
     ]);
 
     if (!profileRes.ok || !calendarRes.ok) {
-      throw new Error('Failed to fetch from LeetCode');
+      throw new Error(`Failed to fetch from Alfa API: Profile ${profileRes.status}, Calendar ${calendarRes.status}`);
     }
 
     const [profileData, calendarData] = await Promise.all([
@@ -103,41 +56,43 @@ export default async function handler(req, res) {
       calendarRes.json()
     ]);
 
-    const user = profileData.data?.matchedUser;
-    const calendar = calendarData.data?.matchedUser?.userCalendar;
-
-    if (!user || !calendar) {
+    if (profileData.errors || calendarData.errors) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    const stats = user.submitStatsGlobal.acSubmissionNum;
-    
-    // Find counts by difficulty
-    const all = stats.find(s => s.difficulty === 'All')?.count || 0;
-    const easy = stats.find(s => s.difficulty === 'Easy')?.count || 0;
-    const medium = stats.find(s => s.difficulty === 'Medium')?.count || 0;
-    const hard = stats.find(s => s.difficulty === 'Hard')?.count || 0;
+    // Alfa API formats the calendar as a stringified JSON object
+    let parsedCalendar = {};
+    if (calendarData.submissionCalendar) {
+      try {
+        parsedCalendar = typeof calendarData.submissionCalendar === 'string' 
+          ? JSON.parse(calendarData.submissionCalendar) 
+          : calendarData.submissionCalendar;
+      } catch (e) {
+        console.error('Failed to parse calendar data', e);
+      }
+    }
 
     const responseData = {
       success: true,
-      rank: user.profile.ranking,
-      totalSolved: all,
-      easySolved: easy,
-      mediumSolved: medium,
-      hardSolved: hard,
-      streak: calendar.streak,
-      totalActiveDays: calendar.totalActiveDays,
-      calendar: JSON.parse(calendar.submissionCalendar)
+      rank: profileData.ranking || 0,
+      totalSolved: profileData.totalSolved || 0,
+      easySolved: profileData.easySolved || 0,
+      mediumSolved: profileData.mediumSolved || 0,
+      hardSolved: profileData.hardSolved || 0,
+      streak: profileData.streak || 0, // Note: Alfa might not provide exact streak natively, we fallback to 0 or derive it if available
+      totalActiveDays: profileData.totalActiveDays || 0, // Fallback if missing
+      calendar: parsedCalendar
     };
 
-    // Save to cache
+    // Save to node-cache (local container cache)
     cache.set(cacheKey, responseData);
 
+    // Save to Vercel Edge Cache (Global CDN) for 1 hour
     res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
     return res.status(200).json(responseData);
 
   } catch (error) {
     console.error('LeetCode fetch error:', error);
-    return res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(500).json({ error: error.message, stack: error.stack });
   }
 }

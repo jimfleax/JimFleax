@@ -52,15 +52,13 @@ function GithubContributionGraph() {
           }
         }
 
-        const response = await fetch(
-          "https://github-contributions-api.jogruber.de/v4/jimfleax?y=last",
-        );
+        const response = await fetch("/api/github");
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
         const json = await response.json();
-        apiCache.set(cacheKey, { timestamp: Date.now(), data: json.contributions });
-        setData(json.contributions);
+        apiCache.set(cacheKey, { timestamp: Date.now(), data: json });
+        setData(json);
         setError(null);
       } catch (err) {
         console.error("Error fetching GitHub contributions:", err);
