@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "motion/react";
 import { LinkPreview } from "./ui/link-preview";
 import { certifications } from "../data/certifications";
 import { PageSection } from "./ui/PageSection";
+import { CardDeck } from "./ui/CardDeck";
 
 
 
@@ -50,44 +51,6 @@ const CertificationCard = styled(CardBase)`
   &:hover {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
-`;
-
-const DeckWrapper = styled(motion.div)`
-  position: relative;
-  width: 100%;
-  padding-top: 4rem;
-
-  @media (max-width: 767px) {
-    width: 85%;
-    margin-inline: auto;
-    margin-bottom: 2rem;
-  }
-
-  @media (min-width: 768px) {
-    padding-top: 0;
-  }
-`;
-
-const DeckContainer = styled(motion.div)`
-  position: relative;
-  width: 100%;
-  aspect-ratio: 5 / 3;
-  cursor: pointer;
-  z-index: 1;
-
-  &:hover {
-    z-index: 10;
-  }
-`;
-
-
-
-const DeckCard = styled(CardBase)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform-origin: center bottom;
-  border: 1px solid rgba(0,0,0,0.1);
 `;
 
 const ImageContainer = styled.div`
@@ -186,7 +149,6 @@ const CountBadge = styled.span`
   font-weight: 600;
 `;
 
-
 const TagsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -231,7 +193,7 @@ const container = {
   },
 };
 
-const item = {
+const itemVariant = {
   hidden: { opacity: 0, y: 30 },
   show: {
     opacity: 1,
@@ -255,6 +217,7 @@ const SingleCertCard = ({ cert, onClick, variants }) => (
       target="_blank"
       rel="noopener noreferrer"
       as={motion.a}
+      onClick={onClick}
     >
       <ImageContainer>
         <ProjectImage src={cert.img} alt={cert.title} loading="lazy" />
@@ -275,8 +238,6 @@ const SingleCertCard = ({ cert, onClick, variants }) => (
 );
 
 export function Certifications() {
-  const [expandedIssuers, setExpandedIssuers] = useState(new Set());
-
 
 
   const groupedCerts = useMemo(() => {
@@ -289,29 +250,17 @@ export function Certifications() {
     }, {});
   }, []);
 
-  const toggleIssuer = (issuer) => {
-    setExpandedIssuers((prev) => {
-      const next = new Set(prev);
-      if (next.has(issuer)) {
-        next.delete(issuer);
-      } else {
-        next.add(issuer);
-      }
-      return next;
-    });
-  };
-
   const displayList = useMemo(() => {
     const list = [];
     Object.entries(groupedCerts).forEach(([issuer, certs]) => {
-      if (certs.length === 1 || expandedIssuers.has(issuer)) {
-        certs.forEach((cert) => list.push({ type: "single", data: cert }));
+      if (certs.length === 1) {
+        list.push({ type: "single", data: certs[0] });
       } else {
         list.push({ type: "deck", issuer, certs });
       }
     });
     return list;
-  }, [groupedCerts, expandedIssuers]);
+  }, [groupedCerts]);
 
   return (
     <PageSection title="here are some certifications I have been awarded">
@@ -324,64 +273,51 @@ export function Certifications() {
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {displayList.map((item, i) =>
+          {displayList.map((item) =>
             item.type === "single" ? (
               <SingleCertCard
                 key={item.data.title}
                 cert={item.data}
-                variants={item}
+                variants={itemVariant}
               />
             ) : (
-              <DeckWrapper
+              <CardDeck
                 key={item.issuer}
-                layout
-                variants={item}
-              >
-                <DeckContainer
-                  onClick={() => toggleIssuer(item.issuer)}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  layoutId={`deck-container-${item.issuer}`}
-                >
-                  {item.certs.slice(0, 3).reverse().map((cert, index, array) => {
-                    const originalIndex = array.length - 1 - index;
-                    const yOffset = originalIndex * -32;
-                    const scale = 1 - originalIndex * 0.05;
-                    const zIndex = 3 - originalIndex;
-
-                    return (
-                      <DeckCard
-                        key={cert.title}
-                        style={{
-                          zIndex: zIndex,
-                          y: yOffset,
-                          scale: scale,
-                        }}
-                        layoutId={`deck-${item.issuer}-${cert.title}`}
-                      >
-                        <ImageContainer>
-                          <ProjectImage src={cert.img} alt={cert.title} />
-                        </ImageContainer>
-                        <CardFooter>
-                          {originalIndex === 0 ? (
-                            <CertTitle style={{ textAlign: "center", width: "100%" }}>
-                              {item.issuer} Certifications{" "}
-                              <CountBadge style={{ verticalAlign: "middle", marginLeft: "0.5rem" }}>
-                                {item.certs.length}
-                              </CountBadge>
-                            </CertTitle>
-                          ) : (
-                            <>
-                              <CertTitle title={cert.title}>{cert.title}</CertTitle>
-                              <IssuerText>{cert.issuer}</IssuerText>
-                            </>
-                          )}
-                        </CardFooter>
-                      </DeckCard>
-                    )
-                  })}
-                </DeckContainer>
-              </DeckWrapper>
+                items={item.certs}
+                idPrefix={`deck-${item.issuer}`}
+                getItemKey={(cert) => cert.title}
+                getItemLayoutId={(cert) => `deck-${item.issuer}-${cert.title}`}
+                wrapperVariants={itemVariant}
+                renderExpandedItem={(cert, idx, onToggle) => (
+                  <SingleCertCard
+                    cert={cert}
+                    variants={itemVariant}
+                    onClick={(e) => {}}
+                  />
+                )}
+                renderStackedItem={(cert, originalIndex, totalCount) => (
+                  <>
+                    <ImageContainer>
+                      <ProjectImage src={cert.img} alt={cert.title} />
+                    </ImageContainer>
+                    <CardFooter>
+                      {originalIndex === 0 ? (
+                        <CertTitle style={{ textAlign: "center", width: "100%" }}>
+                          {item.issuer} Certifications{" "}
+                          <CountBadge style={{ verticalAlign: "middle", marginLeft: "0.5rem" }}>
+                            {totalCount}
+                          </CountBadge>
+                        </CertTitle>
+                      ) : (
+                        <>
+                          <CertTitle title={cert.title}>{cert.title}</CertTitle>
+                          <IssuerText>{cert.issuer}</IssuerText>
+                        </>
+                      )}
+                    </CardFooter>
+                  </>
+                )}
+              />
             )
           )}
         </CertificationsGrid>
