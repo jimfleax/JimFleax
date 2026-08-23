@@ -28,7 +28,7 @@ export default function SkillsSkeleton() {
           gap: "2rem",
         }}
       >
-        <Skeleton height="4rem" width="70%" />
+        <Skeleton $height="4rem" $width="70%" />
         <div
           style={{
             height: "4rem",
@@ -38,7 +38,7 @@ export default function SkillsSkeleton() {
             marginLeft: "2rem",
           }}
         >
-          <Skeleton height="100%" />
+          <Skeleton $height="100%" />
         </div>
       </div>
     </Wrapper>

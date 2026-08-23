@@ -14,7 +14,7 @@ import { MdEmail } from "react-icons/md";
 import { BackgroundBeams } from "./ui/background-beams";
 import { LinkPreview } from "./ui/link-preview";
 
-const ContactWrapper = styled(motion.div)`
+const ContactWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,7 +30,7 @@ const ContactWrapper = styled(motion.div)`
   overflow: hidden;
 `;
 
-const ContentContainer = styled(motion.div)`
+const ContentContainer = styled.div`
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   border-radius: 2rem;
@@ -49,7 +49,7 @@ const ContentContainer = styled(motion.div)`
   }
 `;
 
-const Title = styled(motion.h2)`
+const Title = styled.h2`
   font-family: "Garamond", serif;
   font-size: 2rem;
   font-weight: 800;
@@ -74,7 +74,7 @@ const Title = styled(motion.h2)`
   }
 `;
 
-const Address = styled(motion.p)`
+const Address = styled.p`
   font-size: 1.25rem;
   color: #4b5563;
   font-family: var(--font-sans, sans-serif);
@@ -84,13 +84,13 @@ const Address = styled(motion.p)`
   }
 `;
 
-const SocialLinks = styled(motion.div)`
+const SocialLinks = styled.div`
   display: flex;
   gap: 1.5rem;
   margin-top: 1rem;
 `;
 
-const SocialIcon = styled(motion.span)`
+const SocialIcon = styled.span`
   color: #4b5563;
   font-size: 2rem;
   display: flex;
@@ -110,7 +110,7 @@ const SocialIcon = styled(motion.span)`
   }
 `;
 
-const MailButton = styled(motion.a)`
+const MailButton = styled.a`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -150,27 +150,27 @@ const itemVariants = {
  * @desc    Renders the Contact section of the portfolio.
  * @returns {JSX.Element} The rendered component.
  */
-export function ContactPage() {
+function ContactPage() {
   return (
-    <ContactWrapper
+    <ContactWrapper as={motion.div}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       viewport={{ once: true }}
     >
       <BackgroundBeams />
-      <ContentContainer
+      <ContentContainer as={motion.div}
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <Title variants={itemVariants}>Get In Touch</Title>
-        <Address variants={itemVariants}>
+        <Title as={motion.h2} variants={itemVariants}>Get In Touch</Title>
+        <Address as={motion.p} variants={itemVariants}>
           Birbhum, Bengal, India - 731101
         </Address>
 
-        <SocialLinks variants={itemVariants}>
+        <SocialLinks as={motion.div} variants={itemVariants}>
           <LinkPreview url="https://instagram.com/jimfleax">
             <SocialIcon
               whileHover={{ scale: 1.2, rotate: 10 }}
@@ -233,7 +233,7 @@ export function ContactPage() {
           </LinkPreview>
         </SocialLinks>
 
-        <MailButton
+        <MailButton as={motion.a}
           href="mailto:reetabrata.bhandari@gmail.com?subject=Hello%20Reetabrata&body=Hi%20Reetabrata,%20"
           variants={itemVariants}
           whileHover={{ scale: 1.05 }}

@@ -6,12 +6,13 @@
  * @architecture Fetches and displays GitHub or similar platform contribution data.
  */
 
-import React from "react";
+import React, { Suspense } from "react";
 import styled from "styled-components";
 import { motion } from "motion/react";
-import GithubContributionGraph from "./ui/GithubContributionGraph";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 import { PageSection } from "./ui/PageSection";
+
+import GithubContributionGraph from "./ui/GithubContributionGraph";
 
 
 
@@ -59,7 +60,9 @@ function ContributionsPage() {
           <CardBody className="w-full h-fit">
             <CardItem>
               <StyledGithubContributionGraph>
-                <GithubContributionGraph />
+                
+                  <GithubContributionGraph />
+                
               </StyledGithubContributionGraph>
             </CardItem>
           </CardBody>

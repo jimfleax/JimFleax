@@ -35,14 +35,14 @@ const SkillsWrapper = styled.div`
   }
 `;
 
-const BackgroundLayer = styled(motion.div)`
+const BackgroundLayer = styled.div`
   position: absolute;
   inset: 0;
   z-index: 0;
   background: ${(props) => props.$bg};
 `;
 
-const ContentContainer = styled(motion.div)`
+const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -69,7 +69,7 @@ const TitleText = styled.div`
   }
 `;
 
-const ActionButton = styled(motion.button)`
+const ActionButton = styled.button`
   background: white;
   color: #f97316;
   border: none;
@@ -97,7 +97,7 @@ const ActionButton = styled(motion.button)`
   `}
 `;
 
-const SkillsList = styled(motion.div)`
+const SkillsList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -132,7 +132,7 @@ const ProgressBarBackground = styled.div`
   overflow: hidden;
 `;
 
-const ProgressBarFill = styled(motion.div)`
+const ProgressBarFill = styled.div`
   height: 100%;
   background: white; // White fill for nice contrast against blue
   border-radius: 1rem;
@@ -149,7 +149,7 @@ const LearningBoast = styled(TextGenerateEffect)`
  * @desc    Renders the skills section.
  * @returns {JSX.Element} The rendered component.
  */
-export function SkillsPage() {
+function SkillsPage() {
   const [showSkills, setShowSkills] = useState(false);
 
   const skills = [
@@ -164,17 +164,17 @@ export function SkillsPage() {
 
   return (
     <SkillsWrapper $showSkills={showSkills}>
-      <BackgroundLayer
+      <BackgroundLayer as={motion.div}
         $bg="linear-gradient(135deg, #f97316, #ef4444)"
         animate={{ opacity: showSkills ? 0 : 1 }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
       />
-      <BackgroundLayer
+      <BackgroundLayer as={motion.div}
         $bg="linear-gradient(135deg, #3b82f6, #06b6d4)"
         animate={{ opacity: showSkills ? 1 : 0 }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
       />
-      <ContentContainer>
+      <ContentContainer as={motion.div}>
         <AnimatePresence mode="wait">
           {!showSkills ? (
             <motion.div
@@ -187,7 +187,7 @@ export function SkillsPage() {
               <TitleText>
                 <TextGenerateEffect words="want to know what i can do?" />
               </TitleText>
-              <ActionButton
+              <ActionButton as={motion.button}
                 onClick={() => setShowSkills(true)}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -197,7 +197,7 @@ export function SkillsPage() {
             </motion.div>
           ) : (
             <>
-              <SkillsList
+              <SkillsList as={motion.div}
                 key="skills"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -216,7 +216,7 @@ export function SkillsPage() {
                   <h3 style={{ fontSize: "2rem", fontWeight: "bold", fontFamily: "Garamond, serif" }}>
                     My Skills
                   </h3>
-                  <ActionButton
+                  <ActionButton as={motion.button}
                     $active={true}
                     onClick={() => setShowSkills(false)}
                     style={{
@@ -238,7 +238,7 @@ export function SkillsPage() {
                       <span>{skill.level}%</span>
                     </SkillHeader>
                     <ProgressBarBackground>
-                      <ProgressBarFill
+                      <ProgressBarFill as={motion.div}
                         initial={{ width: 0 }}
                         animate={{ width: `${skill.level}%` }}
                         transition={{

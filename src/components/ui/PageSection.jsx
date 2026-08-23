@@ -4,7 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "motion/react";
 
-const Wrapper = styled(motion.section)`
+const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -21,7 +21,7 @@ const Wrapper = styled(motion.section)`
   }
 `;
 
-const BioSection = styled(motion.div)`
+const BioSection = styled.div`
   width: 100%;
   text-align: left;
   max-width: 56rem;
@@ -64,6 +64,7 @@ const Title = styled.h2`
 export function PageSection({ title, children, className }) {
   return (
     <Wrapper
+      as={motion.section}
       className={className}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -72,6 +73,7 @@ export function PageSection({ title, children, className }) {
     >
       {title && (
         <BioSection
+          as={motion.div}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}

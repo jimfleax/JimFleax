@@ -9,7 +9,7 @@ import styled from "styled-components";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
 import { motion } from "motion/react";
 
-const SectionWrapper = styled(motion.div)`
+const SectionWrapper = styled.div`
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -19,7 +19,7 @@ const SectionWrapper = styled(motion.div)`
   gap: 2rem;
   padding: 2rem;
 `;
-const Flex = styled(motion.div)`
+const Flex = styled.div`
   display: flex;
   place-items: center;
   background: #ffffff6a;
@@ -66,15 +66,15 @@ const TextContainer = styled(TextGenerateEffect)`
  * @desc    Renders the Spotify integration section.
  * @returns {JSX.Element} The rendered component.
  */
-export function SpotifySection() {
+function SpotifySection() {
   return (
-    <SectionWrapper
+    <SectionWrapper as={motion.div}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       viewport={{ once: true }}
     >
-      <Flex
+      <Flex as={motion.div}
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         whileHover={{ scale: 1.02 }}
@@ -89,6 +89,8 @@ export function SpotifySection() {
           <img
             className="h-64 w-64 sm:h-72 sm:w-92 object-cover"
             src="/media/ditherpic.jpg"
+            loading="lazy"
+            decoding="async"
           />
         </DitherContainer>
         <TextContainer words="lemme know what you think about my music taste :)" />

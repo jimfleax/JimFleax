@@ -7,7 +7,7 @@
  */
 
 import React, { useState } from "react";
-import styled, { keyframes, css } from "styled-components";
+import styled from "styled-components";
 import { motion, AnimatePresence } from "motion/react";
 import { TextHoverEffect } from "./ui/text-hover-effect";
 import { FaHeart } from "react-icons/fa";
@@ -35,11 +35,10 @@ const BackgroundTextContainer = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 1;
-  pointer-events: none;
   pointer-events: auto;
 `;
 
-const FooterContainer = styled(motion.div)`
+const FooterContainer = styled.div`
   position: absolute;
   bottom: 2rem;
   z-index: 10;
@@ -57,14 +56,14 @@ const FooterContainer = styled(motion.div)`
   }
 `;
 
-const HeartIcon = styled(motion.div)`
+const HeartIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   color: #ef4444;
 `;
 
-const FloatingHeart = styled(motion.div)`
+const FloatingHeart = styled.div`
   position: absolute;
   color: #ef4444;
   pointer-events: none;
@@ -90,7 +89,7 @@ const EffectContainer = styled.div`
  * @desc    Renders the footer component.
  * @returns {JSX.Element} The rendered component.
  */
-export function FooterPage() {
+function FooterPage() {
   const [hearts, setHearts] = useState([]);
 
   const handleFooterClick = (e) => {
@@ -102,6 +101,11 @@ export function FooterPage() {
       id: Date.now() + i,
       x: x + (Math.random() - 0.5) * 50,
       y: y,
+      offsetX: (Math.random() - 0.5) * 100,
+      animY: -200 - Math.random() * 100,
+      animX: (Math.random() - 0.5) * 100,
+      animScale: Math.random() * 0.5 + 0.8,
+      duration: 1.5 + Math.random(),
     }));
 
     setHearts((prev) => [...prev, ...newHearts]);
@@ -132,7 +136,7 @@ export function FooterPage() {
         </EffectContainer>
       </BackgroundTextContainer>
 
-      <FooterContainer
+      <FooterContainer as={motion.div}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
@@ -145,7 +149,7 @@ export function FooterPage() {
         }}
       >
         <span>Made with</span>
-        <HeartIcon
+        <HeartIcon as={motion.div}
           animate={{
             scale: [1, 1.2, 1],
           }}
@@ -166,20 +170,20 @@ export function FooterPage() {
 
       <AnimatePresence>
         {hearts.map((heart) => (
-          <FloatingHeart
+          <FloatingHeart as={motion.div}
             key={heart.id}
             initial={{ opacity: 1, x: 0, y: 0, scale: 0.5 }}
             style={{
-              left: `calc(50% + ${(Math.random() - 0.5) * 100}px)`,
+              left: `calc(50% + ${heart.offsetX}px)`,
               bottom: "3rem",
             }}
             animate={{
-              y: -200 - Math.random() * 100,
-              x: (Math.random() - 0.5) * 100,
+              y: heart.animY,
+              x: heart.animX,
               opacity: 0,
-              scale: Math.random() * 0.5 + 0.8,
+              scale: heart.animScale,
             }}
-            transition={{ duration: 1.5 + Math.random(), ease: "easeOut" }}
+            transition={{ duration: heart.duration, ease: "easeOut" }}
           >
             <FaHeart />
           </FloatingHeart>

@@ -34,10 +34,10 @@ export default function SpotifySkeleton() {
             width: "18rem",
           }}
         >
-          <Skeleton height="100%" />
+          <Skeleton $height="100%" />
         </div>
         <div style={{ width: "200px" }}>
-          <Skeleton height="2rem" />
+          <Skeleton $height="2rem" />
         </div>
       </Flex>
       <div
@@ -49,7 +49,7 @@ export default function SpotifySkeleton() {
           overflow: "hidden",
         }}
       >
-        <Skeleton height="100%" />
+        <Skeleton $height="100%" />
       </div>
     </Wrapper>
   );

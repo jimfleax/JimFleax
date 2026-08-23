@@ -1,6 +1,9 @@
 import { ActivityCalendar } from "react-activity-calendar";
 import { useState, useEffect } from "react";
 
+const apiCache = new Map();
+const CACHE_TTL = 5 * 60 * 1000;
+
 function GithubContributionGraph() {
   const [blockSize, setBlockSize] = useState(12);
   const [blockMargin, setBlockMargin] = useState(4);
@@ -39,6 +42,16 @@ function GithubContributionGraph() {
     const fetchData = async () => {
       try {
         setLoading(true);
+        const cacheKey = "github_contributions";
+        if (apiCache.has(cacheKey)) {
+          const { timestamp, data: cachedData } = apiCache.get(cacheKey);
+          if (Date.now() - timestamp < CACHE_TTL) {
+            setData(cachedData);
+            setLoading(false);
+            return;
+          }
+        }
+
         const response = await fetch(
           "https://github-contributions-api.jogruber.de/v4/jimfleax?y=last",
         );
@@ -46,6 +59,7 @@ function GithubContributionGraph() {
           throw new Error("Failed to fetch data");
         }
         const json = await response.json();
+        apiCache.set(cacheKey, { timestamp: Date.now(), data: json.contributions });
         setData(json.contributions);
         setError(null);
       } catch (err) {

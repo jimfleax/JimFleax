@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "motion/react";
 
-const AboutWrapper = styled(motion.div)`
+const AboutWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -29,7 +29,7 @@ const AboutWrapper = styled(motion.div)`
   }
 `;
 
-const BioSection = styled(motion.div)`
+const BioSection = styled.div`
   width: 100%;
   text-align: left;
   max-width: 56rem;
@@ -65,7 +65,7 @@ const BioText = styled.h2`
   }
 `;
 
-const ContentGrid = styled(motion.div)`
+const ContentGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
@@ -80,14 +80,14 @@ const ContentGrid = styled(motion.div)`
   }
 `;
 
-const LeftColumn = styled(motion.div)`
+const LeftColumn = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: center;
 `;
 
-const ImageFrame = styled(motion.div)`
+const ImageFrame = styled.div`
   border-radius: 1.5rem;
   overflow: hidden;
   box-shadow:
@@ -106,7 +106,7 @@ const ProfileImage = styled.img`
   object-fit: cover;
 `;
 
-const ImageCaption = styled(motion.p)`
+const ImageCaption = styled.p`
   text-align: center;
   font-family: "Handlee", cursive;
   font-size: 1.25rem;
@@ -114,14 +114,14 @@ const ImageCaption = styled(motion.p)`
   transform: rotate(-2deg);
 `;
 
-const RightColumn = styled(motion.div)`
+const RightColumn = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   justify-content: center;
 `;
 
-const TextParagraph = styled(motion.p)`
+const TextParagraph = styled.p`
   font-size: 1rem;
   line-height: 1.75;
   color: #d4d4d4;
@@ -132,7 +132,7 @@ const TextParagraph = styled(motion.p)`
   }
 `;
 
-const ReadMoreButton = styled(motion.button)`
+const ReadMoreButton = styled.button`
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #d4d4d4;
@@ -156,12 +156,12 @@ const ReadMoreButton = styled(motion.button)`
  * @desc    Renders the About page with an interactive bio and profile image.
  * @returns {JSX.Element} The rendered component.
  */
-export function AboutPage() {
+function AboutPage() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <AboutWrapper>
-      <BioSection
+    <AboutWrapper as={motion.div}>
+      <BioSection as={motion.div}
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -170,14 +170,14 @@ export function AboutPage() {
         <BioText>who am i really?</BioText>
       </BioSection>
 
-      <ContentGrid>
-        <LeftColumn
+      <ContentGrid as={motion.div}>
+        <LeftColumn as={motion.div}
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <ImageFrame
+          <ImageFrame as={motion.div}
             whileHover={{ scale: 1.05, rotate: 2 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
@@ -188,7 +188,7 @@ export function AboutPage() {
               decoding="async"
             />
           </ImageFrame>
-          <ImageCaption
+          <ImageCaption as={motion.p}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.5 }}
@@ -197,13 +197,13 @@ export function AboutPage() {
           </ImageCaption>
         </LeftColumn>
 
-        <RightColumn
+        <RightColumn as={motion.div}
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <TextParagraph>
+          <TextParagraph as={motion.p}>
             Hi there! I'm Reetabrata Bhandari—better known as Jim Fleax! 👋 I’m
             passionate about exploring computer languages and crafting
             innovative apps and websites. My goal is to create sleek, delicious
@@ -221,25 +221,25 @@ export function AboutPage() {
                 transition={{ duration: 0.3 }}
                 style={{ overflow: "hidden" }}
               >
-                <TextParagraph style={{ marginTop: "1.5rem" }}>
+                <TextParagraph as={motion.p} style={{ marginTop: "1.5rem" }}>
                   Beyond coding, I find joy in losing myself in fiction 📚️,
                   vibing along my playlist 🎵, and watching good movies 🎬️. I
                   thrive on learning, embracing every opportunity to dive deeper
                   into the fascinating world of computer science. 🚀
                 </TextParagraph>
-                <TextParagraph style={{ marginTop: "1.5rem" }}>
+                <TextParagraph as={motion.p} style={{ marginTop: "1.5rem" }}>
                   Here, you’ll find a showcase of the apps I’ve built along my
                   web development journey. Got feedback or spotted a bug? Don’t
                   hesitate to share—I’m always eager to improve and grow!
                 </TextParagraph>
-                <TextParagraph style={{ marginTop: "1.5rem" }}>
+                <TextParagraph as={motion.p} style={{ marginTop: "1.5rem" }}>
                   Thanks for stopping by! ❤️
                 </TextParagraph>
               </motion.div>
             )}
           </AnimatePresence>
 
-          <ReadMoreButton
+          <ReadMoreButton as={motion.button}
             onClick={() => setIsExpanded(!isExpanded)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

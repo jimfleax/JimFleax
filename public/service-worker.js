@@ -7,7 +7,7 @@ const isValidUrl = (url) => {
   try {
     const parsed = new URL(url);
     return ["http:", "https:"].includes(parsed.protocol);
-  } catch (error) {
+  } catch (_error) {
     return false;
   }
 };
@@ -52,7 +52,7 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
       if (response) {
-        const fetchPromise = fetch(event.request)
+        fetch(event.request)
           .then((networkResponse) => {
             if (
               !networkResponse ||
@@ -69,7 +69,7 @@ self.addEventListener("fetch", (event) => {
 
             return networkResponse;
           })
-          .catch((err) => {});
+          .catch((_err) => {});
 
         return response;
       }

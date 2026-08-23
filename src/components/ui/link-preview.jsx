@@ -63,7 +63,7 @@ export const LinkPreview = ({
     <>
       {isMounted ? (
         <div className="hidden">
-          <img src={src} width={width} height={height} alt="hidden image" />
+          <img src={src} width={width} height={height} alt="hidden image" loading="lazy" decoding="async" />
         </div>
       ) : null}
       <HoverCardPrimitive.Root
@@ -74,9 +74,9 @@ export const LinkPreview = ({
         }}
       >
         <HoverCardPrimitive.Trigger
+          asChild
           onMouseMove={handleMouseMove}
           className={cn("text-black dark:text-white", className)}
-          href={url}
         >
           {children}
         </HoverCardPrimitive.Trigger>
@@ -118,6 +118,8 @@ export const LinkPreview = ({
                     height={height}
                     className="rounded-lg"
                     alt="preview image"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </a>
               </motion.div>

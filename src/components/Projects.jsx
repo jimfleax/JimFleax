@@ -16,7 +16,7 @@ import { PageSection } from "./ui/PageSection";
 
 
 
-const ProjectsGrid = styled(motion.div)`
+const ProjectsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 1.5rem;
@@ -31,7 +31,7 @@ const ProjectsGrid = styled(motion.div)`
   }
 `;
 
-const ProjectCard = styled(motion.div)`
+const ProjectCard = styled.div`
   width: 100%;
   aspect-ratio: 5 / 3;
   border-radius: 1.5rem;
@@ -129,22 +129,21 @@ const item = {
  * @desc    Renders the projects showcase section.
  * @returns {JSX.Element} The rendered component.
  */
-export function Projects() {
+function Projects() {
 
 
   return (
     <PageSection title="okay but what did i make?">
       
-      <ProjectsGrid
+      <ProjectsGrid as={motion.div}
         variants={container}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-100px" }}
       >
         {projects.map((project, idx) => (
-          <LinkPreview url={`https://${project.url}`}>
+          <LinkPreview key={idx} url={`https://${project.url}`}>
             <ProjectCard
-              key={idx}
               $gradient={project.gradient}
               variants={item}
               whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}

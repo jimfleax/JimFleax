@@ -35,15 +35,15 @@ export default function ContactSkeleton() {
   return (
     <Wrapper>
       <Card>
-        <Skeleton height="3.5rem" width="60%" />
-        <Skeleton height="1.5rem" width="80%" />
+        <Skeleton $height="3.5rem" $width="60%" />
+        <Skeleton $height="1.5rem" $width="80%" />
         <SocialRow>
-          <Skeleton height="3rem" width="3rem" borderRadius="50%" />
-          <Skeleton height="3rem" width="3rem" borderRadius="50%" />
-          <Skeleton height="3rem" width="3rem" borderRadius="50%" />
-          <Skeleton height="3rem" width="3rem" borderRadius="50%" />
+          <Skeleton $height="3rem" $width="3rem" $borderRadius="50%" />
+          <Skeleton $height="3rem" $width="3rem" $borderRadius="50%" />
+          <Skeleton $height="3rem" $width="3rem" $borderRadius="50%" />
+          <Skeleton $height="3rem" $width="3rem" $borderRadius="50%" />
         </SocialRow>
-        <Skeleton height="3.5rem" width="40%" borderRadius="2rem" />
+        <Skeleton $height="3.5rem" $width="40%" $borderRadius="2rem" />
       </Card>
     </Wrapper>
   );

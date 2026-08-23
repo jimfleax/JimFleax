@@ -51,7 +51,7 @@ export default function AboutSkeleton() {
       <div
         style={{ maxWidth: "56rem", margin: "0 auto 2rem auto", width: "100%" }}
       >
-        <Skeleton height="3rem" width="40%" />
+        <Skeleton $height="3rem" $width="40%" />
       </div>
       <ContentGrid>
         <LeftColumn>
@@ -64,17 +64,17 @@ export default function AboutSkeleton() {
               overflow: "hidden",
             }}
           >
-            <Skeleton height="100%" />
+            <Skeleton $height="100%" />
           </div>
-          <Skeleton height="1.5rem" width="50%" />
+          <Skeleton $height="1.5rem" $width="50%" />
         </LeftColumn>
         <RightColumn>
-          <Skeleton height="1.2rem" width="100%" />
-          <Skeleton height="1.2rem" width="95%" />
-          <Skeleton height="1.2rem" width="90%" />
+          <Skeleton $height="1.2rem" $width="100%" />
+          <Skeleton $height="1.2rem" $width="95%" />
+          <Skeleton $height="1.2rem" $width="90%" />
           <div style={{ height: "1rem" }} />
-          <Skeleton height="1.2rem" width="100%" />
-          <Skeleton height="1.2rem" width="85%" />
+          <Skeleton $height="1.2rem" $width="100%" />
+          <Skeleton $height="1.2rem" $width="85%" />
         </RightColumn>
       </ContentGrid>
     </Wrapper>

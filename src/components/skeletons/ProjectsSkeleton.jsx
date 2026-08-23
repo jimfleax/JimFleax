@@ -46,12 +46,12 @@ export default function ProjectsSkeleton() {
   return (
     <Wrapper>
       <BioPlaceholder>
-        <Skeleton height="3rem" width="60%" />
+        <Skeleton $height="3rem" $width="60%" />
       </BioPlaceholder>
       <Grid>
         {[...Array(6)].map((_, i) => (
           <CardSkeleton key={i}>
-            <Skeleton height="100%" />
+            <Skeleton $height="100%" />
           </CardSkeleton>
         ))}
       </Grid>

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "motion/react";
 
-const DeckWrapper = styled(motion.div)`
+const DeckWrapper = styled.div`
   position: relative;
   width: 100%;
   padding-top: 4rem;
@@ -20,7 +20,7 @@ const DeckWrapper = styled(motion.div)`
   }
 `;
 
-const DeckContainer = styled(motion.div)`
+const DeckContainer = styled.div`
   position: relative;
   width: 100%;
   aspect-ratio: 5 / 3;
@@ -32,7 +32,7 @@ const DeckContainer = styled(motion.div)`
   }
 `;
 
-const DeckCard = styled(motion.div)`
+const DeckCard = styled.div`
   width: 100%;
   aspect-ratio: 5 / 3;
   border-radius: 1.5rem;
@@ -52,7 +52,7 @@ const DeckCard = styled(motion.div)`
   border: 1px solid rgba(0,0,0,0.1);
 `;
 
-export function CardDeck({
+const CardDeck = React.memo(function CardDeck({
   items,
   renderExpandedItem,
   renderStackedItem,
@@ -81,8 +81,8 @@ export function CardDeck({
   }
 
   return (
-    <DeckWrapper layout variants={wrapperVariants}>
-      <DeckContainer
+    <DeckWrapper as={motion.div} layout variants={wrapperVariants}>
+      <DeckContainer as={motion.div}
         onClick={toggleDeck}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
@@ -100,7 +100,7 @@ export function CardDeck({
             const layoutId = getItemLayoutId ? getItemLayoutId(item) : `${idPrefix}-item-${itemKey}`;
 
             return (
-              <DeckCard
+              <DeckCard as={motion.div}
                 key={itemKey}
                 style={{
                   zIndex: zIndex,
@@ -116,6 +116,6 @@ export function CardDeck({
       </DeckContainer>
     </DeckWrapper>
   );
-}
+});
 
 export default CardDeck;

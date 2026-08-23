@@ -4,38 +4,29 @@
  * @architecture Assembles various section components (Hero, About, Projects, etc.) into a cohesive single-page layout.
  */
 
-import React from "react";
+import React, { useEffect, Suspense, useMemo } from "react";
 import styled from "styled-components";
 import { motion } from "motion/react";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 
-import { Suspense } from "react";
 import HeroPage from "./HeroPage";
 import FooterPage from "./FooterPage";
+import Projects from "./Projects";
+import AboutPage from "./AboutPage";
+import SkillsPage from "./SkillsPage";
+import ContributionsPage from "./ContributionsPage";
+import ContactPage from "./ContactPage";
 
-const Projects = React.lazy(() => import("./Projects"));
-const AboutPage = React.lazy(() => import("./AboutPage"));
-const SkillsPage = React.lazy(() => import("./SkillsPage"));
-const Certifications = React.lazy(() => import("./Certifications"));
-const SpotifySection = React.lazy(() => import("./SpotifySection"));
-const ContributionsPage = React.lazy(() => import("./ContributionsPage"));
-const ContactPage = React.lazy(() => import("./ContactPage"));
-
-import ProjectsSkeleton from "./skeletons/ProjectsSkeleton";
-import AboutSkeleton from "./skeletons/AboutSkeleton";
-import SkillsSkeleton from "./skeletons/SkillsSkeleton";
-import CertificationsSkeleton from "./skeletons/CertificationsSkeleton";
-import ContributionsSkeleton from "./skeletons/ContributionsSkeleton";
-import SpotifySkeleton from "./skeletons/SpotifySkeleton";
-import ContactSkeleton from "./skeletons/ContactSkeleton";
-import { useEffect } from "react";
+import Certifications from "./Certifications";
+import SpotifySection from "./SpotifySection";
+import LeetCodeSection from "./LeetCodeSection";
 
 const StyledAuroraBackground = styled(AuroraBackground)`
   min-height: 100vh;
   height: auto;
 `;
 
-const ContentWrapper = styled(motion.div)`
+const ContentWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -74,61 +65,61 @@ function MainPage() {
       ),
     [],
   );
+  const motionInitial = useMemo(() => ({ opacity: 0.0, y: 40 }), []);
+  const motionWhileInView = useMemo(() => ({ opacity: 1, y: 0 }), []);
+  const motionTransition = useMemo(() => ({
+    delay: 0.3,
+    duration: 0.8,
+    ease: "easeInOut",
+  }), []);
+
   return (
     <StyledAuroraBackground>
-      <ContentWrapper
-        initial={{ opacity: 0.0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0.3,
-          duration: 0.8,
-          ease: "easeInOut",
-        }}
+      <ContentWrapper as={motion.div}
+        initial={motionInitial}
+        whileInView={motionWhileInView}
+        transition={motionTransition}
       >
         <SnapSection>
           <HeroPage />
         </SnapSection>
 
         <SnapSection>
-          <Suspense fallback={<AboutSkeleton />}>
-            <AboutPage />
-          </Suspense>
+          <AboutPage />
         </SnapSection>
 
         <SnapSection>
-          <Suspense fallback={<SpotifySkeleton />}>
+          
             <SpotifySection />
-          </Suspense>
+          
         </SnapSection>
 
         <SnapSection>
-          <Suspense fallback={<ProjectsSkeleton />}>
-            <Projects />
-          </Suspense>
+          <Projects />
         </SnapSection>
 
         <DesktopOnlySnapSection>
-          <Suspense fallback={<ContributionsSkeleton />}>
-            <ContributionsPage />
-          </Suspense>
+          
+            <LeetCodeSection />
+          
+        </DesktopOnlySnapSection>
+
+        <DesktopOnlySnapSection>
+          <ContributionsPage />
         </DesktopOnlySnapSection>
 
         <SnapSection>
-          <Suspense fallback={<SkillsSkeleton />}>
-            <SkillsPage />
-          </Suspense>
+          <SkillsPage />
         </SnapSection>
 
         <SnapSection>
-          <Suspense fallback={<CertificationsSkeleton />}>
+          
             <Certifications />
-          </Suspense>
+          
         </SnapSection>
 
         <SnapSection>
-          <Suspense fallback={<ContactSkeleton />}>
-            <ContactPage />
-          </Suspense>
+          <ContactPage />
         </SnapSection>
 
         <SnapSection>

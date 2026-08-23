@@ -6,17 +6,17 @@
  * @architecture Consumes data from the certifications list and renders them using reusable UI components like CardDeck.
  */
 
-import React, { useMemo } from "react";
+import React, { useMemo, useCallback } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "motion/react";
 import { LinkPreview } from "./ui/link-preview";
 import { certifications } from "../data/certifications";
 import { PageSection } from "./ui/PageSection";
-import { CardDeck } from "./ui/CardDeck";
+import CardDeck from "./ui/CardDeck";
 
 
 
-const CertificationsGrid = styled(motion.div)`
+const CertificationsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 1.5rem;
@@ -31,7 +31,7 @@ const CertificationsGrid = styled(motion.div)`
   }
 `;
 
-const CardBase = styled(motion.div)`
+const CardBase = styled.div`
   width: 100%;
   aspect-ratio: 5 / 3;
   border-radius: 1.5rem;
@@ -212,7 +212,7 @@ const itemVariant = {
   },
 };
 
-const SingleCertCard = ({ cert, onClick, variants }) => (
+const SingleCertCard = React.memo(({ cert, onClick, variants }) => (
   <LinkPreview url={cert.url}>
     <CertificationCard
       variants={variants}
@@ -241,13 +241,13 @@ const SingleCertCard = ({ cert, onClick, variants }) => (
       )}
     </CertificationCard>
   </LinkPreview>
-);
+));
 
 /**
  * @desc    Renders the certifications section displaying various achievements.
  * @returns {JSX.Element} The rendered component.
  */
-export function Certifications() {
+function Certifications() {
 
 
   const groupedCerts = useMemo(() => {
@@ -272,11 +272,45 @@ export function Certifications() {
     return list;
   }, [groupedCerts]);
 
+  const handleGetItemKey = useCallback((cert) => cert.title, []);
+  const handleGetItemLayoutId = useCallback((cert) => `deck-${cert.issuer}-${cert.title}`, []);
+  
+  const handleRenderExpandedItem = useCallback((cert) => (
+    <SingleCertCard
+      cert={cert}
+      variants={itemVariant}
+      onClick={undefined}
+    />
+  ), []);
+
+  const handleRenderStackedItem = useCallback((cert, originalIndex, totalCount) => (
+    <>
+      <ImageContainer>
+        <ProjectImage src={cert.img} alt={cert.title} />
+      </ImageContainer>
+      <CardFooter>
+        {originalIndex === 0 ? (
+          <CertTitle style={{ textAlign: "center", width: "100%" }}>
+            {cert.issuer} Certifications{" "}
+            <CountBadge style={{ verticalAlign: "middle", marginLeft: "0.5rem" }}>
+              {totalCount}
+            </CountBadge>
+          </CertTitle>
+        ) : (
+          <>
+            <CertTitle title={cert.title}>{cert.title}</CertTitle>
+            <IssuerText>{cert.issuer}</IssuerText>
+          </>
+        )}
+      </CardFooter>
+    </>
+  ), []);
+
   return (
     <PageSection title="here are some certifications I have been awarded">
       
       <AnimatePresence>
-        <CertificationsGrid
+        <CertificationsGrid as={motion.div}
           layout
           variants={container}
           initial="hidden"
@@ -295,38 +329,11 @@ export function Certifications() {
                 key={item.issuer}
                 items={item.certs}
                 idPrefix={`deck-${item.issuer}`}
-                getItemKey={(cert) => cert.title}
-                getItemLayoutId={(cert) => `deck-${item.issuer}-${cert.title}`}
+                getItemKey={handleGetItemKey}
+                getItemLayoutId={handleGetItemLayoutId}
                 wrapperVariants={itemVariant}
-                renderExpandedItem={(cert, idx, onToggle) => (
-                  <SingleCertCard
-                    cert={cert}
-                    variants={itemVariant}
-                    onClick={(e) => {}}
-                  />
-                )}
-                renderStackedItem={(cert, originalIndex, totalCount) => (
-                  <>
-                    <ImageContainer>
-                      <ProjectImage src={cert.img} alt={cert.title} />
-                    </ImageContainer>
-                    <CardFooter>
-                      {originalIndex === 0 ? (
-                        <CertTitle style={{ textAlign: "center", width: "100%" }}>
-                          {item.issuer} Certifications{" "}
-                          <CountBadge style={{ verticalAlign: "middle", marginLeft: "0.5rem" }}>
-                            {totalCount}
-                          </CountBadge>
-                        </CertTitle>
-                      ) : (
-                        <>
-                          <CertTitle title={cert.title}>{cert.title}</CertTitle>
-                          <IssuerText>{cert.issuer}</IssuerText>
-                        </>
-                      )}
-                    </CardFooter>
-                  </>
-                )}
+                renderExpandedItem={handleRenderExpandedItem}
+                renderStackedItem={handleRenderStackedItem}
               />
             )
           )}
