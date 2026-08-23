@@ -4,6 +4,7 @@ import React, { useState, useMemo } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "motion/react";
 import { LinkPreview } from "./ui/link-preview";
+import { certifications } from "../data/certifications";
 
 const Wrapper = styled(motion.div)`
   display: flex;
@@ -325,92 +326,7 @@ const SingleCertCard = ({ cert, onClick, variants }) => (
 export function Certifications() {
   const [expandedIssuers, setExpandedIssuers] = useState(new Set());
 
-  const certifications = [
-    {
-      title: "Legacy JavaScript Algorithms and Data Structures",
-      issuer: "FreeCodeCamp",
-      img: "/media/certifications/freecodecamp_javascript_algorithms.png",
-      url: "https://freecodecamp.org/certification/jimfleax/javascript-algorithms-and-data-structures",
-      tags: ["JavaScript", "Algorithms", "Data Structures"],
-    },
-    {
-      title: "JavaScript (Basic)",
-      issuer: "HackerRank",
-      img: "/media/certifications/hackerrank_javascript_basic.png",
-      url: "https://www.hackerrank.com/certificates/f1bb8d29b7f1",
-      tags: ["JavaScript"],
-    },
-    {
-      title: "JavaScript (Intermediate)",
-      issuer: "HackerRank",
-      img: "/media/certifications/hackerrank_javascript_intermediate.png",
-      url: "https://www.hackerrank.com/certificates/ce446e1ccfee",
-      tags: ["JavaScript"],
-    },
-    {
-      title: "Node (Basic)",
-      issuer: "HackerRank",
-      img: "/media/certifications/hackerrank_node_basic.png",
-      url: "https://www.hackerrank.com/certificates/8b07abef6c30",
-      tags: ["Node.js"],
-    },
-    {
-      title: "React (Basic)",
-      issuer: "HackerRank",
-      img: "/media/certifications/hackerrank_react_basic.png",
-      url: "https://www.hackerrank.com/certificates/b777c27b4543",
-      tags: ["React"],
-    },
-    {
-      title: "Frontend Developer (React)",
-      issuer: "HackerRank",
-      img: "/media/certifications/hackerrank_frontend_developer_react.png",
-      url: "https://www.hackerrank.com/certificates/8f54dc2837ac",
-      tags: ["React", "Frontend"],
-    },
-    {
-      title: "Python (Basic)",
-      issuer: "HackerRank",
-      img: "/media/certifications/hackerrank_python_basic.png",
-      url: "https://www.hackerrank.com/certificates/fb15b4149c11",
-      tags: ["Python"],
-    },
-    {
-      title: "Learn Node.js Course",
-      issuer: "Codecademy",
-      img: "/media/certifications/codecademy_nodejs.png",
-      url: "https://www.codecademy.com/profiles/jimfleax/certificates/240305d50b925c17868f1ac7a21a3261",
-      tags: ["Node.js", "Backend", "JavaScript"],
-    },
-    {
-      title: "Learn Python 3 Course",
-      issuer: "Codecademy",
-      img: "/media/certifications/codecademy_python.png",
-      url: "https://www.codecademy.com/profiles/jimfleax/certificates/6c152bd262967f8c941c9707ed636bda",
-      tags: ["Python"],
-    },
-    {
-      title: "Blockchain Basics",
-      issuer: "LinkedIn Learning",
-      img: "/media/certifications/linkedin_blockchain_basics.png",
-      url: "https://www.linkedin.com/learning/certificates/30b76a4d919d6ed957b76a6aae3cc11daf60c5cc7c551f16800ee49b64f6c550?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BT4nMNuJKRgeU8FumLdHGEg%3D%3D",
-      tags: ["Blockchain"],
-    },
-    {
-      title: "Learn the Basics of Blockchain with Python Course",
-      issuer: "Codecademy",
-      img: "/media/certifications/codecademy_blockchain_python.png",
-      url: "https://www.codecademy.com/profiles/jimfleax/certificates/f21a464d190cb43e78b83ca8d1f0c6b0",
-      tags: ["Blockchain", "Python", "Cryptography"],
-    },
-    {
-      title: "Sololearn certified Javascript Intermediate",
-      issuer: "SoloLearn",
-      img: "/media/certifications/sololearn_javascript_intermediate.jpeg",
-      url: "https://www.sololearn.com/certificates/CC-ESKIEUQM",
-      tags: ["JavaScript", "ES6"],
-    },
-  ];
+
 
   const groupedCerts = useMemo(() => {
     return certifications.reduce((acc, cert) => {
